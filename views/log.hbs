@@ -27,17 +27,17 @@
                 {{log.MY_NAME}} ({{log.OPERATOR}}) operating station {{log.STATION_CALLSIGN}} running a {{log.MY_RIG}} transceiver at
                 {{log.TX_PWR}} watts into a {{log.MY_ANTENNA}} antenna from
                 {{#if log.MY_POTA_REF}}
-                    POTA Ref {{log.MY_POTA_REF}} in
+                    POTA Ref <a href="https://pota.app/#/park/{{log.MY_POTA_REF}}">{{log.MY_POTA_REF}}</a> in
                 {{/if}}
                 {{log.MY_STATE}}, {{log.MY_COUNTRY}} (Grid: {{log.MY_GRIDSQUARE}}, ITU Zone: {{log.MY_ITU_ZONE}}, CQ Zone: {{log.MY_CQ_ZONE}})
                 made a {{log.MODE}} contact with <a href="/logs?callsign={{log.CALL}}#logbook">{{log.CALL}}</a>
                 {{#if log.SKCC}}
-                    (SKCC #{{log.SKCC}})
+                    (SKCC #<a href="https://www.skccgroup.com/membership_data/membership_search.php?search={{log.SKCC}}">{{log.SKCC}}</a>)
                 {{/if}}
                 on {{log.FREQ}} MHz in the
                 {{log.BAND}} band on {{log.DATE_HUMAN}} at {{log.TIME_HUMAN}} UTC with a signal report of {{log.RST_SENT}}/{{log.RST_RCVD}}
                 {{#if log.POTA_REF}}
-                    in POTA Ref {{log.POTA_REF}}
+                    in POTA Ref <a href="https://pota.app/#/park/{{log.POTA_REF}}">{{log.POTA_REF}}</a>
                 {{/if}}
             </p>
         </section>
