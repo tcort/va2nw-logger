@@ -521,7 +521,10 @@
                     POTA Reference: <input type="text" name="POTA_REF" size="8" />
                     SKCC: <input type="text" name="SKCC" size="8" /> 
                         <br/>
-                    Comments: <input type="text" name="COMMENTS" /> 
+                    Name: <input type="text" name="NAME" />
+                    State: <input type="text" name="STATE" size="8" />
+                        <br/>
+                    Comments: <input type="text" name="COMMENTS" />
                         <br/>
                     <input type="submit" value="Save Contact" /><br/>
                 </form>
@@ -632,6 +635,7 @@
                         <th>RST Sent</th>
                         <th>RST Recv</th>
                         <th>POTA</th>
+                        <th>SKCC</th>
                         <th>Comments</th>
                     </thead>
                     <tbody>
@@ -645,6 +649,7 @@
                                 <td>{{RST_SENT}}</td>
                                 <td>{{RST_RCVD}}</td>
                                 <td>{{POTA_REF}}</td>
+                                <td>{{SKCC}}</td>
                                 <td>{{COMMENTS}}</td>
                             </tr>
                         {{/each}}
