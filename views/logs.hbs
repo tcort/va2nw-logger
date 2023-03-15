@@ -571,14 +571,14 @@
                             <td>
                                 <ul>
                                     {{#each stats.bands}}
-                                        <li>{{0}}: {{1}}</li>
+                                        <li>{{BAND}}: {{QSO_PER_BAND}}</li>
                                     {{/each}}
                                 </ul>
                             </td>
                             <td>
                                 <ul>
                                     {{#each stats.modes}}
-                                        <li>{{0}}: {{1}}</li>
+                                        <li>{{MODE}}: {{QSO_PER_MODE}}</li>
                                     {{/each}}
                                 </ul>
                             </td>
@@ -600,21 +600,21 @@
                             <td>
                                 <ul>
                                     {{#each stats.years}}
-                                        <li>{{0}}: {{1}}</li>
+                                        <li>{{YEAR}}: {{QSO_PER_YEAR}}</li>
                                     {{/each}}
                                 </ul>
                             </td>
                             <td>
                                 <ul>
                                     {{#each stats.months}}
-                                        <li>{{0}}: {{1}}</li>
+                                        <li>{{MONTH}}: {{QSO_PER_MONTH}}</li>
                                     {{/each}}
                                 </ul>
                             </td>
                             <td>
                                 <ul>
                                     {{#each stats.daysofweek}}
-                                        <li>{{0}}: {{1}}</li>
+                                        <li>{{DAY_OF_WEEK}}: {{QSO_PER_DAY_OF_WEEK}}</li>
                                     {{/each}}
                                 </ul>
                             </td>
@@ -627,7 +627,6 @@
                 <h3><a name="logbook"></a>Logbook</h3>
                 <table>
                     <thead>
-                        <th>L</th>
                         <th>Timestamp</th>
                         <th>Freq</th>
                         <th>Mode</th>
@@ -639,7 +638,6 @@
                     <tbody>
                         {{#each logs}}
                             <tr id="{{LOG_ID}}" class="summary">
-                                <td><button class="toggle-visibility" data-target="{{LOG_ID}}_details">L</button></td>
                                 <td>{{TIMESTAMP}}</td>
                                 <td>{{FREQ}}</td>
                                 <td>{{MODE}}</td>
@@ -648,8 +646,8 @@
                                 <td>{{RST_RCVD}}</td>
                                 <td>{{COMMENTS}}</td>
                             </tr>
-                            <tr id="{{LOG_ID}}_details" class="hidden">
-                                <td colspan="10">
+                            <tr id="{{LOG_ID}}_details">
+                                <td colspan="9">
                                     <p>
                                         {{MY_NAME}} ({{OPERATOR}}) operating station {{STATION_CALLSIGN}} running a {{MY_RIG}} transceiver at
                                         {{TX_PWR}} watts into a {{MY_ANTENNA}} antenna from
@@ -666,6 +664,13 @@
                                         {{#if POTA_REF}}
                                             in POTA Ref <a href="https://pota.app/#/park/{{POTA_REF}}">{{POTA_REF}}</a>
                                         {{/if}}
+                                    </p>
+                                    <p>
+                                        Callsign Lookup:
+                                            <a href="https://www.qrz.com/db/{{CALL}}">QRZ</a>,
+                                            <a href="https://pota.app/#/profile/{{CALL}}">POTA</a>,
+                                            <a href="https://www.skccgroup.com/membership_data/membership_search.php?search={{CALL}}">SKCC</a>,
+                                            <a href="https://www.youtube.com/results?search_query={{CALL}}">YouTube</a>
                                     </p>
                                 </td>
                             </tr>
