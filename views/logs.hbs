@@ -634,23 +634,40 @@
                         <th>Callsign</th>
                         <th>RST Sent</th>
                         <th>RST Recv</th>
-                        <th>POTA</th>
-                        <th>SKCC</th>
                         <th>Comments</th>
                     </thead>
                     <tbody>
                         {{#each logs}}
-                            <tr id="{{LOG_ID}}">
-                                <td><a href="/logs/{{LOG_ID}}">L</a></td>
+                            <tr id="{{LOG_ID}}" class="summary">
+                                <td><button class="toggle-visibility" data-target="{{LOG_ID}}_details">L</button></td>
                                 <td>{{TIMESTAMP}}</td>
                                 <td>{{FREQ}}</td>
                                 <td>{{MODE}}</td>
                                 <td><a href="/logs?callsign={{CALL}}#logbook">{{CALL}}</a></td>
                                 <td>{{RST_SENT}}</td>
                                 <td>{{RST_RCVD}}</td>
-                                <td><a href="https://pota.app/#/park/{{POTA_REF}}">{{POTA_REF}}</a></td>
-                                <td><a href="https://www.skccgroup.com/membership_data/membership_search.php?search={{SKCC}}">{{SKCC}}</a></td>
                                 <td>{{COMMENTS}}</td>
+                            </tr>
+                            <tr id="{{LOG_ID}}_details" class="hidden">
+                                <td colspan="10">
+                                    <p>
+                                        {{MY_NAME}} ({{OPERATOR}}) operating station {{STATION_CALLSIGN}} running a {{MY_RIG}} transceiver at
+                                        {{TX_PWR}} watts into a {{MY_ANTENNA}} antenna from
+                                        {{#if MY_POTA_REF}}
+                                            POTA Ref <a href="https://pota.app/#/park/{{MY_POTA_REF}}">{{MY_POTA_REF}}</a> in
+                                        {{/if}}
+                                        {{MY_STATE}}, {{MY_COUNTRY}} (Grid: {{MY_GRIDSQUARE}}, ITU Zone: {{MY_ITU_ZONE}}, CQ Zone: {{MY_CQ_ZONE}})
+                                        made a {{MODE}} contact with <a href="/logs?callsign={{CALL}}#logbook">{{CALL}}</a>
+                                        {{#if SKCC}}
+                                            (SKCC #<a href="https://www.skccgroup.com/membership_data/membership_search.php?search={{SKCC}}">{{SKCC}}</a>)
+                                        {{/if}}
+                                        on {{FREQ}} MHz in the
+                                        {{BAND}} band on {{DATE_HUMAN}} at {{TIME_HUMAN}} UTC with a signal report of {{RST_SENT}}/{{RST_RCVD}}
+                                        {{#if POTA_REF}}
+                                            in POTA Ref <a href="https://pota.app/#/park/{{POTA_REF}}">{{POTA_REF}}</a>
+                                        {{/if}}
+                                    </p>
+                                </td>
                             </tr>
                         {{/each}}
                     </tbody>
