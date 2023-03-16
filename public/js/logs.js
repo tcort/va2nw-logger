@@ -61,5 +61,9 @@ $(function () {
 
     updateTimestamp();
 
+    $('.toggle-visibility').on('click', function () {
+        const target = $(this).data('target');
+        $(`#${target}`).toggleClass('hidden');
+    });
 });
 

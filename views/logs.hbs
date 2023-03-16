@@ -627,27 +627,33 @@
                 <h3><a name="logbook"></a>Logbook</h3>
                 <table>
                     <thead>
-                        <th>Timestamp</th>
-                        <th>Freq</th>
-                        <th>Mode</th>
+                        <th>&nbsp;</th>
+                        <th>Date</th>
+                        <th>Time</th>
                         <th>Callsign</th>
                         <th>RST Sent</th>
                         <th>RST Recv</th>
+                        <th>Freq</th>
+                        <th>Pwr</th>
+                        <th>Mode</th>
                         <th>Comments</th>
                     </thead>
                     <tbody>
                         {{#each logs}}
                             <tr id="{{LOG_ID}}" class="summary">
-                                <td>{{TIMESTAMP}}</td>
-                                <td>{{FREQ}}</td>
-                                <td>{{MODE}}</td>
+                                <td><button class="toggle-visibility" data-target="{{LOG_ID}}_details">&gt;</button></td>
+                                <td>{{DATE_HUMAN}}</td>
+                                <td>{{TIME_HUMAN}}</td>
                                 <td><a href="/logs?callsign={{CALL}}#logbook">{{CALL}}</a></td>
                                 <td>{{RST_SENT}}</td>
                                 <td>{{RST_RCVD}}</td>
+                                <td>{{FREQ}}</td>
+                                <td>{{TX_PWR}}</td>
+                                <td>{{MODE}}</td>
                                 <td>{{COMMENTS}}</td>
                             </tr>
-                            <tr id="{{LOG_ID}}_details">
-                                <td colspan="9">
+                            <tr id="{{LOG_ID}}_details" class="hidden">
+                                <td colspan="10">
                                     <p>
                                         {{MY_NAME}} ({{OPERATOR}}) operating station {{STATION_CALLSIGN}} running a {{MY_RIG}} transceiver at
                                         {{TX_PWR}} watts into a {{MY_ANTENNA}} antenna from
