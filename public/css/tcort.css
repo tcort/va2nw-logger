@@ -87,6 +87,7 @@ tbody tr:hover {
     background-color: #aaaaaa;
 }
 
+input[type=file],
 input[type=text],
 input[type=button],
 input[type=submit],
@@ -104,9 +105,36 @@ select {
     display: none;
 }
 
+progress {
+    border-radius: 4px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25) inset;
+    height: 20px;
+    position: relative;
+    display: block;
+}
+
+.navtab {
+    border-radius: 4px 4px 0px 0px;
+    border: 2px solid grey;
+    padding: 6px 10px;
+    margin: 0;
+    box-sizing: border-box;
+    background: #aaaaaa;
+    color: #454545;
+}
+
+.navtab:hover  {
+    background: #454545;
+    color: #f2f2f2;
+}
+
+.activetab {
+    background: #f2f2f2;
+    border-bottom: 0px;
+}
+
 @media print {
     body {
         max-width: none;
     }
 }
-

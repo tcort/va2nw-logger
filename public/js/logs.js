@@ -67,5 +67,19 @@ $(function () {
 
         $(this).text( $(this).text() === '-' ? '+' : '-' );
     });
+
+    $('.navtab').on('click', function () {
+        $('.navtab').each(function () {
+            $(this).removeClass('activetab');
+        });
+        $('.navtarget').each(function () {
+            $(this).addClass('hidden');
+        });
+        $($(this).data('target')).removeClass('hidden');
+        $(this).addClass('activetab');
+    });
+
+    $('#show-logs').click();
 });
+
 

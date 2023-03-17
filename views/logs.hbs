@@ -21,7 +21,83 @@
             </p>
         </header>
 
-        <section>
+        <nav>
+            <button id="show-logs" class="navtab" data-target="#logs">Logs</button>
+            <button class="navtab" data-target="#new-entry">New Entry</button>
+            <button class="navtab" data-target="#stats">Statistics</button>
+            <button class="navtab" data-target="#import-export">Import / Export</button>
+        </nav>
+
+        <section id="logs" class="navtarget">
+            <h3>Search</h3>
+            <form name="search" method="GET" action="/logs">
+                Search by callsign:
+                <input type="text" name="callsign" placeholder="callsign" />
+                <input type="submit" value="Search" />
+            </form>
+
+            <h3><a name="logbook"></a>Logbook</h3>
+            <table>
+                <thead>
+                    <th>&nbsp;</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Callsign</th>
+                    <th>RST Sent</th>
+                    <th>RST Recv</th>
+                    <th>Freq</th>
+                    <th>Pwr</th>
+                    <th>Mode</th>
+                    <th>Comments</th>
+                </thead>
+                <tbody>
+                    {{#each logs}}
+                        <tr id="{{LOG_ID}}" class="summary">
+                            <td><button class="toggle-visibility" data-target="{{LOG_ID}}_details">+</button></td>
+                            <td>{{DATE_HUMAN}}</td>
+                            <td>{{TIME_HUMAN}}</td>
+                            <td><a href="/logs?callsign={{CALL}}#logbook">{{CALL}}</a></td>
+                            <td>{{RST_SENT}}</td>
+                            <td>{{RST_RCVD}}</td>
+                            <td>{{FREQ}}</td>
+                            <td>{{TX_PWR}}</td>
+                            <td>{{MODE}}</td>
+                            <td>{{COMMENTS}}</td>
+                        </tr>
+                        <tr id="{{LOG_ID}}_details" class="hidden">
+                            <td colspan="10">
+                                <p>
+                                    {{MY_NAME}} ({{OPERATOR}}) operating station {{STATION_CALLSIGN}} running a {{MY_RIG}} transceiver at
+                                    {{TX_PWR}} watts into a {{MY_ANTENNA}} antenna from
+                                    {{#if MY_POTA_REF}}
+                                        POTA Ref <a href="https://pota.app/#/park/{{MY_POTA_REF}}">{{MY_POTA_REF}}</a> in
+                                    {{/if}}
+                                    {{MY_STATE}}, {{MY_COUNTRY}} (Grid: {{MY_GRIDSQUARE}}, ITU Zone: {{MY_ITU_ZONE}}, CQ Zone: {{MY_CQ_ZONE}})
+                                    made a {{MODE}} contact with <a href="/logs?callsign={{CALL}}#logbook">{{CALL}}</a>
+                                    {{#if SKCC}}
+                                        (SKCC #<a href="https://www.skccgroup.com/membership_data/membership_search.php?search={{SKCC}}">{{SKCC}}</a>)
+                                    {{/if}}
+                                    on {{FREQ}} MHz in the
+                                    {{BAND}} band on {{DATE_HUMAN}} at {{TIME_HUMAN}} UTC with a signal report of {{RST_SENT}}/{{RST_RCVD}}
+                                    {{#if POTA_REF}}
+                                        in POTA Ref <a href="https://pota.app/#/park/{{POTA_REF}}">{{POTA_REF}}</a>
+                                    {{/if}}
+                                </p>
+                                <p>
+                                    Callsign Lookup:
+                                        <a href="https://www.qrz.com/db/{{CALL}}">QRZ</a>,
+                                        <a href="https://pota.app/#/profile/{{CALL}}">POTA</a>,
+                                        <a href="https://www.skccgroup.com/membership_data/membership_search.php?search={{CALL}}">SKCC</a>,
+                                        <a href="https://www.youtube.com/results?search_query={{CALL}}">YouTube</a>
+                                </p>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </section>
+
+        <section id="new-entry" class="navtarget">
                 <h3>New Entry</h3>
                 <form method="post" action="/logs">
                     <h4>Operator</h4>
@@ -299,7 +375,7 @@
                         </select>
                         <br/>
                     <h4>QSO Details</h4>
-                    Callsign: <input type="text" name="CALL" autofocus size="10" />
+                    Callsign: <input type="text" name="CALL" size="10" />
                     Freq: <input type="text" name="FREQ" size="10" />
                     Mode:
                         <select name="MODE">
@@ -530,16 +606,13 @@
                 </form>
         </section>
 
-        <section>
+        <section id="import-export" class="navtarget">
                 <h3>Import</h3>
                 <form method="post" encType="multipart/form-data" action="/logs">
                     ADIF File:
                         <input type="file" name="adif_file" accept=".adi,.adif"/>
                     <input type="submit" value="Import"/>
                 </form>
-        </section>
-
-        <section>
                 <h3>Export</h3>
                 <form method="get" action="/logs">
                     Format:
@@ -558,7 +631,7 @@
                 </form>
         </section>
 
-        <section>
+        <section id="stats" class="navtarget">
                 <h3>Statistics</h3>
                 <table>
                     <thead>
@@ -568,23 +641,56 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>
-                                <ul>
+                            <td valign="top" width="33%">
+                                <table>
                                     {{#each stats.bands}}
-                                        <li>{{BAND}}: {{QSO_PER_BAND}}</li>
+                                        <tr>
+                                            <td>{{BAND}}</td>
+                                            <td>{{QSO_PER_BAND}}</td>
+                                            <td><progress value="{{PERCENT}}" max="100"> {{PERCENT}}% </progress></td>
+                                        </tr>
                                     {{/each}}
-                                </ul>
+                                </table>
                             </td>
-                            <td>
-                                <ul>
+                            <td valign="top" width="33%">
+                                <table>
                                     {{#each stats.modes}}
-                                        <li>{{MODE}}: {{QSO_PER_MODE}}</li>
+                                        <tr>
+                                            <td>{{MODE}}</td>
+                                            <td>{{QSO_PER_MODE}}</td>
+                                            <td><progress value="{{PERCENT}}" max="100"> {{PERCENT}}% </progress></td>
+                                        </tr>
                                     {{/each}}
-                                </ul>
+                                </table>
                             </td>
-                            <td>
-                                QSOs: {{stats.nqso}}<br/>
-                                Unique Callsigns: {{stats.ncallsigns}}<br/>
+                            <td valign="top" width="33%">
+                                <table>
+                                    <tr>
+                                        <td>QSOs</td>
+                                        <td>{{stats.nqso}}</td>
+                                        <td><progress value="{{stats.nqso}}" max="{{stats.nqso}}"> {{stats.nqso}} / {{stats.nqso}} </progress></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Unique Callsigns</td>
+                                        <td>{{stats.ncallsigns}}</td>
+                                        <td><progress value="{{stats.ncallsigns}}" max="{{stats.nqso}}"> {{stats.ncallsigns}} / {{stats.nqso}} </progress></td>
+                                    </tr>
+                                    <tr>
+                                        <td>POTA QSOs</td>
+                                        <td>{{stats.npota}}</td>
+                                        <td><progress value="{{stats.npota}}" max="{{stats.nqso}}"> {{stats.npota}} / {{stats.nqso}} </progress></td>
+                                    </tr>
+                                    <tr>
+                                        <td>SKCC QSOs</td>
+                                        <td>{{stats.nskcc}}</td>
+                                        <td><progress value="{{stats.nskcc}}" max="{{stats.nqso}}"> {{stats.nskcc}} / {{stats.nqsos}} </progress></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Unique SKCC #</td>
+                                        <td>{{stats.nskcc_unique}}</td>
+                                        <td><progress value="{{stats.nskcc_unique}}" max="{{stats.nskcc}}"> {{stats.nskcc_unique}} / {{stats.nskcc}} </progress></td>
+                                    </tr>
+                                </table>
                             </td>
                         </tr>
                     </tbody>
@@ -597,90 +703,40 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>
-                                <ul>
+                            <td valign="top" width="33%">
+                                <table>
                                     {{#each stats.years}}
-                                        <li>{{YEAR}}: {{QSO_PER_YEAR}}</li>
+                                        <tr>
+                                            <td>{{YEAR}}</td>
+                                            <td>{{QSO_PER_YEAR}}</td>
+                                            <td><progress value="{{PERCENT}}" max="100"> {{PERCENT}}% </progress></td>
+                                        </tr>
                                     {{/each}}
-                                </ul>
+                                </table>
                             </td>
-                            <td>
-                                <ul>
+                            <td valign="top" width="33%">
+                                <table>
                                     {{#each stats.months}}
-                                        <li>{{MONTH}}: {{QSO_PER_MONTH}}</li>
+                                        <tr>
+                                            <td>{{MONTH}}</td>
+                                            <td>{{QSO_PER_MONTH}}</td>
+                                            <td><progress value="{{PERCENT}}" max="100"> {{PERCENT}}% </progress></td>
+                                        </tr>
                                     {{/each}}
-                                </ul>
+                                </table>
                             </td>
-                            <td>
-                                <ul>
+                            <td valign="top" width="33%">
+                                <table>
                                     {{#each stats.daysofweek}}
-                                        <li>{{DAY_OF_WEEK}}: {{QSO_PER_DAY_OF_WEEK}}</li>
+                                        <tr>
+                                            <td>{{DAY_OF_WEEK}}</td>
+                                            <td>{{QSO_PER_DAY_OF_WEEK}}</td>
+                                            <td><progress value="{{PERCENT}}" max="100"> {{PERCENT}}% </progress></td>
+                                        </tr>
                                     {{/each}}
-                                </ul>
+                                </table>
                             </td>
                         </tr>
-                    </tbody>
-                </table>
-        </section>
-
-        <section>
-                <h3><a name="logbook"></a>Logbook</h3>
-                <table>
-                    <thead>
-                        <th>&nbsp;</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Callsign</th>
-                        <th>RST Sent</th>
-                        <th>RST Recv</th>
-                        <th>Freq</th>
-                        <th>Pwr</th>
-                        <th>Mode</th>
-                        <th>Comments</th>
-                    </thead>
-                    <tbody>
-                        {{#each logs}}
-                            <tr id="{{LOG_ID}}" class="summary">
-                                <td><button class="toggle-visibility" data-target="{{LOG_ID}}_details">+</button></td>
-                                <td>{{DATE_HUMAN}}</td>
-                                <td>{{TIME_HUMAN}}</td>
-                                <td><a href="/logs?callsign={{CALL}}#logbook">{{CALL}}</a></td>
-                                <td>{{RST_SENT}}</td>
-                                <td>{{RST_RCVD}}</td>
-                                <td>{{FREQ}}</td>
-                                <td>{{TX_PWR}}</td>
-                                <td>{{MODE}}</td>
-                                <td>{{COMMENTS}}</td>
-                            </tr>
-                            <tr id="{{LOG_ID}}_details" class="hidden">
-                                <td colspan="10">
-                                    <p>
-                                        {{MY_NAME}} ({{OPERATOR}}) operating station {{STATION_CALLSIGN}} running a {{MY_RIG}} transceiver at
-                                        {{TX_PWR}} watts into a {{MY_ANTENNA}} antenna from
-                                        {{#if MY_POTA_REF}}
-                                            POTA Ref <a href="https://pota.app/#/park/{{MY_POTA_REF}}">{{MY_POTA_REF}}</a> in
-                                        {{/if}}
-                                        {{MY_STATE}}, {{MY_COUNTRY}} (Grid: {{MY_GRIDSQUARE}}, ITU Zone: {{MY_ITU_ZONE}}, CQ Zone: {{MY_CQ_ZONE}})
-                                        made a {{MODE}} contact with <a href="/logs?callsign={{CALL}}#logbook">{{CALL}}</a>
-                                        {{#if SKCC}}
-                                            (SKCC #<a href="https://www.skccgroup.com/membership_data/membership_search.php?search={{SKCC}}">{{SKCC}}</a>)
-                                        {{/if}}
-                                        on {{FREQ}} MHz in the
-                                        {{BAND}} band on {{DATE_HUMAN}} at {{TIME_HUMAN}} UTC with a signal report of {{RST_SENT}}/{{RST_RCVD}}
-                                        {{#if POTA_REF}}
-                                            in POTA Ref <a href="https://pota.app/#/park/{{POTA_REF}}">{{POTA_REF}}</a>
-                                        {{/if}}
-                                    </p>
-                                    <p>
-                                        Callsign Lookup:
-                                            <a href="https://www.qrz.com/db/{{CALL}}">QRZ</a>,
-                                            <a href="https://pota.app/#/profile/{{CALL}}">POTA</a>,
-                                            <a href="https://www.skccgroup.com/membership_data/membership_search.php?search={{CALL}}">SKCC</a>,
-                                            <a href="https://www.youtube.com/results?search_query={{CALL}}">YouTube</a>
-                                    </p>
-                                </td>
-                            </tr>
-                        {{/each}}
                     </tbody>
                 </table>
         </section>
