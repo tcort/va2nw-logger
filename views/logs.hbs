@@ -739,6 +739,12 @@
                         </tr>
                     </tbody>
                 </table>
+                <p>
+                    Frequent Flyers:
+                    {{#each stats.frequent_flyers}}
+                        <a href="/logs?callsign={{CALL}}#logbook">{{CALL}}</a> ({{CNT}}) &nbsp; 
+                    {{/each}}
+                </p>
         </section>
 
         <footer>
