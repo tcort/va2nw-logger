@@ -8,8 +8,8 @@ BACKUP_DIR=backups
 mkdir ${DIR}
 git archive --format=tar HEAD > ${DIR}/code-${NOW}.tar
 cd ${DIR}
-curl --silent -o "logbook.adi" http://localhost:3000/logs?fmt=adi
-curl --silent -o "logbook.json" http://localhost:3000/logs?fmt=json
+curl --silent -o "logbook.adi"  'http://localhost:3000/logs?fmt=adi&limit=1000000'
+curl --silent -o "logbook.json" 'http://localhost:3000/logs?fmt=json&limit=1000000'
 cp ../logbook.sqlite3 .
 cd ..
 
