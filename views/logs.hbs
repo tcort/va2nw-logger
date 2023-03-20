@@ -6,7 +6,7 @@
 
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <title>Amateur Radio Station VA2NW</title>
+        <title>Logs for Amateur Radio Station VA2NW</title>
 
         <link rel="icon" href="favicon.ico" />
         <link rel="stylesheet" href="/css/tcort.css" />
@@ -14,7 +14,7 @@
     <body>
 
         <header>
-            <h1>Amateur Radio Station VA2NW</h1>
+            <h1>Logs for Amateur Radio Station VA2NW</h1>
             <p>
                 Québec, Canada<br/>
                 PB #268 / NAQCC #2846 / SKCC #4889
@@ -48,7 +48,7 @@
                     <th>Freq</th>
                     <th>Pwr</th>
                     <th>Mode</th>
-                    <th>Comments</th>
+                    <th>Notes</th>
                 </thead>
                 <tbody>
                     {{#each logs}}
@@ -62,7 +62,7 @@
                             <td>{{FREQ}}</td>
                             <td>{{TX_PWR}}</td>
                             <td>{{MODE}}</td>
-                            <td>{{COMMENTS}}</td>
+                            <td>{{NOTES}}</td>
                         </tr>
                         <tr id="{{LOG_ID}}_details" class="hidden">
                             <td colspan="10">
@@ -600,7 +600,7 @@
                     Name: <input type="text" name="NAME" />
                     State: <input type="text" name="STATE" size="8" />
                         <br/>
-                    Comments: <input type="text" name="COMMENTS" />
+                    Notes: <input type="text" name="NOTES" />
                         <br/>
                     <input type="submit" value="Save Contact" /><br/>
                 </form>
@@ -633,6 +633,9 @@
 
         <section id="stats" class="navtarget">
                 <h3>Statistics</h3>
+                <p>
+                    Logs for {{stats.nqso}} QSOs between {{stats.first_qso}} and {{stats.last_qso}} for a daily QSO rate of {{stats.qso_per_day}} QSOs per day.
+                </p>
                 <table>
                     <thead>
                         <th>By Band</th>
@@ -665,11 +668,6 @@
                             </td>
                             <td valign="top" width="33%">
                                 <table>
-                                    <tr>
-                                        <td>QSOs</td>
-                                        <td>{{stats.nqso}}</td>
-                                        <td><progress value="{{stats.nqso}}" max="{{stats.nqso}}"> {{stats.nqso}} / {{stats.nqso}} </progress></td>
-                                    </tr>
                                     <tr>
                                         <td>Unique Callsigns</td>
                                         <td>{{stats.ncallsigns}}</td>
@@ -740,10 +738,20 @@
                     </tbody>
                 </table>
                 <p>
-                    Frequent Flyers:
-                    {{#each stats.frequent_flyers}}
-                        <a href="/logs?callsign={{CALL}}#logbook">{{CALL}}</a> ({{CNT}}) &nbsp; 
-                    {{/each}}
+                    Frequent Flyers (QSO Count):
+                    <ul class="comma-separated-list">
+                        {{#each stats.frequent_flyers}}
+                            <li><a href="/logs?callsign={{CALL}}#logbook">{{CALL}}</a> ({{CNT}})</li>
+                        {{/each}}
+                    </ul>
+                </p>
+                <p>
+                    POTA References Activated (Activation Count):
+                    <ul class="comma-separated-list">
+                        {{#each stats.pota_activations}}
+                            <li><a href="https://pota.app/#/park/{{MY_POTA_REF}}">{{MY_POTA_REF}}</a> ({{NACTIVATIONS}})</li>
+                        {{/each}}
+                    </ul>
                 </p>
         </section>
 

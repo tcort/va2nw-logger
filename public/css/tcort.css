@@ -133,6 +133,20 @@ progress {
     border-bottom: 0px;
 }
 
+.comma-separated-list {
+    display: inline;
+    list-style: none;
+    padding: 0px;
+}
+
+.comma-separated-list li {
+    display: inline;
+}
+
+.comma-separated-list li:not(:first-child)::before {
+  content: ', ';
+}
+
 @media print {
     body {
         max-width: none;
