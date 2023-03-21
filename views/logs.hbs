@@ -110,11 +110,21 @@
                     Station Callsign:
                         <input type="text" name="STATION_CALLSIGN" size="10" />
                     Rig:
-                        <input type="text" name="MY_RIG" />
+                        <input type="text" name="MY_RIG" list="my_rigs"/>
+                        <datalist id="my_rigs">
+                            {{#each rigs}}
+                                <option>{{this}}</option>
+                            {{/each}}
+                        </datalist>
                     Power:
                         <input type="text" name="TX_PWR" size="3" />
                     Antenna:
-                        <input type="text" name="MY_ANTENNA" />
+                        <input type="text" name="MY_ANTENNA" list="my_antennas"/>
+                        <datalist id="my_antennas">
+                            {{#each antennas}}
+                                <option>{{this}}</option>
+                            {{/each}}
+                        </datalist>
                         <br/>
                     <h4>Operating Location</h4>
                     Gridsquare:
