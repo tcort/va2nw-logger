@@ -886,6 +886,16 @@
                                         <td><progress value="{{stats.ncallsigns}}" max="{{stats.nqso}}"> {{stats.ncallsigns}} / {{stats.nqso}} </progress></td>
                                     </tr>
                                     <tr>
+                                        <td>QRP QSOs</td>
+                                        <td>{{stats.nqrp}}</td>
+                                        <td><progress value="{{stats.nqrp}}" max="{{stats.nqso}}"> {{stats.nqrp}} / {{stats.nqsos}} </progress></td>
+                                    </tr>
+                                    <tr>
+                                        <td>QRPp QSOs</td>
+                                        <td>{{stats.nqrpp}}</td>
+                                        <td><progress value="{{stats.nqrpp}}" max="{{stats.nqso}}"> {{stats.nqrpp}} / {{stats.nqsos}} </progress></td>
+                                    </tr>
+                                    <tr>
                                         <td>POTA QSOs</td>
                                         <td>{{stats.npota}}</td>
                                         <td><progress value="{{stats.npota}}" max="{{stats.nqso}}"> {{stats.npota}} / {{stats.nqso}} </progress></td>
