@@ -51,9 +51,20 @@ function loadLocalStorage() {
             $(`[name="${field}"]`).val(window.localStorage.getItem(field) ?? '').change();
         }
     });
+
 }
 
 $(function () {
+
+    $(`[name="MODE"]`).on('change', function () {
+        if ($(this).find(":selected").val() === 'SSB') {
+            $(`[name="RST_SENT"]`).val('59');
+            $(`[name="RST_RCVD"]`).val('59');
+        } else {
+            $(`[name="RST_SENT"]`).val('599');
+            $(`[name="RST_RCVD"]`).val('599');
+        }
+    });
 
     loadLocalStorage();
 
