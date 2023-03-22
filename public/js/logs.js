@@ -72,6 +72,22 @@ $(function () {
 
     updateTimestamp();
 
+    function completer(baseUrl, toUpper = false) {
+        return function (input, callback) {
+            const startsWith = toUpper ? `${input}`.toUpperCase() : `${input}`;
+            fetch(baseUrl + encodeURIComponent(startsWith))
+                .then((response) => response.json())
+                .then(callsigns =>  callback(null, callsigns) )
+                .catch(err => callback(err));
+        };
+    }
+
+
+    tctypeahead('#callsign_search', '#callsign_search_suggestions', completer('/callsigns?startsWith=', true));
+    tctypeahead('#callsign_entry', '#callsign_entry_suggestions', completer('/callsigns?startsWith=', true));
+    tctypeahead('#my_rig_entry', '#my_rig_suggestions', completer('/my-rigs?startsWith='));
+    tctypeahead('#my_antenna_entry', '#my_antenna_suggestions', completer('/my-antennas?startsWith='));
+
     $('.toggle-visibility').on('click', function () {
         const target = $(this).data('target');
         $(`#${target}`).toggleClass('hidden');

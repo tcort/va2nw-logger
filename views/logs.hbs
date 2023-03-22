@@ -32,7 +32,8 @@
             <h3>Search</h3>
             <form name="search" method="GET" action="/logs">
                 Search by callsign:
-                <input type="text" name="callsign" placeholder="callsign" />
+                <input id="callsign_search" type="text" name="callsign" placeholder="callsign" list="callsign_search_suggestions" />
+                <datalist id="callsign_search_suggestions"></datalist>
                 <input type="hidden" name="since" value="1900-01-01T00:00:00Z" />
                 <input type="submit" value="Search" />
             </form>
@@ -114,21 +115,13 @@
                     Station Callsign:
                         <input type="text" name="STATION_CALLSIGN" size="10" />
                     Rig:
-                        <input type="text" name="MY_RIG" list="my_rigs"/>
-                        <datalist id="my_rigs">
-                            {{#each rigs}}
-                                <option>{{this}}</option>
-                            {{/each}}
-                        </datalist>
+                        <input id="my_rig_entry" type="text" name="MY_RIG" list="my_rig_suggestions"/>
+                        <datalist id="my_rig_suggestions"></datalist>
                     Power:
                         <input type="text" name="TX_PWR" size="3" />
                     Antenna:
-                        <input type="text" name="MY_ANTENNA" list="my_antennas"/>
-                        <datalist id="my_antennas">
-                            {{#each antennas}}
-                                <option>{{this}}</option>
-                            {{/each}}
-                        </datalist>
+                        <input id="my_antenna_entry" type="text" name="MY_ANTENNA" list="my_antenna_suggestions"/>
+                        <datalist id="my_antenna_suggestions"></datalist>
                         <br/>
                     <h4>Operating Location</h4>
                     Gridsquare:
@@ -389,7 +382,9 @@
                         </select>
                         <br/>
                     <h4>QSO Details</h4>
-                    Callsign: <input type="text" name="CALL" size="10" />
+                    Callsign:
+                        <input id="callsign_entry" type="text" name="CALL" list="callsign" size="10" list="callsign_entry_suggestions" />
+                        <datalist id="callsign_entry_suggestions"></datalist>
                     Freq: <input type="text" name="FREQ" size="10" />
                     Mode:
                         <select name="MODE">
@@ -984,6 +979,7 @@
         </footer>
 
         <script src="/js/jquery.min.js"></script>
+        <script src="/js/tctypeahead.js"></script>
         <script src="/js/logs.js"></script>
 
     </body>
