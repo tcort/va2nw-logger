@@ -2,6 +2,10 @@
 
 Amateur radio contact logging.
 
+## Prerequisites
+
+Install `node.js`, `npm`, and `git`.
+
 ## Install
 
 ```
