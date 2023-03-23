@@ -29,6 +29,8 @@ const storedFields = [
     'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'SECOND', 'NOW', 'MY_RIG', 'MY_ANTENNA',
     'MY_NAME', 'MY_POTA_REF', 'MY_DXCC', 'MY_STATE', 'MY_CQ_ZONE', 'MY_ITU_ZONE',
     'MY_COUNTRY', 'MY_ARRL_SECT',
+    'BEFORE_YEAR', 'BEFORE_MONTH', 'BEFORE_DAY', 'BEFORE_HOUR', 'BEFORE_MINUTE', 'BEFORE_SECOND',
+    'SINCE_YEAR', 'SINCE_MONTH', 'SINCE_DAY', 'SINCE_HOUR', 'SINCE_MINUTE', 'SINCE_SECOND',
 ];
 
 function saveLocalStorage() {
@@ -51,7 +53,27 @@ function loadLocalStorage() {
             $(`[name="${field}"]`).val(window.localStorage.getItem(field) ?? '').change();
         }
     });
+}
 
+function defaultLocalStorage() {
+    [
+        [ 'SINCE_YEAR', '1901' ],
+        [ 'SINCE_MONTH', '12' ],
+        [ 'SINCE_DAY', '12' ],
+        [ 'SINCE_HOUR', '17' ],
+        [ 'SINCE_MINUTE', '30' ],
+        [ 'SINCE_SECOND', '00' ],
+        [ 'BEFORE_YEAR', '2099' ],
+        [ 'BEFORE_MONTH', '12' ],
+        [ 'BEFORE_DAY', '31' ],
+        [ 'BEFORE_HOUR', '23' ],
+        [ 'BEFORE_MINUTE', '59' ],
+        [ 'BEFORE_SECOND', '59' ],
+    ].forEach(([ field, val ]) => {
+        if (window.localStorage.getItem(field) === 'undefined') {
+            window.localStorage.setItem(field, val);
+        }
+    });
 }
 
 $(function () {
@@ -65,6 +87,8 @@ $(function () {
             $(`[name="RST_RCVD"]`).val('599');
         }
     });
+
+    defaultLocalStorage();
 
     loadLocalStorage();
 
