@@ -129,7 +129,7 @@
                     POTA Reference:
                         <input type="text" name="MY_POTA_REF" size="8" >
                         <br/>
-                    ITU Zone (4 NCR):
+                    ITU Zone:
                         <select name="MY_ITU_ZONE">
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -222,7 +222,7 @@
                             <option value="89">89</option>
                             <option value="90">90</option>
                         </select>
-                    CQ Zone (5 West QC, 4 East ON):
+                    CQ Zone:
                         <select name="MY_CQ_ZONE">
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -284,103 +284,37 @@
                         </select>
                     ARRL Section:
                         <select name="MY_ARRL_SECT">
-                            <option value="AL">Alabama</option>
-                            <option value="AK">Alaska</option>
-                            <option value="AB">Alberta</option>
-                            <option value="AR">Arkansas</option>
-                            <option value="AZ">Arizona</option>
-                            <option value="BC">British Columbia</option>
-                            <option value="CO">Colorado</option>
-                            <option value="CT">Connecticut</option>
-                            <option value="DE">Delaware</option>
-                            <option value="EB">East Bay</option>
-                            <option value="EMA">Eastern Massachusetts</option>
-                            <option value="ENY">Eastern New York</option>
-                            <option value="EPA">Eastern Pennsylvania</option>
-                            <option value="EWA">Eastern Washington</option>
-                            <option value="GA">Georgia</option>
-                            <option value="GTA">Greater Toronto Area</option>
-                            <option value="ID">Idaho</option>
-                            <option value="IL">Illinois</option>
-                            <option value="IN">Indiana</option>
-                            <option value="IA">Iowa</option>
-                            <option value="KS">Kansas</option>
-                            <option value="KY">Kentucky</option>
-                            <option value="LAX">Los Angeles</option>
-                            <option value="LA">Louisiana</option>
-                            <option value="ME">Maine</option>
-                            <option value="MB">Manitoba</option>
-                            <option value="MAR">Maritime</option>
-                            <option value="MDC">Maryland-DC</option>
-                            <option value="MI">Michigan</option>
-                            <option value="MN">Minnesota</option>
-                            <option value="MS">Mississippi</option>
-                            <option value="MO">Missouri</option>
-                            <option value="MT">Montana</option>
-                            <option value="NE">Nebraska</option>
-                            <option value="NV">Nevada</option>
-                            <option value="NH">New Hampshire</option>
-                            <option value="NM">New Mexico</option>
-                            <option value="NLI">New York City-Long Island</option>
-                            <option value="NL">NewfoundlandLabrador</option>
-                            <option value="NC">North Carolina</option>
-                            <option value="ND">North Dakota</option>
-                            <option value="NTX">North Texas</option>
-                            <option value="NFL">Northern Florida</option>
-                            <option value="NNJ">Northern New Jersey</option>
-                            <option value="NNY">Northern New York</option>
-                            <option value="NT">Northwest Territories / Yukon</option>
-                            <option value="OH">Ohio</option>
-                            <option value="OK">Oklahoma</option>
-                            <option value="ONE">Ontario East</option>
-                            <option value="ONN">Ontario North</option>
-                            <option value="ONS">Ontario South</option>
-                            <option value="ORG">Orange</option>
-                            <option value="OR">Oregon</option>
-                            <option value="PAC">Pacific</option>
-                            <option value="PE">Prince Edward Island</option>
-                            <option value="PR">Puerto Rico</option>
-                            <option value="QC">Quebec</option>
-                            <option value="RI">Rhode Island</option>
-                            <option value="SV">Sacramento Valley</option>
-                            <option value="SDG">San Diego</option>
-                            <option value="SF">San Francisco</option>
-                            <option value="SJV">San Joaquin Valley</option>
-                            <option value="SB">Santa Barbara</option>
-                            <option value="SCV">Santa Clara Valley</option>
-                            <option value="SK">Saskatchewan</option>
-                            <option value="SC">South Carolina</option>
-                            <option value="SD">South Dakota</option>
-                            <option value="STX">South Texas</option>
-                            <option value="SFL">Southern Florida</option>
-                            <option value="SNJ">Southern New Jersey</option>
-                            <option value="TN">Tennessee</option>
-                            <option value="VI">US Virgin Islands</option>
-                            <option value="UT">Utah</option>
-                            <option value="VT">Vermont</option>
-                            <option value="VA">Virginia</option>
-                            <option value="WCF">West Central Florida</option>
-                            <option value="WTX">West Texas</option>
-                            <option value="WV">West Virginia</option>
-                            <option value="WMA">Western Massachusetts</option>
-                            <option value="WNY">Western New York</option>
-                            <option value="WPA">Western Pennsylvania</option>
-                            <option value="WWA">Western Washington</option>
-                            <option value="WI">Wisconsin</option>
-                            <option value="WY">Wyoming</option>
+                            {{#each enums.ArrlSection}}
+                                <option value="{{@key}}">{{this}}</option>
+                            {{/each}}
                         </select>
                         <br/>
                     Country:
                         <select name="MY_COUNTRY">
-                            <option value="CANADA">CANADA</option>
-                            <option value="UNITED STATES OF AMERICA">UNITED STATES OF AMERICA</option>
+                            {{#each enums.Dxcc}}
+                                <option value="{{this}}">{{this}}</option>
+                            {{/each}}
                         </select>
                     DXCC:
                         <select name="MY_DXCC">
-                            <option value="1">CANADA</option>
-                            <option value="291">UNITED STATES OF AMERICA</option>
+                            {{#each enums.Dxcc}}
+                                <option value="{{@key}}">{{this}}</option>
+                            {{/each}}
                         </select>
                         <br/>
+
+                    <h4>Contest / Activity</h4>
+                        Contest:
+                            <select name="CONTEST_ID">
+                                <option value="">N/A</option>
+                                {{#each enums.ContestID}}
+                                    <option value="{{@key}}">{{this}}</option>
+                                {{/each}}
+                            </select>
+                            <br/>
+                        SOTA Reference: <input type="text" name="SOTA_REF" size="8" />
+                        POTA Reference: <input type="text" name="POTA_REF" size="8" />
+
                     <h4>QSO Details</h4>
                     Callsign:
                         <input id="callsign_entry" type="text" name="CALL" list="callsign" size="10" list="callsign_entry_suggestions" />
@@ -388,10 +322,9 @@
                     Freq: <input type="text" name="FREQ" size="10" />
                     Mode:
                         <select name="MODE">
-                            <option value="CW">CW</option>
-                            <option value="SSB">SSB</option>
-                            <option value="FM">FM</option>
-                            <option value="AM">AM</option>
+                            {{#each enums.Mode}}
+                                <option value="{{@key}}">{{this}}</option>
+                            {{/each}}
                         </select>
                         <br/>
                     Timestamp:
@@ -802,7 +735,6 @@
                     RST Sent: <input type="text" name="RST_SENT" value="599" size="3" />
                     RST Recv: <input type="text" name="RST_RCVD" value="599" size="3" />
                         <br/>
-                    POTA Reference: <input type="text" name="POTA_REF" size="8" />
                     SKCC: <input type="text" name="SKCC" size="8" /> 
                         <br/>
                     Name: <input type="text" name="NAME" />
