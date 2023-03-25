@@ -1628,6 +1628,11 @@
                                         <td><progress value="{{stats.nqrpp}}" max="{{stats.nqso}}"> {{stats.nqrpp}} / {{stats.nqsos}} </progress></td>
                                     </tr>
                                     <tr>
+                                        <td>Contest QSOs</td>
+                                        <td>{{stats.ncontest}}</td>
+                                        <td><progress value="{{stats.ncontest}}" max="{{stats.nqso}}"> {{stats.ncontest}} / {{stats.nqsos}} </progress></td>
+                                    </tr>
+                                    <tr>
                                         <td>POTA QSOs</td>
                                         <td>{{stats.npota}}</td>
                                         <td><progress value="{{stats.npota}}" max="{{stats.nqso}}"> {{stats.npota}} / {{stats.nqso}} </progress></td>
@@ -1695,7 +1700,7 @@
                     <thead>
                         <th>By Rig</th>
                         <th>By Antenna</th>
-                        <th> </th>
+                        <th>By Contest</th>
                     </thead>
                     <tbody>
                         <tr>
@@ -1722,6 +1727,15 @@
                                 </table>
                             </td>
                             <td valign="top" width="33%">
+                                <table>
+                                    {{#each stats.contest_totals}}
+                                        <tr>
+                                            <td>{{CONTEST_ID}}</td>
+                                            <td>{{QSO_PER_CONTEST}}</td>
+                                            <td><progress value="{{QSO_PER_CONTEST}}" max="{{../stats.ncontest}}"> {{QSO_PER_CONTEST}} / {{../stats.nqso}} </progress></td>
+                                        </tr>
+                                    {{/each}}
+                                </table>
                             </td>
                         </tr>
                     </tbody>
