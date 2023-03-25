@@ -31,6 +31,7 @@ const storedFields = [
     'MY_COUNTRY', 'MY_ARRL_SECT', 'CONTEST_ID',
     'BEFORE_YEAR', 'BEFORE_MONTH', 'BEFORE_DAY', 'BEFORE_HOUR', 'BEFORE_MINUTE', 'BEFORE_SECOND',
     'SINCE_YEAR', 'SINCE_MONTH', 'SINCE_DAY', 'SINCE_HOUR', 'SINCE_MINUTE', 'SINCE_SECOND',
+    'STX', 'STX_STRING',
 ];
 
 function saveLocalStorage() {
@@ -53,6 +54,11 @@ function loadLocalStorage() {
             $(`[name="${field}"]`).val(window.localStorage.getItem(field) ?? '').change();
         }
     });
+
+    if (!isNaN(parseInt($(`[name="STX"]`).val()))) {
+        const next_serial = parseInt($(`[name="STX"]`).val()) + 1;
+        $(`[name="STX"]`).val(`${next_serial}`.padStart(3, '0'));
+    }
 }
 
 function defaultLocalStorage() {
