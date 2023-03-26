@@ -34,7 +34,7 @@
             <h3>Search</h3>
             <form name="search" method="GET" action="/logs">
                 Search by callsign:
-                <input class="callsign" id="callsign_search" type="text" name="callsign" placeholder="callsign" list="callsign_search_suggestions" />
+                <input id="callsign_search" type="text" name="callsign" placeholder="callsign" list="callsign_search_suggestions" />
                 <datalist id="callsign_search_suggestions"></datalist>
                 <input type="hidden" name="since" value="1900-01-01T00:00:00Z" />
                 <input type="submit" value="Search" />
@@ -112,13 +112,13 @@
                 <form method="post" action="/logs">
                     <h4>Operator</h4>
                     Callsign:
-                        <input class="callsign" type="text" name="OPERATOR" size="10" />
+                        <input type="text" name="OPERATOR" size="10" />
                     Name:
                         <input type="text" name="MY_NAME" />
                         <br/>
                     <h4>Station</h4>
                     Station Callsign:
-                        <input class="callsign" type="text" name="STATION_CALLSIGN" size="10" />
+                        <input type="text" name="STATION_CALLSIGN" size="10" />
                     Rig:
                         <input id="my_rig_entry" type="text" name="MY_RIG" list="my_rig_suggestions"/>
                         <datalist id="my_rig_suggestions"></datalist>
@@ -131,9 +131,6 @@
                     <h4>Operating Location</h4>
                     Gridsquare:
                         <input type="text" name="MY_GRIDSQUARE" size="6" />
-                    POTA Reference:
-                        <input type="text" name="MY_POTA_REF" size="8" >
-                        <br/>
                     ITU Zone:
                         <select name="MY_ITU_ZONE">
                             <option value="1">1</option>
@@ -271,6 +268,11 @@
                             <option value="40">40</option>
                         </select>
                         <br/>
+                    SOTA Reference:
+                        <input type="text" name="MY_SOTA_REF" size="8" >
+                    POTA Reference:
+                        <input type="text" name="MY_POTA_REF" size="8" >
+                        <br/>
                     Province:
                         <select name="MY_STATE">
                             <option value="AB">Alberta</option>
@@ -331,7 +333,7 @@
 
                     <h4>QSO Details</h4>
                     Callsign:
-                        <input class="callsign" id="callsign_entry" type="text" name="CALL" list="callsign" size="10" list="callsign_entry_suggestions" autofocus />
+                        <input id="callsign_entry" type="text" name="CALL" list="callsign" size="10" list="callsign_entry_suggestions" autofocus />
                         <datalist id="callsign_entry_suggestions"></datalist>
                     Freq: <input type="text" name="FREQ" size="10" />
                     Mode:
