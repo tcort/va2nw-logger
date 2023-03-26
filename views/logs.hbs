@@ -24,8 +24,8 @@
         </header>
 
         <nav>
-            <button id="show-logs" class="navtab" data-target="#logs">Logs</button>
             <button id="show-new-entry" class="navtab" data-target="#new-entry">New Entry</button>
+            <button id="show-logs" class="navtab" data-target="#logs">Logs</button>
             <button class="navtab" data-target="#stats">Statistics</button>
             <button class="navtab" data-target="#import-export">Import / Export</button>
         </nav>
@@ -110,227 +110,6 @@
         <section id="new-entry" class="navtarget">
                 <h3>New Entry</h3>
                 <form method="post" action="/logs">
-                    <h4>Operator</h4>
-                    Callsign:
-                        <input type="text" name="OPERATOR" size="10" />
-                    Name:
-                        <input type="text" name="MY_NAME" />
-                        <br/>
-                    <h4>Station</h4>
-                    Station Callsign:
-                        <input type="text" name="STATION_CALLSIGN" size="10" />
-                    Rig:
-                        <input id="my_rig_entry" type="text" name="MY_RIG" list="my_rig_suggestions"/>
-                        <datalist id="my_rig_suggestions"></datalist>
-                    Power:
-                        <input type="text" name="TX_PWR" size="3" />
-                    Antenna:
-                        <input id="my_antenna_entry" type="text" name="MY_ANTENNA" list="my_antenna_suggestions"/>
-                        <datalist id="my_antenna_suggestions"></datalist>
-                        <br/>
-                    <h4>Operating Location</h4>
-                    Gridsquare:
-                        <input type="text" name="MY_GRIDSQUARE" size="6" />
-                    ITU Zone:
-                        <select name="MY_ITU_ZONE">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
-                            <option value="21">21</option>
-                            <option value="22">22</option>
-                            <option value="23">23</option>
-                            <option value="24">24</option>
-                            <option value="25">25</option>
-                            <option value="26">26</option>
-                            <option value="27">27</option>
-                            <option value="28">28</option>
-                            <option value="29">29</option>
-                            <option value="30">30</option>
-                            <option value="31">31</option>
-                            <option value="32">32</option>
-                            <option value="33">33</option>
-                            <option value="34">34</option>
-                            <option value="35">35</option>
-                            <option value="36">36</option>
-                            <option value="37">37</option>
-                            <option value="38">38</option>
-                            <option value="39">39</option>
-                            <option value="40">40</option>
-                            <option value="41">41</option>
-                            <option value="42">42</option>
-                            <option value="43">43</option>
-                            <option value="44">44</option>
-                            <option value="45">45</option>
-                            <option value="46">46</option>
-                            <option value="47">47</option>
-                            <option value="48">48</option>
-                            <option value="49">49</option>
-                            <option value="50">50</option>
-                            <option value="51">51</option>
-                            <option value="52">52</option>
-                            <option value="53">53</option>
-                            <option value="54">54</option>
-                            <option value="55">55</option>
-                            <option value="56">56</option>
-                            <option value="57">57</option>
-                            <option value="58">58</option>
-                            <option value="59">59</option>
-                            <option value="60">60</option>
-                            <option value="61">61</option>
-                            <option value="62">62</option>
-                            <option value="63">63</option>
-                            <option value="64">64</option>
-                            <option value="65">65</option>
-                            <option value="66">66</option>
-                            <option value="67">67</option>
-                            <option value="68">68</option>
-                            <option value="69">69</option>
-                            <option value="70">70</option>
-                            <option value="71">71</option>
-                            <option value="72">72</option>
-                            <option value="73">73</option>
-                            <option value="74">74</option>
-                            <option value="75">75</option>
-                            <option value="76">76</option>
-                            <option value="77">77</option>
-                            <option value="78">78</option>
-                            <option value="79">79</option>
-                            <option value="80">80</option>
-                            <option value="81">81</option>
-                            <option value="82">82</option>
-                            <option value="83">83</option>
-                            <option value="84">84</option>
-                            <option value="85">85</option>
-                            <option value="86">86</option>
-                            <option value="87">87</option>
-                            <option value="88">88</option>
-                            <option value="89">89</option>
-                            <option value="90">90</option>
-                        </select>
-                    CQ Zone:
-                        <select name="MY_CQ_ZONE">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
-                            <option value="21">21</option>
-                            <option value="22">22</option>
-                            <option value="23">23</option>
-                            <option value="24">24</option>
-                            <option value="25">25</option>
-                            <option value="26">26</option>
-                            <option value="27">27</option>
-                            <option value="28">28</option>
-                            <option value="29">29</option>
-                            <option value="30">30</option>
-                            <option value="31">31</option>
-                            <option value="32">32</option>
-                            <option value="33">33</option>
-                            <option value="34">34</option>
-                            <option value="35">35</option>
-                            <option value="36">36</option>
-                            <option value="37">37</option>
-                            <option value="38">38</option>
-                            <option value="39">39</option>
-                            <option value="40">40</option>
-                        </select>
-                        <br/>
-                    SOTA Reference:
-                        <input type="text" name="MY_SOTA_REF" size="8" >
-                    POTA Reference:
-                        <input type="text" name="MY_POTA_REF" size="8" >
-                        <br/>
-                    Province:
-                        <select name="MY_STATE">
-                            <option value="AB">Alberta</option>
-                            <option value="BC">British Columbia</option>
-                            <option value="MB">Manitoba</option>
-                            <option value="NB">New Brunswick</option>
-                            <option value="NL">Newfoundland and Labrador</option>
-                            <option value="NS">Nova Scotia</option>
-                            <option value="NT">Northwest Territories</option>
-                            <option value="NU">Nunavut</option>
-                            <option value="ON">Ontario</option>
-                            <option value="PE">Prince Edward Island</option>
-                            <option value="QC">Québec</option>
-                            <option value="SK">Saskatchewan</option>
-                            <option value="YT">Yukon</option>
-                        </select>
-                    ARRL Section:
-                        <select name="MY_ARRL_SECT">
-                            {{#each enums.ArrlSection}}
-                                <option value="{{@key}}">{{this}}</option>
-                            {{/each}}
-                        </select>
-                        <br/>
-                    Country:
-                        <select name="MY_COUNTRY">
-                            {{#each enums.Dxcc}}
-                                <option value="{{this}}">{{this}}</option>
-                            {{/each}}
-                        </select>
-                    DXCC:
-                        <select name="MY_DXCC">
-                            {{#each enums.Dxcc}}
-                                <option value="{{@key}}">{{this}}</option>
-                            {{/each}}
-                        </select>
-                        <br/>
-
-                    <h4>Contest / Activity</h4>
-                        Contest:
-                            <select name="CONTEST_ID">
-                                <option value="">N/A</option>
-                                {{#each enums.ContestID}}
-                                    <option value="{{@key}}">{{this}}</option>
-                                {{/each}}
-                            </select>
-                            <br/>
-                        Exchange Sent |
-                            Serial <input type="input" name="STX" /> |
-                            Text <input type="input" name="STX_STRING" />
-                            <br/>
-                        Exchange Rcvd |
-                            Serial <input type="input" name="SRX" /> |
-                            Text <input type="input" name="SRX_STRING" />
-                            <br/>
-                        SOTA Reference: <input type="text" name="SOTA_REF" size="8" />
-                        POTA Reference: <input type="text" name="POTA_REF" size="8" />
-                            <br/>
-
                     <h4>QSO Details</h4>
                     Callsign:
                         <input id="callsign_entry" type="text" name="CALL" list="callsign" size="10" list="callsign_entry_suggestions" autofocus />
@@ -759,6 +538,227 @@
                     Notes: <input type="text" name="NOTES" />
                         <br/>
                     <input type="submit" value="Save Contact" /><br/>
+                    <h4>Contest / Activity</h4>
+                        SOTA Reference: <input type="text" name="SOTA_REF" size="8" />
+                        POTA Reference: <input type="text" name="POTA_REF" size="8" />
+                            <br/>
+                        Contest:
+                            <select name="CONTEST_ID">
+                                <option value="">N/A</option>
+                                {{#each enums.ContestID}}
+                                    <option value="{{@key}}">{{this}}</option>
+                                {{/each}}
+                            </select>
+                            <br/>
+                        Exchange Sent |
+                            Serial <input type="input" name="STX" /> |
+                            Text <input type="input" name="STX_STRING" />
+                            <br/>
+                        Exchange Rcvd |
+                            Serial <input type="input" name="SRX" /> |
+                            Text <input type="input" name="SRX_STRING" />
+                            <br/>
+                    <h4>Operator</h4>
+                    Callsign:
+                        <input type="text" name="OPERATOR" size="10" />
+                    Name:
+                        <input type="text" name="MY_NAME" />
+                        <br/>
+                    <h4>Station</h4>
+                    Station Callsign:
+                        <input type="text" name="STATION_CALLSIGN" size="10" />
+                    Rig:
+                        <input id="my_rig_entry" type="text" name="MY_RIG" list="my_rig_suggestions"/>
+                        <datalist id="my_rig_suggestions"></datalist>
+                    Power:
+                        <input type="text" name="TX_PWR" size="3" />
+                    Antenna:
+                        <input id="my_antenna_entry" type="text" name="MY_ANTENNA" list="my_antenna_suggestions"/>
+                        <datalist id="my_antenna_suggestions"></datalist>
+                        <br/>
+                    <h4>Operating Location</h4>
+                    Gridsquare:
+                        <input type="text" name="MY_GRIDSQUARE" size="6" />
+                    ITU Zone:
+                        <select name="MY_ITU_ZONE">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                            <option value="32">32</option>
+                            <option value="33">33</option>
+                            <option value="34">34</option>
+                            <option value="35">35</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
+                            <option value="44">44</option>
+                            <option value="45">45</option>
+                            <option value="46">46</option>
+                            <option value="47">47</option>
+                            <option value="48">48</option>
+                            <option value="49">49</option>
+                            <option value="50">50</option>
+                            <option value="51">51</option>
+                            <option value="52">52</option>
+                            <option value="53">53</option>
+                            <option value="54">54</option>
+                            <option value="55">55</option>
+                            <option value="56">56</option>
+                            <option value="57">57</option>
+                            <option value="58">58</option>
+                            <option value="59">59</option>
+                            <option value="60">60</option>
+                            <option value="61">61</option>
+                            <option value="62">62</option>
+                            <option value="63">63</option>
+                            <option value="64">64</option>
+                            <option value="65">65</option>
+                            <option value="66">66</option>
+                            <option value="67">67</option>
+                            <option value="68">68</option>
+                            <option value="69">69</option>
+                            <option value="70">70</option>
+                            <option value="71">71</option>
+                            <option value="72">72</option>
+                            <option value="73">73</option>
+                            <option value="74">74</option>
+                            <option value="75">75</option>
+                            <option value="76">76</option>
+                            <option value="77">77</option>
+                            <option value="78">78</option>
+                            <option value="79">79</option>
+                            <option value="80">80</option>
+                            <option value="81">81</option>
+                            <option value="82">82</option>
+                            <option value="83">83</option>
+                            <option value="84">84</option>
+                            <option value="85">85</option>
+                            <option value="86">86</option>
+                            <option value="87">87</option>
+                            <option value="88">88</option>
+                            <option value="89">89</option>
+                            <option value="90">90</option>
+                        </select>
+                    CQ Zone:
+                        <select name="MY_CQ_ZONE">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                            <option value="32">32</option>
+                            <option value="33">33</option>
+                            <option value="34">34</option>
+                            <option value="35">35</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                        </select>
+                        <br/>
+                    SOTA Reference:
+                        <input type="text" name="MY_SOTA_REF" size="8" >
+                    POTA Reference:
+                        <input type="text" name="MY_POTA_REF" size="8" >
+                        <br/>
+                    Province:
+                        <select name="MY_STATE">
+                            <option value="AB">Alberta</option>
+                            <option value="BC">British Columbia</option>
+                            <option value="MB">Manitoba</option>
+                            <option value="NB">New Brunswick</option>
+                            <option value="NL">Newfoundland and Labrador</option>
+                            <option value="NS">Nova Scotia</option>
+                            <option value="NT">Northwest Territories</option>
+                            <option value="NU">Nunavut</option>
+                            <option value="ON">Ontario</option>
+                            <option value="PE">Prince Edward Island</option>
+                            <option value="QC">Québec</option>
+                            <option value="SK">Saskatchewan</option>
+                            <option value="YT">Yukon</option>
+                        </select>
+                    ARRL Section:
+                        <select name="MY_ARRL_SECT">
+                            {{#each enums.ArrlSection}}
+                                <option value="{{@key}}">{{this}}</option>
+                            {{/each}}
+                        </select>
+                        <br/>
+                    Country:
+                        <select name="MY_COUNTRY">
+                            {{#each enums.Dxcc}}
+                                <option value="{{this}}">{{this}}</option>
+                            {{/each}}
+                        </select>
+                    DXCC:
+                        <select name="MY_DXCC">
+                            {{#each enums.Dxcc}}
+                                <option value="{{@key}}">{{this}}</option>
+                            {{/each}}
+                        </select>
+                        <br/>
+
+
                 </form>
         </section>
 
