@@ -10,6 +10,8 @@
 
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="/css/tcort.css" />
+        <link rel="stylesheet" href="/css/firacode.css" />
+        <link rel="stylesheet" href="/css/va2nw-logger.css" />
     </head>
     <body>
 
@@ -32,7 +34,7 @@
             <h3>Search</h3>
             <form name="search" method="GET" action="/logs">
                 Search by callsign:
-                <input id="callsign_search" type="text" name="callsign" placeholder="callsign" list="callsign_search_suggestions" />
+                <input class="callsign" id="callsign_search" type="text" name="callsign" placeholder="callsign" list="callsign_search_suggestions" />
                 <datalist id="callsign_search_suggestions"></datalist>
                 <input type="hidden" name="since" value="1900-01-01T00:00:00Z" />
                 <input type="submit" value="Search" />
@@ -58,7 +60,7 @@
                             <td><button class="toggle-visibility" data-target="{{LOG_ID}}_details">+</button></td>
                             <td>{{DATE_HUMAN}}</td>
                             <td>{{TIME_HUMAN}}</td>
-                            <td><a href="/logs?callsign={{CALL}}&since=1900-01-01T00:00:00Z#logbook">{{CALL}}</a></td>
+                            <td><a href="/logs?callsign={{CALL}}&since=1900-01-01T00:00:00Z#logbook"><span class="callsign">{{CALL}}</span></a></td>
                             <td>{{RST_SENT}}</td>
                             <td>{{RST_RCVD}}</td>
                             <td>{{FREQ}}</td>
@@ -69,13 +71,13 @@
                         <tr id="{{LOG_ID}}_details" class="hidden">
                             <td colspan="10">
                                 <p>
-                                    {{MY_NAME}} ({{OPERATOR}}) operating station {{STATION_CALLSIGN}} running a {{MY_RIG}} transceiver at
+                                    {{MY_NAME}} <span class="callsign">({{OPERATOR}})</span> operating station <span class="callsign">{{STATION_CALLSIGN}}</span> running a {{MY_RIG}} transceiver at
                                     {{TX_PWR}} watts into a {{MY_ANTENNA}} antenna from
                                     {{#if MY_POTA_REF}}
                                         POTA Ref <a href="https://pota.app/#/park/{{MY_POTA_REF}}">{{MY_POTA_REF}}</a> in
                                     {{/if}}
                                     {{MY_STATE}}, {{MY_COUNTRY}} (Grid: {{MY_GRIDSQUARE}}, ITU Zone: {{MY_ITU_ZONE}}, CQ Zone: {{MY_CQ_ZONE}})
-                                    made a {{MODE}} contact with {{NAME}} <a href="/logs?callsign={{CALL}}&since=1900-01-01T00:00:00Z#logbook">{{CALL}}</a>
+                                    made a {{MODE}} contact with {{NAME}} <a href="/logs?callsign={{CALL}}&since=1900-01-01T00:00:00Z#logbook"><span class="callsign">{{CALL}}</span></a>
                                     {{#if SKCC}}
                                         (SKCC #<a href="https://www.skccgroup.com/membership_data/membership_search.php?search={{SKCC}}">{{SKCC}}</a>)
                                     {{/if}}
@@ -110,13 +112,13 @@
                 <form method="post" action="/logs">
                     <h4>Operator</h4>
                     Callsign:
-                        <input type="text" name="OPERATOR" size="10" />
+                        <input class="callsign" type="text" name="OPERATOR" size="10" />
                     Name:
                         <input type="text" name="MY_NAME" />
                         <br/>
                     <h4>Station</h4>
                     Station Callsign:
-                        <input type="text" name="STATION_CALLSIGN" size="10" />
+                        <input class="callsign" type="text" name="STATION_CALLSIGN" size="10" />
                     Rig:
                         <input id="my_rig_entry" type="text" name="MY_RIG" list="my_rig_suggestions"/>
                         <datalist id="my_rig_suggestions"></datalist>
@@ -329,7 +331,7 @@
 
                     <h4>QSO Details</h4>
                     Callsign:
-                        <input id="callsign_entry" type="text" name="CALL" list="callsign" size="10" list="callsign_entry_suggestions" />
+                        <input class="callsign" id="callsign_entry" type="text" name="CALL" list="callsign" size="10" list="callsign_entry_suggestions" />
                         <datalist id="callsign_entry_suggestions"></datalist>
                     Freq: <input type="text" name="FREQ" size="10" />
                     Mode:
@@ -1757,7 +1759,7 @@
                     Frequent Flyers (QSO Count):
                     <ul class="comma-separated-list">
                         {{#each stats.frequent_flyers}}
-                            <li><a href="/logs?callsign={{CALL}}&since=1900-01-01T00:00:00Z#logbook">{{CALL}}</a> ({{CNT}})</li>
+                            <li><a href="/logs?callsign={{CALL}}&since=1900-01-01T00:00:00Z#logbook"><span class="callsign">{{CALL}}</span></a> ({{CNT}})</li>
                         {{/each}}
                     </ul>
                 </p>
