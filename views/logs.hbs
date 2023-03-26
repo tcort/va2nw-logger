@@ -25,7 +25,7 @@
 
         <nav>
             <button id="show-logs" class="navtab" data-target="#logs">Logs</button>
-            <button class="navtab" data-target="#new-entry">New Entry</button>
+            <button id="show-new-entry" class="navtab" data-target="#new-entry">New Entry</button>
             <button class="navtab" data-target="#stats">Statistics</button>
             <button class="navtab" data-target="#import-export">Import / Export</button>
         </nav>
@@ -331,7 +331,7 @@
 
                     <h4>QSO Details</h4>
                     Callsign:
-                        <input class="callsign" id="callsign_entry" type="text" name="CALL" list="callsign" size="10" list="callsign_entry_suggestions" />
+                        <input class="callsign" id="callsign_entry" type="text" name="CALL" list="callsign" size="10" list="callsign_entry_suggestions" autofocus />
                         <datalist id="callsign_entry_suggestions"></datalist>
                     Freq: <input type="text" name="FREQ" size="10" />
                     Mode:

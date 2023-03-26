@@ -136,7 +136,7 @@ $(function () {
         $(this).addClass('activetab');
     });
 
-    $('#show-logs').click();
+    $('#show-new-entry').click();
 });
 
 
