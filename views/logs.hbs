@@ -1663,16 +1663,6 @@
                                         <td>{{stats.npota}}</td>
                                         <td><progress value="{{stats.npota}}" max="{{stats.nqso}}"> {{stats.npota}} / {{stats.nqso}} </progress></td>
                                     </tr>
-                                    <tr>
-                                        <td>SKCC QSOs</td>
-                                        <td>{{stats.nskcc}}</td>
-                                        <td><progress value="{{stats.nskcc}}" max="{{stats.nqso}}"> {{stats.nskcc}} / {{stats.nqsos}} </progress></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Unique SKCC #</td>
-                                        <td>{{stats.nskcc_unique}}</td>
-                                        <td><progress value="{{stats.nskcc_unique}}" max="{{stats.nskcc}}"> {{stats.nskcc_unique}} / {{stats.nskcc}} </progress></td>
-                                    </tr>
                                 </table>
                             </td>
                         </tr>
@@ -1762,6 +1752,50 @@
                                         </tr>
                                     {{/each}}
                                 </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <thead>
+                        <th>SKCC</th>
+                        <th> </th>
+                        <th> </th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td valign="top" width="33%">
+                                <table>
+                                    <tr>
+                                        <td>SKCC QSOs</td>
+                                        <td>{{stats.skcc.QSO_SKCC_TOTAL}}</td>
+                                        <td><progress value="{{stats.skcc.QSO_SKCC_TOTAL}}" max="{{stats.nqso}}"> {{stats.skcc.QSO_SKCC_TOTAL}} / {{stats.nqsos}} </progress></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Unique SKCC #</td>
+                                        <td>{{stats.skcc.UNIQUE_SKCC_NR}}</td>
+                                        <td><progress value="{{stats.skcc.UNIQUE_SKCC_NR}}" max="{{stats.skcc.QSO_SKCC_TOTAL}}"> {{stats.skcc.UNIQUE_SKCC_NR}} / {{stats.skcc.QSO_SKCC_TOTAL}} </progress></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Unique Centurions</td>
+                                        <td>{{stats.skcc.QSO_SKCC_C}}</td>
+                                        <td><progress value="{{stats.skcc.QSO_SKCC_C}}" max="{{stats.skcc.UNIQUE_SKCC_NR}}"> {{stats.skcc.QSO_SKCC_C}} / {{stats.skcc.UNIQUE_SKCC_NR}} </progress></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Unique Tribunes</td>
+                                        <td>{{stats.skcc.QSO_SKCC_T}}</td>
+                                        <td><progress value="{{stats.skcc.QSO_SKCC_T}}" max="{{stats.skcc.UNIQUE_SKCC_NR}}"> {{stats.skcc.QSO_SKCC_T}} / {{stats.skcc.UNIQUE_SKCC_NR}} </progress></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Unique Senators</td>
+                                        <td>{{stats.skcc.QSO_SKCC_S}}</td>
+                                        <td><progress value="{{stats.skcc.QSO_SKCC_S}}" max="{{stats.skcc.UNIQUE_SKCC_NR}}"> {{stats.skcc.QSO_SKCC_S}} / {{stats.skcc.UNIQUE_SKCC_NR}} </progress></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td valign="top" width="33%">
+                            </td>
+                            <td valign="top" width="33%">
                             </td>
                         </tr>
                     </tbody>
