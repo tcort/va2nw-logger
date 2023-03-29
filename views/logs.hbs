@@ -60,7 +60,7 @@
                             <td><button class="toggle-visibility" data-target="{{LOG_ID}}_details">+</button></td>
                             <td>{{DATE_HUMAN}}</td>
                             <td>{{TIME_HUMAN}}</td>
-                            <td><a href="/logs?callsign={{CALL}}&since=1900-01-01T00:00:00Z#logbook"><span class="callsign">{{CALL}}</span></a></td>
+                            <td><a href="/logs?callsign={{CALL}}&since=1900-01-01T00:00:00Z#show-logs"><span class="callsign">{{CALL}}</span></a></td>
                             <td>{{RST_SENT}}</td>
                             <td>{{RST_RCVD}}</td>
                             <td>{{FREQ}}</td>
@@ -77,7 +77,7 @@
                                         POTA Ref <a href="https://pota.app/#/park/{{MY_POTA_REF}}">{{MY_POTA_REF}}</a> in
                                     {{/if}}
                                     {{MY_STATE}}, {{MY_COUNTRY}} (Grid: {{MY_GRIDSQUARE}}, ITU Zone: {{MY_ITU_ZONE}}, CQ Zone: {{MY_CQ_ZONE}})
-                                    made a {{MODE}} contact with {{NAME}} <a href="/logs?callsign={{CALL}}&since=1900-01-01T00:00:00Z#logbook"><span class="callsign">{{CALL}}</span></a>
+                                    made a {{MODE}} contact with {{NAME}} <a href="/logs?callsign={{CALL}}&since=1900-01-01T00:00:00Z#show-logs"><span class="callsign">{{CALL}}</span></a>
                                     {{#if SKCC}}
                                         (SKCC #<a href="https://www.skccgroup.com/membership_data/membership_search.php?search={{SKCC}}">{{SKCC}}</a>)
                                     {{/if}}
@@ -1804,7 +1804,7 @@
                     Frequent Flyers (QSO Count):
                     <ul class="comma-separated-list">
                         {{#each stats.frequent_flyers}}
-                            <li><a href="/logs?callsign={{CALL}}&since=1900-01-01T00:00:00Z#logbook"><span class="callsign">{{CALL}}</span></a> ({{CNT}})</li>
+                            <li><a href="/logs?callsign={{CALL}}&since=1900-01-01T00:00:00Z#show-logs"><span class="callsign">{{CALL}}</span></a> ({{CNT}})</li>
                         {{/each}}
                     </ul>
                 </p>
