@@ -26,13 +26,13 @@
         <nav>
             <button id="show-new-entry" class="navtab" data-target="#new-entry">New Entry</button>
             <button id="show-logs" class="navtab" data-target="#logs">Logs</button>
-            <button class="navtab" data-target="#stats">Statistics</button>
-            <button class="navtab" data-target="#import-export">Import / Export</button>
+            <button id="show-stats" class="navtab" data-target="#stats">Statistics</button>
+            <button id="show-import-export" class="navtab" data-target="#import-export">Import / Export</button>
         </nav>
 
         <section id="logs" class="navtarget">
             <h3>Search</h3>
-            <form name="search" method="GET" action="/logs">
+            <form name="search" method="GET" action="/logs#show-logs">
                 Search by callsign:
                 <input id="callsign_search" type="text" name="callsign" placeholder="callsign" list="callsign_search_suggestions" />
                 <datalist id="callsign_search_suggestions"></datalist>

@@ -137,6 +137,21 @@ $(function () {
     });
 
     $('#show-new-entry').click();
+
+    const hashNav = () => {
+        if ([
+            '#show-new-entry',
+            '#show-logs',
+            '#show-stats',
+            '#show-import-export',
+        ].includes(window.location.hash)) {
+            $(window.location.hash).click();
+        }
+    };
+
+    $(window).on('hashchange', () => hashNav());
+    hashNav();
+
 });
 
 
