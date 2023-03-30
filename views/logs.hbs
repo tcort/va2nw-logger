@@ -1644,16 +1644,6 @@
                                         <td><progress value="{{stats.ncallsigns}}" max="{{stats.nqso}}"> {{stats.ncallsigns}} / {{stats.nqso}} </progress></td>
                                     </tr>
                                     <tr>
-                                        <td>QRP QSOs</td>
-                                        <td>{{stats.nqrp}}</td>
-                                        <td><progress value="{{stats.nqrp}}" max="{{stats.nqso}}"> {{stats.nqrp}} / {{stats.nqsos}} </progress></td>
-                                    </tr>
-                                    <tr>
-                                        <td>QRPp QSOs</td>
-                                        <td>{{stats.nqrpp}}</td>
-                                        <td><progress value="{{stats.nqrpp}}" max="{{stats.nqso}}"> {{stats.nqrpp}} / {{stats.nqsos}} </progress></td>
-                                    </tr>
-                                    <tr>
                                         <td>Contest QSOs</td>
                                         <td>{{stats.ncontest}}</td>
                                         <td><progress value="{{stats.ncontest}}" max="{{stats.nqso}}"> {{stats.ncontest}} / {{stats.nqsos}} </progress></td>
@@ -1759,7 +1749,7 @@
                 <table>
                     <thead>
                         <th>SKCC</th>
-                        <th> </th>
+                        <th>By Power Level</th>
                         <th> </th>
                     </thead>
                     <tbody>
@@ -1794,6 +1784,28 @@
                                 </table>
                             </td>
                             <td valign="top" width="33%">
+                                <table>
+                                    <tr>
+                                        <td>QRO QSOs</td>
+                                        <td>{{stats.my_pwr.qro}}</td>
+                                        <td><progress value="{{stats.my_pwr.qro}}" max="{{stats.nqso}}"> {{stats.my_pwr.qro}} / {{stats.nqsos}} </progress></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Low Power QSOs</td>
+                                        <td>{{stats.my_pwr.low_pwr}}</td>
+                                        <td><progress value="{{stats.my_pwr.low_pwr}}" max="{{stats.nqso}}"> {{stats.my_pwr.low_pwr}} / {{stats.nqsos}} </progress></td>
+                                    </tr>
+                                    <tr>
+                                        <td>QRP QSOs</td>
+                                        <td>{{stats.my_pwr.qrp}}</td>
+                                        <td><progress value="{{stats.my_pwr.qrp}}" max="{{stats.nqso}}"> {{stats.my_pwr.qrp}} / {{stats.nqsos}} </progress></td>
+                                    </tr>
+                                    <tr>
+                                        <td>QRPp QSOs</td>
+                                        <td>{{stats.my_pwr.qrpp}}</td>
+                                        <td><progress value="{{stats.my_pwr.qrpp}}" max="{{stats.nqso}}"> {{stats.my_pwr.qrpp}} / {{stats.nqsos}} </progress></td>
+                                    </tr>
+                                </table>
                             </td>
                             <td valign="top" width="33%">
                             </td>
