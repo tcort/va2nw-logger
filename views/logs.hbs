@@ -531,6 +531,13 @@
                     RST Recv: <input type="text" name="RST_RCVD" value="599" size="3" />
                         <br/>
                     SKCC: <input type="text" name="SKCC" size="8" /> 
+                    Key:
+                        <select name="APP_TCADIF_KEY">
+                            <option value="">N/A</option>
+                            {{#each enums.AppTcadifKey}}
+                                <option value="{{@key}}">{{this}}</option>
+                            {{/each}}
+                        </select>
                         <br/>
                     Name: <input type="text" name="NAME" />
                     State: <input type="text" name="STATE" size="8" />
@@ -576,6 +583,13 @@
                         <input id="my_antenna_entry" type="text" name="MY_ANTENNA" list="my_antenna_suggestions"/>
                         <datalist id="my_antenna_suggestions"></datalist>
                         <br/>
+                    Key:
+                        <select name="APP_TCADIF_MY_KEY">
+                            <option value="">N/A</option>
+                            {{#each enums.AppTcadifKey}}
+                                <option value="{{@key}}">{{this}}</option>
+                            {{/each}}
+                        </select>
                     <h4>Operating Location</h4>
                     Gridsquare:
                         <input type="text" name="MY_GRIDSQUARE" size="6" />
