@@ -114,13 +114,8 @@
                     Callsign:
                         <input id="callsign_entry" type="text" name="CALL" size="10" list="callsign_entry_suggestions" autofocus />
                         <datalist id="callsign_entry_suggestions"></datalist>
-                    Freq: <input type="text" name="FREQ" size="10" />
-                    Mode:
-                        <select name="MODE">
-                            {{#each enums.Mode}}
-                                <option value="{{@key}}">{{this}}</option>
-                            {{/each}}
-                        </select>
+                    RST Sent: <input type="text" name="RST_SENT" value="599" size="3" />
+                    RST Recv: <input type="text" name="RST_RCVD" value="599" size="3" />
                         <br/>
                     Timestamp:
                         <select name="DAY">
@@ -527,8 +522,13 @@
                         </select>
                         <input type="checkbox" name="NOW" checked />
                         <br/>
-                    RST Sent: <input type="text" name="RST_SENT" value="599" size="3" />
-                    RST Recv: <input type="text" name="RST_RCVD" value="599" size="3" />
+                    Freq: <input type="text" name="FREQ" size="10" />
+                    Mode:
+                        <select name="MODE">
+                            {{#each enums.Mode}}
+                                <option value="{{@key}}">{{this}}</option>
+                            {{/each}}
+                        </select>
                         <br/>
                     SKCC: <input type="text" name="SKCC" size="8" /> 
                     Key:
@@ -565,12 +565,6 @@
                             Serial <input type="input" name="SRX" /> |
                             Text <input type="input" name="SRX_STRING" />
                             <br/>
-                    <h4>Operator</h4>
-                    Callsign:
-                        <input type="text" name="OPERATOR" size="10" />
-                    Name:
-                        <input type="text" name="MY_NAME" />
-                        <br/>
                     <h4>Station</h4>
                     Station Callsign:
                         <input type="text" name="STATION_CALLSIGN" size="10" />
@@ -772,6 +766,12 @@
                         </select>
                         <br/>
 
+                    <h4>Operator</h4>
+                    Callsign:
+                        <input type="text" name="OPERATOR" size="10" />
+                    Name:
+                        <input type="text" name="MY_NAME" />
+                        <br/>
 
                 </form>
         </section>
