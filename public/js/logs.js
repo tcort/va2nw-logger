@@ -118,6 +118,24 @@ $(function () {
     tctypeahead('#my_rig_entry', '#my_rig_suggestions', completer('/my-rigs?startsWith='));
     tctypeahead('#my_antenna_entry', '#my_antenna_suggestions', completer('/my-antennas?startsWith='));
 
+    $('#callsign_entry').on('input', function () {
+
+        const input = $(this).val();
+
+        fetch('/logs?limit=3&fmt=json&since=1900-01-01T00:00:00Z&order=desc&callsign=' + encodeURIComponent(input))
+            .then((response) => response.json())
+            .then(logs => {
+                if (logs.length === 0) {
+                    $('#recent_qsos').html('');
+                    return;
+                }
+                const html = 'Recent QSOs: ' + logs.map((log, index) => `${log.TIMESTAMP.split('T')[0]} (${log.BAND})`).join(', ');
+                $('#recent_qsos').html(html);
+            })
+            .catch(err => console.log('error', err));
+
+    });
+
     $('.toggle-visibility').on('click', function () {
         const target = $(this).data('target');
         $(`#${target}`).toggleClass('hidden');
