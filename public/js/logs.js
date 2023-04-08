@@ -98,7 +98,7 @@ $(function () {
 
     loadLocalStorage();
 
-    setInterval(() => saveLocalStorage(), 4000);
+    setInterval(() => saveLocalStorage(), 3000);
 
     updateTimestamp();
 
