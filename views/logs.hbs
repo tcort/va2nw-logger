@@ -56,8 +56,8 @@
                 </thead>
                 <tbody>
                     {{#each logs}}
-                        <tr id="{{LOG_ID}}" class="summary">
-                            <td><button class="toggle-visibility" data-target="{{LOG_ID}}_details">+</button></td>
+                        <tr id="{{APP_TCADIF_QSO_ID}}" class="summary">
+                            <td><button class="toggle-visibility" data-target="{{APP_TCADIF_QSO_ID}}_details">+</button></td>
                             <td>{{DATE_HUMAN}}</td>
                             <td>{{TIME_HUMAN}}</td>
                             <td><a href="/logs?callsign={{CALL}}&since=1900-01-01T00:00:00Z#show-logs"><span class="callsign">{{CALL}}</span></a></td>
@@ -68,7 +68,7 @@
                             <td>{{MODE}}</td>
                             <td>{{NOTES}}</td>
                         </tr>
-                        <tr id="{{LOG_ID}}_details" class="hidden">
+                        <tr id="{{APP_TCADIF_QSO_ID}}_details" class="hidden">
                             <td colspan="10">
                                 <p>
                                     {{MY_NAME}} <span class="callsign">({{OPERATOR}})</span> operating station <span class="callsign">{{STATION_CALLSIGN}}</span> running a {{MY_RIG}} transceiver at
@@ -98,7 +98,7 @@
                                         <a href="https://www.youtube.com/results?search_query={{CALL}}">YouTube</a>
                                 </p>
                                 <p>
-                                    <small>Log ID: {{LOG_ID}}</small>
+                                    <small>Log ID: {{APP_TCADIF_QSO_ID}}</small>
                                 </p>
                             </td>
                         </tr>
