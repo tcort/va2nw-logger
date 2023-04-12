@@ -1676,6 +1676,16 @@
                                         <td>{{stats.grids.QSO_GRIDSQUARE_TOTAL}}</td>
                                         <td><progress value="{{stats.grids.QSO_GRIDSQUARE_TOTAL}}" max="32400"> {{stats.grids.QSO_GRIDSQUARE_TOTAL}} / 32,400 </progress></td>
                                     </tr>
+                                    <tr>
+                                        <td>US States</td>
+                                        <td>{{stats.nstates}}</td>
+                                        <td><progress value="{{stats.nstates}}" max="50"> {{stats.nstates}} / 50 </progress></td>
+                                    </tr>
+                                    <tr>
+                                        <td>CA Provinces</td>
+                                        <td>{{stats.nprovs}}</td>
+                                        <td><progress value="{{stats.nprovs}}" max="13"> {{stats.nprovs}} / 13 </progress></td>
+                                    </tr>
                                 </table>
                             </td>
                         </tr>
@@ -1856,6 +1866,30 @@
                     <ul class="comma-separated-list">
                         {{#each stats.pota_activations}}
                             <li><a href="https://pota.app/#/park/{{MY_POTA_REF}}">{{MY_POTA_REF}}</a> ({{NACTIVATIONS}})</li>
+                        {{/each}}
+                    </ul>
+                </p>
+                <p>
+                    Confirmed Countries (QSO Count):
+                    <ul class="comma-separated-list">
+                        {{#each stats.countries}}
+                            <li>{{COUNTRY}} ({{QSO_PER_COUNTRY}})</li>
+                        {{/each}}
+                    </ul>
+                </p>
+                <p>
+                    Confirmed US States (QSO Count):
+                    <ul class="comma-separated-list">
+                        {{#each stats.states}}
+                            <li>{{STATE}} ({{QSO_PER_STATE}})</li>
+                        {{/each}}
+                    </ul>
+                </p>
+                <p>
+                    Confirmed Canadian Provinces (QSO Count):
+                    <ul class="comma-separated-list">
+                        {{#each stats.provs}}
+                            <li>{{STATE}} ({{QSO_PER_STATE}})</li>
                         {{/each}}
                     </ul>
                 </p>
