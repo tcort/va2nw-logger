@@ -31,7 +31,7 @@ const storedFields = [
     'MY_COUNTRY', 'MY_ARRL_SECT', 'CONTEST_ID',
     'BEFORE_YEAR', 'BEFORE_MONTH', 'BEFORE_DAY', 'BEFORE_HOUR', 'BEFORE_MINUTE', 'BEFORE_SECOND',
     'SINCE_YEAR', 'SINCE_MONTH', 'SINCE_DAY', 'SINCE_HOUR', 'SINCE_MINUTE', 'SINCE_SECOND',
-    'STX', 'STX_STRING',
+    'STX', 'STX_STRING', 'APP_TCADIF_MY_KEY',
 ];
 
 function saveLocalStorage() {
@@ -88,9 +88,11 @@ $(function () {
         if ($(this).find(":selected").val() === 'SSB') {
             $(`[name="RST_SENT"]`).val('59');
             $(`[name="RST_RCVD"]`).val('59');
+            $(`[name="APP_TCADIF_MY_KEY"]`).val('').change();
         } else {
             $(`[name="RST_SENT"]`).val('599');
             $(`[name="RST_RCVD"]`).val('599');
+            $(`[name="APP_TCADIF_MY_KEY"]`).val('DLP').change();
         }
     });
 
