@@ -779,12 +779,14 @@
 
         <section id="import-export" class="navtarget">
                 <h3>Import</h3>
+                <p>Load new QSO data from another logging program or updated QSO data for QSOs already in the database (e.g. LoTW reports).</p>
                 <form method="post" encType="multipart/form-data" action="/logs">
                     ADIF File:
                         <input type="file" name="adif_file" accept=".adi,.adif"/>
                     <input type="submit" value="Import"/>
                 </form>
                 <h3>Export</h3>
+                <p>Export QSO data in a given format that is within the specified date range.</p>
                 <form method="get" action="/logs">
                     Format:
                         <select name="fmt">
@@ -1605,11 +1607,6 @@
                     <br/>
                     <input type="submit" value="Export"/>
                 </form>
-                <p>Upload Locations</p>
-                <ul>
-                    <li><a href="https://lotw.arrl.org/lotwuser/default">LoTW</a></li>
-                    <li><a href="https://logbook.qrz.com/">QRZ</a></li>
-                </ul>
         </section>
 
         <section id="stats" class="navtarget">
@@ -1621,7 +1618,7 @@
                     <thead>
                         <th>By Band</th>
                         <th>By Mode</th>
-                        <th>Totals</th>
+                        <th>QSL Received</th>
                     </thead>
                     <tbody>
                         <tr>
@@ -1650,19 +1647,34 @@
                             <td valign="top" width="33%">
                                 <table>
                                     <tr>
-                                        <td>Unique Callsigns</td>
-                                        <td>{{stats.ncallsigns}}</td>
-                                        <td><progress value="{{stats.ncallsigns}}" max="{{stats.nqso}}"> {{stats.ncallsigns}} / {{stats.nqso}} </progress></td>
+                                        <td>Confirmed</td>
+                                        <td>{{stats.confirms.QSO_CONFIRM_TOTAL}}</td>
+                                        <td><progress value="{{stats.confirms.QSO_CONFIRM_TOTAL}}" max="{{stats.nqso}}"> {{stats.confirms.QSO_CONFIRM_TOTAL}} / {{stats.nqsos}} </progress></td>
                                     </tr>
                                     <tr>
-                                        <td>Contest QSOs</td>
-                                        <td>{{stats.ncontest}}</td>
-                                        <td><progress value="{{stats.ncontest}}" max="{{stats.nqso}}"> {{stats.ncontest}} / {{stats.nqsos}} </progress></td>
+                                        <td>DXCC</td>
+                                        <td>{{stats.confirms.QSO_DXCC_TOTAL}}</td>
+                                        <td><progress value="{{stats.confirms.QSO_DXCC_TOTAL}}" max="{{stats.enums.ndxcc}}"> {{stats.confirms.QSO_DXCC_TOTAL}} / {{stats.enums.ndxcc}} </progress></td>
                                     </tr>
                                     <tr>
-                                        <td>POTA QSOs</td>
-                                        <td>{{stats.npota}}</td>
-                                        <td><progress value="{{stats.npota}}" max="{{stats.nqso}}"> {{stats.npota}} / {{stats.nqso}} </progress></td>
+                                        <td>Unique Prefixes</td>
+                                        <td>{{stats.confirms.QSO_PFX_TOTAL}}</td>
+                                        <td><progress value="{{stats.confirms.QSO_PFX_TOTAL}}" max="{{stats.nqso}}"> {{stats.confirms.QSO_PFX_TOTAL}} / {{stats.nqso}} </progress></td>
+                                    </tr>
+                                    <tr>
+                                        <td>CQ Zones</td>
+                                        <td>{{stats.cqz.QSO_CQZ_TOTAL}}</td>
+                                        <td><progress value="{{stats.cqz.QSO_CQZ_TOTAL}}" max="40"> {{stats.cqz.QSO_CQZ_TOTAL}} / 40 </progress></td>
+                                    </tr>
+                                    <tr>
+                                        <td>ITU Zones</td>
+                                        <td>{{stats.ituz.QSO_ITUZ_TOTAL}}</td>
+                                        <td><progress value="{{stats.ituz.QSO_ITUZ_TOTAL}}" max="90"> {{stats.ituz.QSO_ITUZ_TOTAL}} / 90 </progress></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Grid Squares</td>
+                                        <td>{{stats.grids.QSO_GRIDSQUARE_TOTAL}}</td>
+                                        <td><progress value="{{stats.grids.QSO_GRIDSQUARE_TOTAL}}" max="32400"> {{stats.grids.QSO_GRIDSQUARE_TOTAL}} / 32,400 </progress></td>
                                     </tr>
                                 </table>
                             </td>
@@ -1717,7 +1729,7 @@
                     <thead>
                         <th>By Rig</th>
                         <th>By Antenna</th>
-                        <th>By Contest</th>
+                        <th>By Contest ({{stats.ncontest}} QSOs)</th>
                     </thead>
                     <tbody>
                         <tr>
@@ -1759,7 +1771,8 @@
                 </table>
                 <table>
                     <thead>
-                        <th>SKCC</th>
+                        <th>SKCC ({{stats.skcc.QSO_SKCC_TOTAL}} QSOs)</th>
+                        <th>POTA ({{stats.pota.QSO_POTA_TOTAL}} QSOs)</th>
                         <th>By Power Level</th>
                         <th> </th>
                     </thead>
@@ -1767,11 +1780,6 @@
                         <tr>
                             <td valign="top" width="33%">
                                 <table>
-                                    <tr>
-                                        <td>SKCC QSOs</td>
-                                        <td>{{stats.skcc.QSO_SKCC_TOTAL}}</td>
-                                        <td><progress value="{{stats.skcc.QSO_SKCC_TOTAL}}" max="{{stats.nqso}}"> {{stats.skcc.QSO_SKCC_TOTAL}} / {{stats.nqsos}} </progress></td>
-                                    </tr>
                                     <tr>
                                         <td>Unique SKCC #</td>
                                         <td>{{stats.skcc.UNIQUE_SKCC_NR}}</td>
@@ -1791,6 +1799,20 @@
                                         <td>Unique Senators</td>
                                         <td>{{stats.skcc.QSO_SKCC_S}}</td>
                                         <td><progress value="{{stats.skcc.QSO_SKCC_S}}" max="{{stats.skcc.UNIQUE_SKCC_NR}}"> {{stats.skcc.QSO_SKCC_S}} / {{stats.skcc.UNIQUE_SKCC_NR}} </progress></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td valign="top" width="33%">
+                                <table>
+                                    <tr>
+                                        <td>Activator QSOs</td>
+                                        <td>{{stats.pota.QSO_POTA_ACTIVATOR_TOTAL}}</td>
+                                        <td><progress value="{{stats.pota.QSO_POTA_ACTIVATOR_TOTAL}}" max="{{stats.pota.QSO_POTA_TOTAL}}"> {{stats.pota.QSO_POTA_ACTIVATOR_TOTAL}} / {{stats.pota.QSO_POTA_TOTAL}} </progress></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hunter QSOs</td>
+                                        <td>{{stats.pota.QSO_POTA_HUNTER_TOTAL}}</td>
+                                        <td><progress value="{{stats.pota.QSO_POTA_HUNTER_TOTAL}}" max="{{stats.pota.QSO_POTA_TOTAL}}"> {{stats.pota.QSO_POTA_HUNTER_TOTAL}} / {{stats.pota.QSO_POTA_TOTAL}} </progress></td>
                                     </tr>
                                 </table>
                             </td>
@@ -1817,8 +1839,6 @@
                                         <td><progress value="{{stats.my_pwr.qrpp}}" max="{{stats.nqso}}"> {{stats.my_pwr.qrpp}} / {{stats.nqsos}} </progress></td>
                                     </tr>
                                 </table>
-                            </td>
-                            <td valign="top" width="33%">
                             </td>
                         </tr>
                     </tbody>
