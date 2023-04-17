@@ -122,6 +122,8 @@ $(function () {
 
     $('#callsign_entry').on('input', function () {
 
+        $(this).val($(this).val().toUpperCase());
+
         const input = $(this).val();
 
         fetch('/logs?limit=3&fmt=json&since=1900-01-01T00:00:00Z&order=desc&callsign=' + encodeURIComponent(input))
