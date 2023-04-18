@@ -1,6 +1,6 @@
 function updateTimestamp() {
 
-    if ($('input[name="NOW"]').is(':checked')) {
+    if ($('input[name="NOW"]').is(':checked') && $('input[name="CALL"]').val().trim() === '') {
 
         const now = new Date();
         const iso8601 = now.toISOString().length === 27 ? now.toISOString().slice(3) : now.toISOString();
@@ -122,7 +122,7 @@ $(function () {
 
     $('#callsign_entry').on('input', function () {
 
-        $(this).val($(this).val().toUpperCase());
+        $(this).val($(this).val().toUpperCase().trim());
 
         const input = $(this).val();
 
