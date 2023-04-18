@@ -24,10 +24,10 @@
         </header>
 
         <nav>
-            <button id="show-new-entry" class="navtab" data-target="#new-entry">New Entry</button>
-            <button id="show-logs" class="navtab" data-target="#logs">Logs</button>
-            <button id="show-stats" class="navtab" data-target="#stats">Statistics</button>
-            <button id="show-import-export" class="navtab" data-target="#import-export">Import / Export</button>
+            <button type="button" id="show-new-entry" class="navtab" data-target="#new-entry">New Entry</button>
+            <button type="button" id="show-logs" class="navtab" data-target="#logs">Logs</button>
+            <button type="button" id="show-stats" class="navtab" data-target="#stats">Statistics</button>
+            <button type="button" id="show-import-export" class="navtab" data-target="#import-export">Import / Export</button>
         </nav>
 
         <section id="logs" class="navtarget">
@@ -52,12 +52,11 @@
                     <th>Freq</th>
                     <th>Pwr</th>
                     <th>Mode</th>
-                    <th>Notes</th>
                 </thead>
                 <tbody>
                     {{#each logs}}
                         <tr id="{{APP_TCADIF_QSO_ID}}" class="summary">
-                            <td><button class="toggle-visibility" data-target="{{APP_TCADIF_QSO_ID}}_details">+</button></td>
+                            <td><button type="button" class="toggle-visibility" data-target="{{APP_TCADIF_QSO_ID}}_details">+</button></td>
                             <td>{{DATE_HUMAN}}</td>
                             <td>{{TIME_HUMAN}}</td>
                             <td><a href="/logs?callsign={{CALL}}&since=1900-01-01T00:00:00Z#show-logs"><span class="callsign">{{CALL}}</span></a></td>
@@ -66,7 +65,6 @@
                             <td>{{FREQ}}</td>
                             <td>{{TX_PWR}}</td>
                             <td>{{MODE}}</td>
-                            <td>{{NOTES}}</td>
                         </tr>
                         <tr id="{{APP_TCADIF_QSO_ID}}_details" class="hidden">
                             <td colspan="10">
@@ -111,12 +109,25 @@
                 <h3>New Entry</h3>
                 <form method="post" action="/logs">
                     <h4>QSO Details</h4>
+                    Mode:
+                        <select name="MODE">
+                            {{#each enums.Mode}}
+                                <option value="{{@key}}">{{this}}</option>
+                            {{/each}}
+                        </select>
+                    Freq: <input type="text" name="FREQ" size="10" />
+                        <br/>
                     <div id="recent_qsos"></div>
                     Callsign:
                         <input id="callsign_entry" type="text" name="CALL" size="10" list="callsign_entry_suggestions" autofocus />
                         <datalist id="callsign_entry_suggestions"></datalist>
                     RST Sent: <input type="text" name="RST_SENT" value="599" size="3" />
                     RST Recv: <input type="text" name="RST_RCVD" value="599" size="3" />
+                        <br/>
+                    <button type="button" id="skcc-roster-lookup">Autofill</button>
+                    SKCC: <input type="text" name="SKCC" size="8" />
+                    Name: <input type="text" name="NAME" />
+                    State: <input type="text" name="STATE" size="8" />
                         <br/>
                     Timestamp:
                         <select name="DAY">
@@ -523,29 +534,10 @@
                         </select>
                         <input type="checkbox" name="NOW" checked />
                         <br/>
-                    Freq: <input type="text" name="FREQ" size="10" />
-                    Mode:
-                        <select name="MODE">
-                            {{#each enums.Mode}}
-                                <option value="{{@key}}">{{this}}</option>
-                            {{/each}}
-                        </select>
-                        <br/>
-                    SKCC: <input type="text" name="SKCC" size="8" /> 
-                    Key:
-                        <select name="APP_TCADIF_KEY">
-                            <option value="">N/A</option>
-                            {{#each enums.AppTcadifKey}}
-                                <option value="{{@key}}">{{this}}</option>
-                            {{/each}}
-                        </select>
-                        <br/>
-                    Name: <input type="text" name="NAME" />
-                    State: <input type="text" name="STATE" size="8" />
-                        <br/>
-                    Notes: <input type="text" name="NOTES" />
-                        <br/>
                     <input type="submit" value="Save Contact" /><br/>
+                    <h4>Notes</h4>
+                        <textarea name="NOTES"></textarea>
+                        <br/>
                     <h4>Contest / Activity</h4>
                         SOTA Reference: <input type="text" name="SOTA_REF" size="8" />
                         POTA Reference: <input type="text" name="POTA_REF" size="8" />
@@ -1607,6 +1599,13 @@
                     <input type="hidden" name="order" value="asc" />
                     <br/>
                     <input type="submit" value="Export"/>
+                </form>
+                <h3>Update SKCC Roster</h3>
+                <p>Load member list for auto-fills. Download list from <a href="https://www.skccgroup.com/search/skcclist.txt">https://www.skccgroup.com/search/skcclist.txt</a></p>
+                <form method="post" encType="multipart/form-data" action="/skcc">
+                    ADIF File:
+                        <input type="file" name="skcc_roster" accept=".txt"/>
+                    <input type="submit" value="Load"/>
                 </form>
         </section>
 

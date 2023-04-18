@@ -15,7 +15,7 @@
  */
 
 /*
-    Version 2023.03.15a
+    Version 2023.04.18a
  */
 
 body {
@@ -92,13 +92,23 @@ input[type=text],
 input[type=button],
 input[type=submit],
 input[type=reset],
-select {
+select,
+button,
+textarea {
     border: 2px solid grey;
     border-radius: 4px;
     padding: 6px 10px;
     margin: 4px 0;
     box-sizing: border-box;
     background-color: #f8f8f8;
+}
+
+textarea {
+    font-family: "Trebuchet MS", Verdana, "Lucida Sans", Arial, Geneva, Helvetica, Helv, "Myriad Web", Syntax, sans-serif;
+    font-size: 18px;
+    line-height: 1.69;
+    width: 100%;
+    resize: none;
 }
 
 .hidden {

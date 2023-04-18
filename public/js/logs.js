@@ -120,6 +120,17 @@ $(function () {
     tctypeahead('#my_rig_entry', '#my_rig_suggestions', completer('/my-rigs?startsWith='));
     tctypeahead('#my_antenna_entry', '#my_antenna_suggestions', completer('/my-antennas?startsWith='));
 
+    $('#skcc-roster-lookup').on('click', function () {
+        fetch('/skcc/' + encodeURIComponent($('input[name="CALL"]').val()))
+            .then((response) => response.json())
+            .then(member => {
+                $('input[name="SKCC"]').val(member.NR);
+                $('input[name="STATE"]').val(member.STATE);
+                $('input[name="NAME"]').val(member.NAME);
+            })
+            .catch(err => console.log('error', err));
+    });
+
     $('#callsign_entry').on('input', function () {
 
         $(this).val($(this).val().toUpperCase().trim());
