@@ -1,5 +1,6 @@
 'use strict';
 
+const cors = require('cors');
 const express = require('express');
 const http = require('http');
 const path = require('path');
@@ -14,6 +15,7 @@ app.set('case sensitive routing', true);
 /* security */
 app.set('trust proxy', true);
 app.disable('x-powered-by');
+app.use(cors({ origin: true, credentials: true }));
 
 /* rendering */
 app.set('view engine', 'hbs');
