@@ -26,89 +26,8 @@
         <nav>
             <button type="button" id="show-new-entry" class="navtab" data-target="#new-entry">New Entry</button>
             <button type="button" id="show-logs" class="navtab" data-target="#logs">Logs</button>
-            <button type="button" id="show-stats" class="navtab" data-target="#stats">Statistics</button>
             <button type="button" id="show-import-export" class="navtab" data-target="#import-export">Import / Export</button>
         </nav>
-
-        <section id="logs" class="navtarget">
-            <h3>Search</h3>
-            <form name="search" method="GET" action="/logs#show-logs">
-                Search by callsign:
-                <input id="callsign_search" type="text" name="callsign" placeholder="callsign" list="callsign_search_suggestions" />
-                <datalist id="callsign_search_suggestions"></datalist>
-                <input type="hidden" name="since" value="1900-01-01T00:00:00Z" />
-                <input type="submit" value="Search" />
-            </form>
-
-            <h3><a name="logbook"></a>Logbook</h3>
-            <table>
-                <thead>
-                    <th>&nbsp;</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Callsign</th>
-                    <th>RST Sent</th>
-                    <th>RST Recv</th>
-                    <th>Freq</th>
-                    <th>Pwr</th>
-                    <th>Mode</th>
-                </thead>
-                <tbody>
-                    {{#each logs}}
-                        <tr id="{{APP_TCADIF_QSO_ID}}" class="summary">
-                            <td><button type="button" class="toggle-visibility" data-target="{{APP_TCADIF_QSO_ID}}_details">+</button></td>
-                            <td>{{DATE_HUMAN}}</td>
-                            <td>{{TIME_HUMAN}}</td>
-                            <td><a href="/logs?callsign={{CALL}}&since=1900-01-01T00:00:00Z#show-logs"><span class="callsign">{{CALL}}</span></a></td>
-                            <td>{{RST_SENT}}</td>
-                            <td>{{RST_RCVD}}</td>
-                            <td>{{FREQ}}</td>
-                            <td>{{TX_PWR}}</td>
-                            <td>{{MODE}}</td>
-                        </tr>
-                        <tr id="{{APP_TCADIF_QSO_ID}}_details" class="hidden">
-                            <td colspan="10">
-                                <p>
-                                    {{MY_NAME}} <span class="callsign">({{OPERATOR}})</span> operating station <span class="callsign">{{STATION_CALLSIGN}}</span> running a {{MY_RIG}} transceiver at
-                                    {{TX_PWR}} watts into a {{MY_ANTENNA}} antenna from
-                                    {{#if MY_POTA_REF}}
-                                        POTA Ref <a href="https://pota.app/#/park/{{MY_POTA_REF}}">{{MY_POTA_REF}}</a> in
-                                    {{/if}}
-                                    {{MY_STATE}}, {{MY_COUNTRY}} (Grid: {{MY_GRIDSQUARE}}, ITU Zone: {{MY_ITU_ZONE}}, CQ Zone: {{MY_CQ_ZONE}})
-                                    made a {{MODE}} contact with {{NAME}} <a href="/logs?callsign={{CALL}}&since=1900-01-01T00:00:00Z#show-logs"><span class="callsign">{{CALL}}</span></a>
-                                    {{#if SKCC}}
-                                        (SKCC #<a href="https://www.skccgroup.com/membership_data/membership_search.php?search={{SKCC}}">{{SKCC}}</a>)
-                                    {{/if}}
-                                    on {{FREQ}} MHz in the
-                                    {{BAND}} band on {{DATE_HUMAN}} at {{TIME_HUMAN}} UTC with a signal report of {{RST_SENT}}/{{RST_RCVD}}
-                                    {{#if POTA_REF}}
-                                        in POTA Ref <a href="https://pota.app/#/park/{{POTA_REF}}">{{POTA_REF}}</a>
-                                    {{/if}}
-                                    {{#if CONTEST_ID}}
-                                        for the {{CONTEST_ID}} contest with an exchange of information including {{STX}} {{STX_STRING}} (sent) and {{SRX}} {{SRX_STRING}} (rcvd)
-                                    {{/if}}
-                                </p>
-                                {{#if NOTES}}
-                                <p>
-                                    Notes: <em>{{NOTES}}</em>
-                                </p>
-                                {{/if}}
-                                <p>
-                                    Callsign Lookup:
-                                        <a href="https://www.qrz.com/db/{{CALL}}">QRZ</a>,
-                                        <a href="https://pota.app/#/profile/{{CALL}}">POTA</a>,
-                                        <a href="https://www.skccgroup.com/membership_data/membership_search.php?search={{CALL}}">SKCC</a>,
-                                        <a href="https://www.youtube.com/results?search_query={{CALL}}">YouTube</a>
-                                </p>
-                                <p>
-                                    <small>Log ID: {{APP_TCADIF_QSO_ID}}</small>
-                                </p>
-                            </td>
-                        </tr>
-                    {{/each}}
-                </tbody>
-            </table>
-        </section>
 
         <section id="new-entry" class="navtarget">
                 <h3>New Entry</h3>
@@ -773,6 +692,87 @@
 
                 </form>
         </section>
+
+        <section id="logs" class="navtarget">
+            <h3>Search</h3>
+            <form name="search" method="GET" action="/logs#show-logs">
+                Search by callsign:
+                <input id="callsign_search" type="text" name="callsign" placeholder="callsign" list="callsign_search_suggestions" />
+                <datalist id="callsign_search_suggestions"></datalist>
+                <input type="hidden" name="since" value="1900-01-01T00:00:00Z" />
+                <input type="submit" value="Search" />
+            </form>
+
+            <h3><a name="logbook"></a>Logbook</h3>
+            <table>
+                <thead>
+                    <th>&nbsp;</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Callsign</th>
+                    <th>RST Sent</th>
+                    <th>RST Recv</th>
+                    <th>Freq</th>
+                    <th>Pwr</th>
+                    <th>Mode</th>
+                </thead>
+                <tbody>
+                    {{#each logs}}
+                        <tr id="{{APP_TCADIF_QSO_ID}}" class="summary">
+                            <td><button type="button" class="toggle-visibility" data-target="{{APP_TCADIF_QSO_ID}}_details">+</button></td>
+                            <td>{{DATE_HUMAN}}</td>
+                            <td>{{TIME_HUMAN}}</td>
+                            <td><a href="/logs?callsign={{CALL}}&since=1900-01-01T00:00:00Z#show-logs"><span class="callsign">{{CALL}}</span></a></td>
+                            <td>{{RST_SENT}}</td>
+                            <td>{{RST_RCVD}}</td>
+                            <td>{{FREQ}}</td>
+                            <td>{{TX_PWR}}</td>
+                            <td>{{MODE}}</td>
+                        </tr>
+                        <tr id="{{APP_TCADIF_QSO_ID}}_details" class="hidden">
+                            <td colspan="10">
+                                <p>
+                                    {{MY_NAME}} <span class="callsign">({{OPERATOR}})</span> operating station <span class="callsign">{{STATION_CALLSIGN}}</span> running a {{MY_RIG}} transceiver at
+                                    {{TX_PWR}} watts into a {{MY_ANTENNA}} antenna from
+                                    {{#if MY_POTA_REF}}
+                                        POTA Ref <a href="https://pota.app/#/park/{{MY_POTA_REF}}">{{MY_POTA_REF}}</a> in
+                                    {{/if}}
+                                    {{MY_STATE}}, {{MY_COUNTRY}} (Grid: {{MY_GRIDSQUARE}}, ITU Zone: {{MY_ITU_ZONE}}, CQ Zone: {{MY_CQ_ZONE}})
+                                    made a {{MODE}} contact with {{NAME}} <a href="/logs?callsign={{CALL}}&since=1900-01-01T00:00:00Z#show-logs"><span class="callsign">{{CALL}}</span></a>
+                                    {{#if SKCC}}
+                                        (SKCC #<a href="https://www.skccgroup.com/membership_data/membership_search.php?search={{SKCC}}">{{SKCC}}</a>)
+                                    {{/if}}
+                                    on {{FREQ}} MHz in the
+                                    {{BAND}} band on {{DATE_HUMAN}} at {{TIME_HUMAN}} UTC with a signal report of {{RST_SENT}}/{{RST_RCVD}}
+                                    {{#if POTA_REF}}
+                                        in POTA Ref <a href="https://pota.app/#/park/{{POTA_REF}}">{{POTA_REF}}</a>
+                                    {{/if}}
+                                    {{#if CONTEST_ID}}
+                                        for the {{CONTEST_ID}} contest with an exchange of information including {{STX}} {{STX_STRING}} (sent) and {{SRX}} {{SRX_STRING}} (rcvd)
+                                    {{/if}}
+                                </p>
+                                {{#if NOTES}}
+                                <p>
+                                    Notes: <em>{{NOTES}}</em>
+                                </p>
+                                {{/if}}
+                                <p>
+                                    Callsign Lookup:
+                                        <a href="https://www.qrz.com/db/{{CALL}}">QRZ</a>,
+                                        <a href="https://pota.app/#/profile/{{CALL}}">POTA</a>,
+                                        <a href="https://www.skccgroup.com/membership_data/membership_search.php?search={{CALL}}">SKCC</a>,
+                                        <a href="https://www.youtube.com/results?search_query={{CALL}}">YouTube</a>
+                                </p>
+                                <p>
+                                    <small>Log ID: {{APP_TCADIF_QSO_ID}}</small>
+                                </p>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </section>
+
 
         <section id="import-export" class="navtarget">
                 <h3>Import</h3>
@@ -1612,292 +1612,6 @@
                         <input type="file" name="skcc_roster" accept=".txt"/>
                     <input type="submit" value="Load"/>
                 </form>
-        </section>
-
-        <section id="stats" class="navtarget">
-                <h3>Statistics</h3>
-                <p>
-                    Logs for {{stats.nqso}} QSOs between {{stats.first_qso}} and {{stats.last_qso}} for a daily QSO rate of {{stats.qso_per_day}} QSOs per day.
-                </p>
-                <table>
-                    <thead>
-                        <th>By Band</th>
-                        <th>By Mode</th>
-                        <th>QSL Received</th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td valign="top" width="33%">
-                                <table>
-                                    {{#each stats.bands}}
-                                        <tr>
-                                            <td>{{BAND}}</td>
-                                            <td>{{QSO_PER_BAND}}</td>
-                                            <td><progress value="{{PERCENT}}" max="100"> {{PERCENT}}% </progress></td>
-                                        </tr>
-                                    {{/each}}
-                                </table>
-                            </td>
-                            <td valign="top" width="33%">
-                                <table>
-                                    {{#each stats.modes}}
-                                        <tr>
-                                            <td>{{MODE}}</td>
-                                            <td>{{QSO_PER_MODE}}</td>
-                                            <td><progress value="{{PERCENT}}" max="100"> {{PERCENT}}% </progress></td>
-                                        </tr>
-                                    {{/each}}
-                                </table>
-                            </td>
-                            <td valign="top" width="33%">
-                                <table>
-                                    <tr>
-                                        <td>Confirmed</td>
-                                        <td>{{stats.confirms.QSO_CONFIRM_TOTAL}}</td>
-                                        <td><progress value="{{stats.confirms.QSO_CONFIRM_TOTAL}}" max="{{stats.nqso}}"> {{stats.confirms.QSO_CONFIRM_TOTAL}} / {{stats.nqsos}} </progress></td>
-                                    </tr>
-                                    <tr>
-                                        <td>DXCC</td>
-                                        <td>{{stats.confirms.QSO_DXCC_TOTAL}}</td>
-                                        <td><progress value="{{stats.confirms.QSO_DXCC_TOTAL}}" max="{{stats.enums.ndxcc}}"> {{stats.confirms.QSO_DXCC_TOTAL}} / {{stats.enums.ndxcc}} </progress></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Unique Prefixes</td>
-                                        <td>{{stats.confirms.QSO_PFX_TOTAL}}</td>
-                                        <td><progress value="{{stats.confirms.QSO_PFX_TOTAL}}" max="{{stats.nqso}}"> {{stats.confirms.QSO_PFX_TOTAL}} / {{stats.nqso}} </progress></td>
-                                    </tr>
-                                    <tr>
-                                        <td>CQ Zones</td>
-                                        <td>{{stats.cqz.QSO_CQZ_TOTAL}}</td>
-                                        <td><progress value="{{stats.cqz.QSO_CQZ_TOTAL}}" max="40"> {{stats.cqz.QSO_CQZ_TOTAL}} / 40 </progress></td>
-                                    </tr>
-                                    <tr>
-                                        <td>ITU Zones</td>
-                                        <td>{{stats.ituz.QSO_ITUZ_TOTAL}}</td>
-                                        <td><progress value="{{stats.ituz.QSO_ITUZ_TOTAL}}" max="90"> {{stats.ituz.QSO_ITUZ_TOTAL}} / 90 </progress></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Grid Squares</td>
-                                        <td>{{stats.grids.QSO_GRIDSQUARE_TOTAL}}</td>
-                                        <td><progress value="{{stats.grids.QSO_GRIDSQUARE_TOTAL}}" max="32400"> {{stats.grids.QSO_GRIDSQUARE_TOTAL}} / 32,400 </progress></td>
-                                    </tr>
-                                    <tr>
-                                        <td>US States</td>
-                                        <td>{{stats.nstates}}</td>
-                                        <td><progress value="{{stats.nstates}}" max="50"> {{stats.nstates}} / 50 </progress></td>
-                                    </tr>
-                                    <tr>
-                                        <td>CA Provinces</td>
-                                        <td>{{stats.nprovs}}</td>
-                                        <td><progress value="{{stats.nprovs}}" max="13"> {{stats.nprovs}} / 13 </progress></td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table>
-                    <thead>
-                        <th>By Year</th>
-                        <th>By Month</th>
-                        <th>By Day of Week</th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td valign="top" width="33%">
-                                <table>
-                                    {{#each stats.years}}
-                                        <tr>
-                                            <td>{{YEAR}}</td>
-                                            <td>{{QSO_PER_YEAR}}</td>
-                                            <td><progress value="{{PERCENT}}" max="100"> {{PERCENT}}% </progress></td>
-                                        </tr>
-                                    {{/each}}
-                                </table>
-                            </td>
-                            <td valign="top" width="33%">
-                                <table>
-                                    {{#each stats.months}}
-                                        <tr>
-                                            <td>{{MONTH}}</td>
-                                            <td>{{QSO_PER_MONTH}}</td>
-                                            <td><progress value="{{PERCENT}}" max="100"> {{PERCENT}}% </progress></td>
-                                        </tr>
-                                    {{/each}}
-                                </table>
-                            </td>
-                            <td valign="top" width="33%">
-                                <table>
-                                    {{#each stats.daysofweek}}
-                                        <tr>
-                                            <td>{{DAY_OF_WEEK}}</td>
-                                            <td>{{QSO_PER_DAY_OF_WEEK}}</td>
-                                            <td><progress value="{{PERCENT}}" max="100"> {{PERCENT}}% </progress></td>
-                                        </tr>
-                                    {{/each}}
-                                </table>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table>
-                    <thead>
-                        <th>By Rig</th>
-                        <th>By Antenna</th>
-                        <th>By Contest ({{stats.ncontest}} QSOs)</th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td valign="top" width="33%">
-                                <table>
-                                    {{#each stats.my_rigs}}
-                                        <tr>
-                                            <td>{{MY_RIG}}</td>
-                                            <td>{{QSO_PER_RIG}}</td>
-                                            <td><progress value="{{QSO_PER_RIG}}" max="{{../stats.nqso}}"> {{QSO_PER_RIG}} / {{../stats.nqso}} </progress></td>
-                                        </tr>
-                                    {{/each}}
-                                </table>
-                            </td>
-                            <td valign="top" width="33%">
-                                <table>
-                                    {{#each stats.my_antennas}}
-                                        <tr>
-                                            <td>{{MY_ANTENNA}}</td>
-                                            <td>{{QSO_PER_ANTENNA}}</td>
-                                            <td><progress value="{{QSO_PER_ANTENNA}}" max="{{../stats.nqso}}"> {{QSO_PER_ANTENNA}} / {{../stats.nqso}} </progress></td>
-                                        </tr>
-                                    {{/each}}
-                                </table>
-                            </td>
-                            <td valign="top" width="33%">
-                                <table>
-                                    {{#each stats.contest_totals}}
-                                        <tr>
-                                            <td>{{CONTEST_ID}}</td>
-                                            <td>{{QSO_PER_CONTEST}}</td>
-                                            <td><progress value="{{QSO_PER_CONTEST}}" max="{{../stats.ncontest}}"> {{QSO_PER_CONTEST}} / {{../stats.nqso}} </progress></td>
-                                        </tr>
-                                    {{/each}}
-                                </table>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table>
-                    <thead>
-                        <th>SKCC ({{stats.skcc.QSO_SKCC_TOTAL}} QSOs)</th>
-                        <th>POTA ({{stats.pota.QSO_POTA_TOTAL}} QSOs)</th>
-                        <th>By Power Level</th>
-                        <th> </th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td valign="top" width="33%">
-                                <table>
-                                    <tr>
-                                        <td>Unique SKCC #</td>
-                                        <td>{{stats.skcc.UNIQUE_SKCC_NR}}</td>
-                                        <td><progress value="{{stats.skcc.UNIQUE_SKCC_NR}}" max="{{stats.skcc.QSO_SKCC_TOTAL}}"> {{stats.skcc.UNIQUE_SKCC_NR}} / {{stats.skcc.QSO_SKCC_TOTAL}} </progress></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Unique Centurions</td>
-                                        <td>{{stats.skcc.QSO_SKCC_C}}</td>
-                                        <td><progress value="{{stats.skcc.QSO_SKCC_C}}" max="{{stats.skcc.UNIQUE_SKCC_NR}}"> {{stats.skcc.QSO_SKCC_C}} / {{stats.skcc.UNIQUE_SKCC_NR}} </progress></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Unique Tribunes</td>
-                                        <td>{{stats.skcc.QSO_SKCC_T}}</td>
-                                        <td><progress value="{{stats.skcc.QSO_SKCC_T}}" max="{{stats.skcc.UNIQUE_SKCC_NR}}"> {{stats.skcc.QSO_SKCC_T}} / {{stats.skcc.UNIQUE_SKCC_NR}} </progress></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Unique Senators</td>
-                                        <td>{{stats.skcc.QSO_SKCC_S}}</td>
-                                        <td><progress value="{{stats.skcc.QSO_SKCC_S}}" max="{{stats.skcc.UNIQUE_SKCC_NR}}"> {{stats.skcc.QSO_SKCC_S}} / {{stats.skcc.UNIQUE_SKCC_NR}} </progress></td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td valign="top" width="33%">
-                                <table>
-                                    <tr>
-                                        <td>Activator QSOs</td>
-                                        <td>{{stats.pota.QSO_POTA_ACTIVATOR_TOTAL}}</td>
-                                        <td><progress value="{{stats.pota.QSO_POTA_ACTIVATOR_TOTAL}}" max="{{stats.pota.QSO_POTA_TOTAL}}"> {{stats.pota.QSO_POTA_ACTIVATOR_TOTAL}} / {{stats.pota.QSO_POTA_TOTAL}} </progress></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hunter QSOs</td>
-                                        <td>{{stats.pota.QSO_POTA_HUNTER_TOTAL}}</td>
-                                        <td><progress value="{{stats.pota.QSO_POTA_HUNTER_TOTAL}}" max="{{stats.pota.QSO_POTA_TOTAL}}"> {{stats.pota.QSO_POTA_HUNTER_TOTAL}} / {{stats.pota.QSO_POTA_TOTAL}} </progress></td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td valign="top" width="33%">
-                                <table>
-                                    <tr>
-                                        <td>QRO QSOs</td>
-                                        <td>{{stats.my_pwr.qro}}</td>
-                                        <td><progress value="{{stats.my_pwr.qro}}" max="{{stats.nqso}}"> {{stats.my_pwr.qro}} / {{stats.nqsos}} </progress></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Low Power QSOs</td>
-                                        <td>{{stats.my_pwr.low_pwr}}</td>
-                                        <td><progress value="{{stats.my_pwr.low_pwr}}" max="{{stats.nqso}}"> {{stats.my_pwr.low_pwr}} / {{stats.nqsos}} </progress></td>
-                                    </tr>
-                                    <tr>
-                                        <td>QRP QSOs</td>
-                                        <td>{{stats.my_pwr.qrp}}</td>
-                                        <td><progress value="{{stats.my_pwr.qrp}}" max="{{stats.nqso}}"> {{stats.my_pwr.qrp}} / {{stats.nqsos}} </progress></td>
-                                    </tr>
-                                    <tr>
-                                        <td>QRPp QSOs</td>
-                                        <td>{{stats.my_pwr.qrpp}}</td>
-                                        <td><progress value="{{stats.my_pwr.qrpp}}" max="{{stats.nqso}}"> {{stats.my_pwr.qrpp}} / {{stats.nqsos}} </progress></td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p>
-                    Frequent Flyers (QSO Count):
-                    <ul class="comma-separated-list">
-                        {{#each stats.frequent_flyers}}
-                            <li><a href="/logs?callsign={{CALL}}&since=1900-01-01T00:00:00Z#show-logs"><span class="callsign">{{CALL}}</span></a> ({{CNT}})</li>
-                        {{/each}}
-                    </ul>
-                </p>
-                <p>
-                    POTA References Activated (Activation Count):
-                    <ul class="comma-separated-list">
-                        {{#each stats.pota_activations}}
-                            <li><a href="https://pota.app/#/park/{{MY_POTA_REF}}">{{MY_POTA_REF}}</a> ({{NACTIVATIONS}})</li>
-                        {{/each}}
-                    </ul>
-                </p>
-                <p>
-                    Confirmed Countries (QSO Count):
-                    <ul class="comma-separated-list">
-                        {{#each stats.countries}}
-                            <li>{{COUNTRY}} ({{QSO_PER_COUNTRY}})</li>
-                        {{/each}}
-                    </ul>
-                </p>
-                <p>
-                    Confirmed US States (QSO Count):
-                    <ul class="comma-separated-list">
-                        {{#each stats.states}}
-                            <li>{{STATE}} ({{QSO_PER_STATE}})</li>
-                        {{/each}}
-                    </ul>
-                </p>
-                <p>
-                    Confirmed Canadian Provinces (QSO Count):
-                    <ul class="comma-separated-list">
-                        {{#each stats.provs}}
-                            <li>{{STATE}} ({{QSO_PER_STATE}})</li>
-                        {{/each}}
-                    </ul>
-                </p>
         </section>
 
         <footer>
