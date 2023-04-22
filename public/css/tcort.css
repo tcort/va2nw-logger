@@ -15,7 +15,7 @@
  */
 
 /*
-    Version 2023.04.18a
+    Version 2023.04.22a
  */
 
 body {
@@ -101,6 +101,7 @@ textarea {
     margin: 4px 0;
     box-sizing: border-box;
     background-color: #f8f8f8;
+    color: #000000;
 }
 
 textarea {
@@ -161,4 +162,30 @@ progress {
     body {
         max-width: none;
     }
+}
+
+.card {
+    padding: 10px;
+}
+
+.cards {
+    margin: 0 auto;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.spinner {
+    border: 2.25em solid #aaaaaa;
+    border-top: 2.25em solid #f2f2f2;
+    border-radius: 50%;
+    width: 5em;
+    height: 5em;
+    animation: spin 2s linear infinite;
+    margin: 0px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
