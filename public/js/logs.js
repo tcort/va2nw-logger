@@ -1,6 +1,6 @@
 function updateTimestamp() {
 
-    if ($('input[name="NOW"]').is(':checked') && $('input[name="CALL"]').val().trim() === '') {
+    if ($('input[name="NOW"]').is(':checked')) {
 
         const now = new Date();
         const iso8601 = now.toISOString().length === 27 ? now.toISOString().slice(3) : now.toISOString();
@@ -12,21 +12,34 @@ function updateTimestamp() {
         const minute = iso8601.slice(14, 16);
         const second = iso8601.slice(17, 19);
 
-        $('select[name="YEAR"]').val(year).change();
-        $('select[name="MONTH"]').val(month).change();
-        $('select[name="DAY"]').val(day).change();
-        $('select[name="HOUR"]').val(hour).change();
-        $('select[name="MINUTE"]').val(minute).change();
-        $('select[name="SECOND"]').val(second).change();
+        if ($('input[name="CALL"]').val().trim() === '') {
 
+            $('select[name="YEAR"]').val(year).change();
+            $('select[name="MONTH"]').val(month).change();
+            $('select[name="DAY"]').val(day).change();
+            $('select[name="HOUR"]').val(hour).change();
+            $('select[name="MINUTE"]').val(minute).change();
+            $('select[name="SECOND"]').val(second).change();
+
+        } else {
+
+            $('select[name="YEAR_OFF"]').val(year).change();
+            $('select[name="MONTH_OFF"]').val(month).change();
+            $('select[name="DAY_OFF"]').val(day).change();
+            $('select[name="HOUR_OFF"]').val(hour).change();
+            $('select[name="MINUTE_OFF"]').val(minute).change();
+            $('select[name="SECOND_OFF"]').val(second).change();
+
+        }
     }
 
-    setTimeout(() => updateTimestamp(), 1000);
+    setTimeout(() => updateTimestamp(), 444);
 }
 
 const storedFields = [
     'STATION_CALLSIGN', 'OPERATOR', 'MY_GRIDSQUARE', 'MODE', 'FREQ', 'TX_PWR',
     'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'SECOND', 'NOW', 'MY_RIG', 'MY_ANTENNA',
+    'YEAR_OFF', 'MONTH_OFF', 'DAY_OFF', 'HOUR_OFF', 'MINUTE_OFF', 'SECOND_OFF',
     'MY_NAME', 'MY_POTA_REF', 'MY_DXCC', 'MY_STATE', 'MY_CQ_ZONE', 'MY_ITU_ZONE',
     'MY_COUNTRY', 'MY_ARRL_SECT', 'CONTEST_ID',
     'BEFORE_YEAR', 'BEFORE_MONTH', 'BEFORE_DAY', 'BEFORE_HOUR', 'BEFORE_MINUTE', 'BEFORE_SECOND',
@@ -99,6 +112,14 @@ $(function () {
     defaultLocalStorage();
 
     loadLocalStorage();
+
+    [ 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'SECOND' ].forEach(field => {
+        $(`select[name="${field}"]`).on('change', function () {
+            $(`select[name="${field}_OFF"]`).val(
+                $(`select[name="${field}"]`).find(":selected").val()
+            ).change();
+        });
+    });
 
     setInterval(() => saveLocalStorage(), 3000);
 
