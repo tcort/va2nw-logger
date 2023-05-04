@@ -21,15 +21,16 @@
                 Québec, Canada<br/>
                 PB #268 / NAQCC #2846 / SKCC #4889
             </p>
+            <nav>
+                <button type="button" id="show-new-entry" class="navtab" data-target="#new-entry">New Entry</button>
+                <button type="button" id="show-logs" class="navtab" data-target="#logs">Logs</button>
+                <button type="button" id="show-import-export" class="navtab" data-target="#import-export">Import / Export</button>
+            </nav>
+
         </header>
 
-        <nav>
-            <button type="button" id="show-new-entry" class="navtab" data-target="#new-entry">New Entry</button>
-            <button type="button" id="show-logs" class="navtab" data-target="#logs">Logs</button>
-            <button type="button" id="show-import-export" class="navtab" data-target="#import-export">Import / Export</button>
-        </nav>
-
-        <section id="new-entry" class="navtarget">
+        <div id="new-entry" class="navtarget">
+            <section>
                 <h3>New Entry</h3>
                 <form method="post" action="/logs">
                     <h4>QSO Details</h4>
@@ -866,7 +867,14 @@
                     <h4>Notes</h4>
                         <textarea name="NOTES"></textarea>
                         <br/>
+                    <h4>Miscellaneous</h4>
+                        Rig: <input type="text" name="RIG" />
+                        Power: <input type="text" name="RX_PWR" size="3" />
+                            <br/>
+                        E-mail: <input type="email" name="EMAIL" /> Web: <input type="url" name="WEB" />
+                            <br/>
                     <h4>Contest / Activity</h4>
+                        IOTA Reference: <input type="text" name="IOTA" size="8" />
                         SOTA Reference: <input type="text" name="SOTA_REF" size="8" />
                         POTA Reference: <input type="text" name="POTA_REF" size="8" />
                             <br/>
@@ -879,12 +887,17 @@
                             </select>
                             <br/>
                         Exchange Sent |
-                            Serial <input type="input" name="STX" /> |
-                            Text <input type="input" name="STX_STRING" />
+                            Serial <input type="text" name="STX" /> |
+                            Text <input type="text" name="STX_STRING" />
                             <br/>
                         Exchange Rcvd |
-                            Serial <input type="input" name="SRX" /> |
-                            Text <input type="input" name="SRX_STRING" />
+                            Serial <input type="text" name="SRX" /> |
+                            Text <input type="text" name="SRX_STRING" />
+                            <br/>
+                        FISTS: <input type="text" name="FISTS" />
+                        FISTS Century Club: <input type="text" name="FISTS_CC" />
+                            <br/>
+                        Ten Ten: <input type="text" name="TEN_TEN" />
                             <br/>
                     <h4>Station</h4>
                     Station Callsign:
@@ -1095,90 +1108,115 @@
                         <br/>
 
                 </form>
-        </section>
+            </section>
+        </div>
 
-        <section id="logs" class="navtarget">
-            <h3>Search</h3>
-            <form name="search" method="GET" action="/logs#show-logs">
-                Search by callsign:
-                <input id="callsign_search" type="text" name="callsign" placeholder="callsign" list="callsign_search_suggestions" />
-                <datalist id="callsign_search_suggestions"></datalist>
-                <input type="hidden" name="since" value="1900-01-01T00:00:00Z" />
-                <input type="submit" value="Search" />
-            </form>
+        <div id="logs" class="navtarget">
+            <section>
+                <h3>Search</h3>
+                <form name="search" method="GET" action="/logs#show-logs">
+                    Search by callsign:
+                    <input id="callsign_search" type="text" name="callsign" placeholder="callsign" list="callsign_search_suggestions" />
+                    <datalist id="callsign_search_suggestions"></datalist>
+                    <input type="hidden" name="since" value="1900-01-01T00:00:00Z" />
+                    <input type="submit" value="Search" />
+                </form>
+            </section>
+            <section>
+                <h3><a name="logbook"></a>Logbook</h3>
+                <table>
+                    <thead>
+                        <th>&nbsp;</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Callsign</th>
+                        <th>RST Sent</th>
+                        <th>RST Recv</th>
+                        <th>Freq</th>
+                        <th>Pwr</th>
+                        <th>Mode</th>
+                    </thead>
+                    <tbody>
+                        {{#each logs}}
+                            <tr id="{{APP_TCADIF_QSO_ID}}" class="summary">
+                                <td><button type="button" class="toggle-visibility" data-target="{{APP_TCADIF_QSO_ID}}_details">+</button></td>
+                                <td>{{DATE_HUMAN}}</td>
+                                <td>{{TIME_HUMAN}}</td>
+                                <td><a href="/logs?callsign={{CALL}}&since=1900-01-01T00:00:00Z#show-logs"><span class="callsign">{{CALL}}</span></a></td>
+                                <td>{{RST_SENT}}</td>
+                                <td>{{RST_RCVD}}</td>
+                                <td>{{FREQ}}</td>
+                                <td>{{TX_PWR}}</td>
+                                <td>{{MODE}}</td>
+                            </tr>
+                            <tr id="{{APP_TCADIF_QSO_ID}}_details" class="hidden">
+                                <td colspan="10">
+                                    <p>
+                                        {{MY_NAME}} <span class="callsign">({{OPERATOR}})</span> operating station <span class="callsign">{{STATION_CALLSIGN}}</span> running a {{MY_RIG}} transceiver at
+                                        {{TX_PWR}} watts into a {{MY_ANTENNA}} antenna from
+                                        {{#if MY_POTA_REF}}
+                                            POTA Ref <a href="https://pota.app/#/park/{{MY_POTA_REF}}">{{MY_POTA_REF}}</a> in
+                                        {{/if}}
+                                        {{MY_STATE}}, {{MY_COUNTRY}} (Grid: {{MY_GRIDSQUARE}}, ITU Zone: {{MY_ITU_ZONE}}, CQ Zone: {{MY_CQ_ZONE}})
+                                        made a {{MODE}} contact with {{NAME}} <a href="/logs?callsign={{CALL}}&since=1900-01-01T00:00:00Z#show-logs"><span class="callsign">{{CALL}}</span></a>
+                                        {{#if SKCC}}
+                                            (SKCC #<a href="https://www.skccgroup.com/membership_data/membership_search.php?search={{SKCC}}">{{SKCC}}</a>)
+                                        {{/if}}
+                                        {{#if FISTS}}
+                                            (FISTS #{{FISTS}})
+                                        {{/if}}
+                                        on {{FREQ}} MHz in the
+                                        {{BAND}} band on {{DATE_HUMAN}} at {{TIME_HUMAN}} UTC with a signal report of {{RST_SENT}}/{{RST_RCVD}}
+                                        {{#if POTA_REF}}
+                                            in POTA Ref <a href="https://pota.app/#/park/{{POTA_REF}}">{{POTA_REF}}</a>
+                                        {{/if}}
+                                        {{#if SOTA_REF}}
+                                            on SOTA Ref <a href="https://www.sotadata.org.uk/en/summit/{{SOTA_REF}}">{{SOTA_REF}}</a>
+                                        {{/if}}
+                                        {{#if STATE}}
+                                            in {{STATE}}
+                                        {{/if}}
+                                        {{#if COUNTRY}}
+                                            in {{COUNTRY}}
+                                        {{/if}}
+                                        {{#if GRIDSQUARE}}
+                                            in gridsquare {{GRIDSQUARE}}
+                                        {{/if}}
+                                        {{#if ITUZ}}
+                                            in ITU zone {{ITUZ}}
+                                        {{/if}}
+                                        {{#if CQZ}}
+                                            in CQ Zone {{CQZ}}
+                                        {{/if}}
+                                        {{#if CONTEST_ID}}
+                                            for the {{CONTEST_ID}} contest with an exchange of information including {{STX}} {{STX_STRING}} (sent) and {{SRX}} {{SRX_STRING}} (rcvd)
+                                        {{/if}}
+                                    </p>
+                                    {{#if NOTES}}
+                                    <p>
+                                        Notes: <em>{{NOTES}}</em>
+                                    </p>
+                                    {{/if}}
+                                    <p>
+                                        Callsign Lookup:
+                                            <a href="https://www.qrz.com/db/{{CALL}}">QRZ</a>,
+                                            <a href="https://pota.app/#/profile/{{CALL}}">POTA</a>,
+                                            <a href="https://www.skccgroup.com/membership_data/membership_search.php?search={{CALL}}">SKCC</a>,
+                                            <a href="https://www.youtube.com/results?search_query={{CALL}}">YouTube</a>
+                                    </p>
+                                    <p>
+                                        <small>Log ID: {{APP_TCADIF_QSO_ID}}</small>
+                                    </p>
+                                </td>
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </section>
+        </div>
 
-            <h3><a name="logbook"></a>Logbook</h3>
-            <table>
-                <thead>
-                    <th>&nbsp;</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Callsign</th>
-                    <th>RST Sent</th>
-                    <th>RST Recv</th>
-                    <th>Freq</th>
-                    <th>Pwr</th>
-                    <th>Mode</th>
-                </thead>
-                <tbody>
-                    {{#each logs}}
-                        <tr id="{{APP_TCADIF_QSO_ID}}" class="summary">
-                            <td><button type="button" class="toggle-visibility" data-target="{{APP_TCADIF_QSO_ID}}_details">+</button></td>
-                            <td>{{DATE_HUMAN}}</td>
-                            <td>{{TIME_HUMAN}}</td>
-                            <td><a href="/logs?callsign={{CALL}}&since=1900-01-01T00:00:00Z#show-logs"><span class="callsign">{{CALL}}</span></a></td>
-                            <td>{{RST_SENT}}</td>
-                            <td>{{RST_RCVD}}</td>
-                            <td>{{FREQ}}</td>
-                            <td>{{TX_PWR}}</td>
-                            <td>{{MODE}}</td>
-                        </tr>
-                        <tr id="{{APP_TCADIF_QSO_ID}}_details" class="hidden">
-                            <td colspan="10">
-                                <p>
-                                    {{MY_NAME}} <span class="callsign">({{OPERATOR}})</span> operating station <span class="callsign">{{STATION_CALLSIGN}}</span> running a {{MY_RIG}} transceiver at
-                                    {{TX_PWR}} watts into a {{MY_ANTENNA}} antenna from
-                                    {{#if MY_POTA_REF}}
-                                        POTA Ref <a href="https://pota.app/#/park/{{MY_POTA_REF}}">{{MY_POTA_REF}}</a> in
-                                    {{/if}}
-                                    {{MY_STATE}}, {{MY_COUNTRY}} (Grid: {{MY_GRIDSQUARE}}, ITU Zone: {{MY_ITU_ZONE}}, CQ Zone: {{MY_CQ_ZONE}})
-                                    made a {{MODE}} contact with {{NAME}} <a href="/logs?callsign={{CALL}}&since=1900-01-01T00:00:00Z#show-logs"><span class="callsign">{{CALL}}</span></a>
-                                    {{#if SKCC}}
-                                        (SKCC #<a href="https://www.skccgroup.com/membership_data/membership_search.php?search={{SKCC}}">{{SKCC}}</a>)
-                                    {{/if}}
-                                    on {{FREQ}} MHz in the
-                                    {{BAND}} band on {{DATE_HUMAN}} at {{TIME_HUMAN}} UTC with a signal report of {{RST_SENT}}/{{RST_RCVD}}
-                                    {{#if POTA_REF}}
-                                        in POTA Ref <a href="https://pota.app/#/park/{{POTA_REF}}">{{POTA_REF}}</a>
-                                    {{/if}}
-                                    {{#if CONTEST_ID}}
-                                        for the {{CONTEST_ID}} contest with an exchange of information including {{STX}} {{STX_STRING}} (sent) and {{SRX}} {{SRX_STRING}} (rcvd)
-                                    {{/if}}
-                                </p>
-                                {{#if NOTES}}
-                                <p>
-                                    Notes: <em>{{NOTES}}</em>
-                                </p>
-                                {{/if}}
-                                <p>
-                                    Callsign Lookup:
-                                        <a href="https://www.qrz.com/db/{{CALL}}">QRZ</a>,
-                                        <a href="https://pota.app/#/profile/{{CALL}}">POTA</a>,
-                                        <a href="https://www.skccgroup.com/membership_data/membership_search.php?search={{CALL}}">SKCC</a>,
-                                        <a href="https://www.youtube.com/results?search_query={{CALL}}">YouTube</a>
-                                </p>
-                                <p>
-                                    <small>Log ID: {{APP_TCADIF_QSO_ID}}</small>
-                                </p>
-                            </td>
-                        </tr>
-                    {{/each}}
-                </tbody>
-            </table>
-        </section>
-
-
-        <section id="import-export" class="navtarget">
+        <div id="import-export" class="navtarget">
+            <section>
                 <h3>Import</h3>
                 <p>Load new QSO data from another logging program or updated QSO data for QSOs already in the database (e.g. LoTW reports).</p>
                 <form method="post" encType="multipart/form-data" action="/logs">
@@ -1186,6 +1224,8 @@
                         <input type="file" name="adif_file" accept=".adi,.adif"/>
                     <input type="submit" value="Import"/>
                 </form>
+            </section>
+            <section>
                 <h3>Export</h3>
                 <p>Export QSO data in a given format that is within the specified date range.</p>
                 <form method="get" action="/logs">
@@ -2009,14 +2049,17 @@
                     <br/>
                     <input type="submit" value="Export"/>
                 </form>
+            </section>
+            <section>
                 <h3>Update SKCC Roster</h3>
-                <p>Load member list for auto-fills. Download list from <a href="https://www.skccgroup.com/search/skcclist.txt">https://www.skccgroup.com/search/skcclist.txt</a></p>
+                <p>Load member list for auto-fills. Download list from <a href="https://www.skccgroup.com/search/skcclist.txt" target="_blank" download="skcclist.txt">https://www.skccgroup.com/search/skcclist.txt</a></p>
                 <form method="post" encType="multipart/form-data" action="/skcc">
                     SKCC Membership Roster File:
                         <input type="file" name="skcc_roster" accept=".txt"/>
                     <input type="submit" value="Load"/>
                 </form>
-        </section>
+            </section>
+        </div>
 
         <footer>
             <p>

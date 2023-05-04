@@ -15,7 +15,7 @@
  */
 
 /*
-    Version 2023.04.22a
+    Version 2023.05.04a
  */
 
 body {
@@ -29,6 +29,19 @@ body {
     background: #f2f2f2;
     padding-left: 2em;
     padding-right: 2em;
+}
+
+header, section, footer {
+    background: #ffffff;
+    color: #454545;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid;
+}
+
+footer p {
+    text-align: center;
 }
 
 h1, h2, h3 {
@@ -87,6 +100,8 @@ tbody tr:hover {
     background-color: #aaaaaa;
 }
 
+input[type=url],
+input[type=email],
 input[type=file],
 input[type=text],
 input[type=button],
@@ -125,7 +140,7 @@ progress {
 }
 
 .navtab {
-    border-radius: 4px 4px 0px 0px;
+    border-radius: 25px;
     border: 2px solid grey;
     padding: 6px 10px;
     margin: 0;
@@ -141,7 +156,6 @@ progress {
 
 .activetab {
     background: #f2f2f2;
-    border-bottom: 0px;
 }
 
 .comma-separated-list {
