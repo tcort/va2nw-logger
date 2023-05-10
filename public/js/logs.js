@@ -37,6 +37,7 @@ function updateTimestamp() {
 }
 
 const storedFields = [
+    'QSO_RANDOM',
     'STATION_CALLSIGN', 'OPERATOR', 'MY_GRIDSQUARE', 'MODE', 'FREQ', 'TX_PWR',
     'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'SECOND', 'NOW', 'MY_RIG', 'MY_ANTENNA',
     'YEAR_OFF', 'MONTH_OFF', 'DAY_OFF', 'HOUR_OFF', 'MINUTE_OFF', 'SECOND_OFF',
@@ -88,6 +89,7 @@ function defaultLocalStorage() {
         [ 'BEFORE_HOUR', '23' ],
         [ 'BEFORE_MINUTE', '59' ],
         [ 'BEFORE_SECOND', '59' ],
+        [ 'QSO_RANDOM', 'Y' ],
     ].forEach(([ field, val ]) => {
         if (window.localStorage.getItem(field) === 'undefined') {
             window.localStorage.setItem(field, val);
