@@ -107,7 +107,6 @@ $(function () {
         } else {
             $(`[name="RST_SENT"]`).val('599');
             $(`[name="RST_RCVD"]`).val('599');
-            $(`[name="APP_TCADIF_MY_KEY"]`).val('BUG').change();
         }
     });
 
