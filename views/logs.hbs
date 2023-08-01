@@ -44,7 +44,7 @@
                         <br/>
                     <div id="recent_qsos"></div>
                     Callsign:
-                        <input id="callsign_entry" type="text" name="CALL" size="10" list="callsign_entry_suggestions" autofocus required />
+                        <input id="callsign_entry" type="text" name="CALL" size="10" list="callsign_entry_suggestions" autofocus required autocomplete="off" />
                         <datalist id="callsign_entry_suggestions"></datalist>
                     RST Sent: <input type="text" name="RST_SENT" value="599" size="3" />
                     RST Recv: <input type="text" name="RST_RCVD" value="599" size="3" />
@@ -1451,12 +1451,14 @@
                         <th>&nbsp;</th>
                         <th>Date</th>
                         <th>Time</th>
+                        <th>Freq</th>
+                        <th>Mode</th>
+                        <th>Pwr</th>
                         <th>Callsign</th>
+                        <th>QTH</th>
                         <th>RST Sent</th>
                         <th>RST Recv</th>
-                        <th>Freq</th>
-                        <th>Pwr</th>
-                        <th>Mode</th>
+                        <th>Comments</th>
                     </thead>
                     <tbody>
                         {{#each logs}}
@@ -1464,12 +1466,14 @@
                                 <td><button type="button" class="toggle-visibility" data-target="{{APP_TCADIF_QSO_ID}}_details">+</button></td>
                                 <td>{{DATE_HUMAN}}</td>
                                 <td>{{TIME_HUMAN}}</td>
+                                <td>{{FREQ}}</td>
+                                <td>{{MODE}}</td>
+                                <td>{{TX_PWR}}</td>
                                 <td><a href="/logs?callsign={{CALL}}&since=1900-01-01T00:00:00Z#show-logs"><span class="callsign">{{CALL}}</span></a></td>
+                                <td>{{STATE}} {{COUNTRY}}</td>
                                 <td>{{RST_SENT}}</td>
                                 <td>{{RST_RCVD}}</td>
-                                <td>{{FREQ}}</td>
-                                <td>{{TX_PWR}}</td>
-                                <td>{{MODE}}</td>
+                                <td>{{NOTES}}</td>
                             </tr>
                             <tr id="{{APP_TCADIF_QSO_ID}}_details" class="hidden">
                                 <td colspan="10">
