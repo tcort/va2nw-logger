@@ -2,6 +2,18 @@
 
 Amateur radio contact logging.
 
+**Features**
+
+- Import: ADIF.
+- Export: ADIF, Cabrillo, CSV, JSON.
+- Search.
+- Timekeeping.
+- View logs in tabular and narrative formats.
+- Auto-fill SKCC data from callsign.
+- Auto-suggest callsign from logs, SKCC roster, and Super Check Partials.
+- Supports SOTA, POTA, and IOTA.
+- Compatible with <a href="https://www.hamstats.com/">HamStats</a>.
+
 ## Local Installation
 
 ### Prerequisites
