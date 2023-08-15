@@ -54,6 +54,8 @@
                     Name: <input type="text" name="NAME" />
                     State: <input type="text" name="STATE" size="8" />
                         <br/>
+                    LICW:
+                        <input type="text" name="APP_TCADIF_LICW" size="6" />
                     Gridsquare:
                         <input type="text" name="GRIDSQUARE" size="6" />
                     ITU Zone:
@@ -1185,6 +1187,9 @@
                                 <option value="{{@key}}">{{this}}</option>
                             {{/each}}
                         </select>
+                    Key Info:
+                        <input id="app_tcadif_my_key_info_entry" type="text" name="APP_TCADIF_MY_KEY_INFO" list="app_tcadif_my_key_info_suggestions"/>
+                        <datalist id="app_tcadif_my_key_info_suggestions"></datalist>
                     <h4>Operating Location</h4>
                     Gridsquare:
                         <input type="text" name="MY_GRIDSQUARE" size="6" />

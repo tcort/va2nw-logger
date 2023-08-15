@@ -45,7 +45,7 @@ const storedFields = [
     'MY_COUNTRY', 'MY_ARRL_SECT', 'CONTEST_ID',
     'BEFORE_YEAR', 'BEFORE_MONTH', 'BEFORE_DAY', 'BEFORE_HOUR', 'BEFORE_MINUTE', 'BEFORE_SECOND',
     'SINCE_YEAR', 'SINCE_MONTH', 'SINCE_DAY', 'SINCE_HOUR', 'SINCE_MINUTE', 'SINCE_SECOND',
-    'STX', 'STX_STRING', 'APP_TCADIF_MY_KEY',
+    'STX', 'STX_STRING', 'APP_TCADIF_MY_KEY', 'APP_TCADIF_MY_KEY_INFO',
 ];
 
 function saveLocalStorage() {
@@ -104,6 +104,7 @@ $(function () {
             $(`[name="RST_SENT"]`).val('59');
             $(`[name="RST_RCVD"]`).val('59');
             $(`[name="APP_TCADIF_MY_KEY"]`).val('').change();
+            $(`[name="APP_TCADIF_MY_KEY_INFO"]`).val('').change();
         } else {
             $(`[name="RST_SENT"]`).val('599');
             $(`[name="RST_RCVD"]`).val('599');
@@ -141,6 +142,7 @@ $(function () {
     tctypeahead('#callsign_entry', '#callsign_entry_suggestions', completer('/callsigns?startsWith=', true));
     tctypeahead('#my_rig_entry', '#my_rig_suggestions', completer('/my-rigs?startsWith='));
     tctypeahead('#my_antenna_entry', '#my_antenna_suggestions', completer('/my-antennas?startsWith='));
+    tctypeahead('#app_tcadif_my_key_info_entry', '#app_tcadif_my_key_info_suggestions', completer('/app-tcadif-my-key-info?startsWith='));
 
     $('#skcc-roster-lookup').on('click', function () {
         fetch('/skcc/' + encodeURIComponent($('input[name="CALL"]').val()))
