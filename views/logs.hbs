@@ -49,7 +49,6 @@
                     RST Sent: <input type="text" name="RST_SENT" value="599" size="3" />
                     RST Recv: <input type="text" name="RST_RCVD" value="599" size="3" />
                         <br/>
-                    <button type="button" id="skcc-roster-lookup">Autofill</button>
                     SKCC: <input type="text" name="SKCC" size="8" />
                     Name: <input type="text" name="NAME" />
                     State: <input type="text" name="STATE" size="8" />
@@ -2379,24 +2378,6 @@
                     <input type="hidden" name="order" value="asc" />
                     <br/>
                     <input type="submit" value="Export"/>
-                </form>
-            </section>
-            <section>
-                <h3>Update Super Check Partial</h3>
-                <p>Load callsign list for auto-fills. Download list from <a href="https://www.supercheckpartial.com/MASTER.SCP" target="_blank" download="MASTER.SCP">https://www.supercheckpartial.com/MASTER.SCP</a></p>
-                <form method="post" encType="multipart/form-data" action="/scp">
-                    Master Super Check Partial File:
-                        <input type="file" name="master_scp" accept=".txt,.scp"/>
-                    <input type="submit" value="Load"/>
-                </form>
-            </section>
-            <section>
-                <h3>Update SKCC Roster</h3>
-                <p>Load member list for auto-fills. Download list from <a href="https://www.skccgroup.com/search/skcclist.txt" target="_blank" download="skcclist.txt">https://www.skccgroup.com/search/skcclist.txt</a></p>
-                <form method="post" encType="multipart/form-data" action="/skcc">
-                    SKCC Membership Roster File:
-                        <input type="file" name="skcc_roster" accept=".txt"/>
-                    <input type="submit" value="Load"/>
                 </form>
             </section>
         </div>
