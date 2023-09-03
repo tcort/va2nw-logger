@@ -1,6 +1,6 @@
 #!/bin/sh
 
-NOW=`date --filename-safe`
+NOW=`date +%Y%m%d%H%M%S`
 DIR="backup-${NOW}"
 ARC="${DIR}.tar"
 BACKUP_DIR=backups
