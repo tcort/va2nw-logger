@@ -144,6 +144,17 @@ $(function () {
     tctypeahead('#my_antenna_entry', '#my_antenna_suggestions', completer('/my-antennas?startsWith='));
     tctypeahead('#app_tcadif_my_key_info_entry', '#app_tcadif_my_key_info_suggestions', completer('/app-tcadif-my-key-info?startsWith='));
 
+    $('#skcc-roster-lookup').on('click', function () {
+        fetch('/skcc/' + encodeURIComponent($('input[name="CALL"]').val()))
+            .then((response) => response.json())
+            .then(member => {
+                $('input[name="SKCC"]').val(member.NR);
+                $('input[name="STATE"]').val(member.STATE);
+                $('input[name="NAME"]').val(member.NAME);
+            })
+            .catch(err => console.log('error', err));
+    });
+
     $('#callsign_entry').on('input', function () {
 
         $(this).val($(this).val().toUpperCase().trim());
