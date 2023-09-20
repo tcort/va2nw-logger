@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Amateur Radio Station Logs</title>
+
+        <link rel="icon" href="/favicon.ico">
+        <link rel="stylesheet" href="/tcort.css">
+        <link rel="stylesheet" href="/robotomono-regular.css">
+    </head>
+    <body>
+
+        <header>
+            <h1>Amateur Radio Station Logs</h1>
+            <nav>
+                <a href="/qsos">View QSOs</a>
+            </nav>
+        </header>
+
+        <section>
+            <h2>Log a QSO</h2>
+            <form method="post" action="/qsos">
+                <div>
+                    <label for="timeon">UTC Time On</label>
+                    <span id="timeon">
+                        <input type="number" id="year_on" name="year_on" min="1900" max="9999" step="1" size="10" placeholder="Year" required />
+                        <select name="month_on" required>
+                            <option value="01">January</option>
+                            <option value="02">February</option>
+                            <option value="03">March</option>
+                            <option value="04">April</option>
+                            <option value="05">May</option>
+                            <option value="06">June</option>
+                            <option value="07">July</option>
+                            <option value="08">August</option>
+                            <option value="09">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                        <input type="number" id="day_on" name="day_on" min="1" max="31" step="1" size="10" placeholder="Day" required /> /
+                        <input type="number" id="hour_on" name="hour_on" min="0" max="23" step="1" size="10" placeholder="Hour" required /> :
+                        <input type="number" id="minute_on" name="minute_on" min="0" max="59" step="1" size="10" placeholder="Minute" required /> :
+                        <input type="number" id="second_on" name="second_on" min="0" max="59" step="1" size="10" placeholder="Second" required />
+                        <button type="button" id="timeon_now">Now</button>
+                        <input type="checkbox" id="now" name="now" checked />
+                    </span>
+                </div>
+                <div>
+                    <label for="timeon">UTC Time Off</label>
+                    <span id="timeon">
+                        <input type="number" id="year_off" name="year_off" min="1900" max="9999" step="1" size="10" placeholder="Year" required />
+                        <select name="month_off" required>
+                            <option value="01">January</option>
+                            <option value="02">February</option>
+                            <option value="03">March</option>
+                            <option value="04">April</option>
+                            <option value="05">May</option>
+                            <option value="06">June</option>
+                            <option value="07">July</option>
+                            <option value="08">August</option>
+                            <option value="09">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                        <input type="number" id="day_off" name="day_off" min="1" max="31" step="1" size="10" placeholder="Day" required /> /
+                        <input type="number" id="hour_off" name="hour_off" min="0" max="23" step="1" size="10" placeholder="Hour" required /> :
+                        <input type="number" id="minute_off" name="minute_off" min="0" max="59" step="1" size="10" placeholder="Minute" required /> :
+                        <input type="number" id="second_off" name="second_off" min="0" max="59" step="1" size="10" placeholder="Second" required />
+                        <button type="button" id="timeoff_now">Now</button>
+                    </span>
+                </div>
+                <div>
+                    <label for="frequency">Frequency</label>
+                    <input type="number" id="frequency" name="frequency" size="10" min="0" max="30000" step=".000001" placeholder="MHz" required />
+                    <label for="mode">Mode</label>
+                    <select name="mode" required>
+                        {{#each enums.Mode}}
+                            <option value="{{@key}}">{{this}}</option>
+                        {{/each}}
+                    </select>
+                    <label for="power">Power</label>
+                    <input type="number" id="power" name="power" size="10" min="0" max="10000" step=".001" placeholder="Watts" required />
+                </div>
+                <div>
+                    <label for="callsign">Station Callsign</label>
+                    <input id="callsign" type="text" name="callsign" size="10" autofocus required autocomplete="off" />
+                    <label for="rst_sent">RST Sent</label>
+                    <input type="number" id="rst_sent" name="rst_sent" size="10" min="0" max="599" step="1" placeholder="Signal Report" required />
+                    <label for="rst_sent">RST Received</label>
+                    <input type="number" id="rst_rcvd" name="rst_rcvd" size="10" min="0" max="599" step="1" placeholder="Signal Report" required />
+                </div>
+                <div>
+                    <label for="remarks">Remarks</label><br>
+                    <textarea name="remarks" id="remarks"></textarea>
+                </div>
+                <div>
+                    <input type="submit"/>
+                </div>
+            </form>
+        </section>
+
+        <section>
+            <h3>Import</h3>
+            <p>Load new QSO data from another logging program.</p>
+            <form method="post" encType="multipart/form-data" action="/qsos">
+                <label for="adif_file">ADIF File</label> <input type="file" id="adif_file" name="adif_file" accept=".adi,.adif">
+                <input type="submit" value="Import"/>
+            </form>
+        </section>
+
+        <footer>
+            <p>
+                Copyright &copy; 2023 Thomas Cort
+            </p>
+        </footer>
+
+        <script src="/jquery.min.js"></script>
+        <script src="/tcort.js"></script>
+        <script src="/va2nw-logger.js"></script>
+
+    </body>
+</html>
