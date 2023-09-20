@@ -11,6 +11,7 @@
         <link rel="icon" href="/favicon.ico">
         <link rel="stylesheet" href="/tcort.css">
         <link rel="stylesheet" href="/robotomono-regular.css">
+        <link rel="stylesheet" href="/va2nw-logger.css">
     </head>
     <body>
 
@@ -39,13 +40,13 @@
                 <tbody>
                     {{#each qsos}}
                     <tr class="clickable-row" data-href="/qsos/{{qso_id}}">
-                        <td>{{timeon}}</td>
-                        <td>{{frequency}}</td>
-                        <td>{{mode}}</td>
-                        <td>{{power}}</td>
-                        <td>{{callsign}}</td>
-                        <td>{{rst_sent}} / {{rst_rcvd}}</td>
-                        <td>{{qsl_sent}} / {{qsl_rcvd}}</td>
+                        <td class="nowrap">{{timeon}}</td>
+                        <td class="nowrap">{{frequency}}</td>
+                        <td class="nowrap center">{{mode}}</td>
+                        <td class="nowrap center">{{power}}</td>
+                        <td class="nowrap"><span class="callsign">{{callsign}}</span></td>
+                        <td class="nowrap">{{rst_sent}} / {{rst_rcvd}}</td>
+                        <td class="nowrap">{{qsl_sent}} / {{qsl_rcvd}}</td>
                         <td>{{remarks}}</td>
                     </tr>
                     {{/each}}
@@ -53,9 +54,11 @@
             </table>
 
             <div>
-                {{#each pageNav}}
-                    <a href="/qsos?page={{page}}">{{label}}</a>
-                {{/each}}
+                <p class="center">
+                    {{#each pageNav}}
+                        <a href="/qsos?page={{page}}">{{label}}</a>
+                    {{/each}}
+                </p>
             </div>
         </section>
 
@@ -67,7 +70,6 @@
 
         <script src="/jquery.min.js"></script>
         <script src="/tcort.js"></script>
-        <script src="/va2nw-logger.js"></script>
 
     </body>
 </html>

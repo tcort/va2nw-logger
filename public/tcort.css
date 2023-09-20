@@ -15,7 +15,7 @@
  */
 
 /*
-    Version 2023.05.04a
+    Version 2023.09.20a
  */
 
 body {
@@ -188,6 +188,14 @@ progress {
     display: grid;
     gap: 10px;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.center {
+    text-align: center;
 }
 
 .spinner {
