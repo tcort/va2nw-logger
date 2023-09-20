@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Amateur Radio Station Logs</title>
+
+        <link rel="icon" href="/favicon.ico">
+        <link rel="stylesheet" href="/tcort.css">
+        <link rel="stylesheet" href="/robotomono-regular.css">
+    </head>
+    <body>
+
+        <header>
+            <h1>Amateur Radio Station Logs</h1>
+            <nav>
+                <a href="/">New QSO</a>
+                <a href="/qsos">View QSOs</a>
+            </nav>
+        </header>
+
+        <section>
+            <h2>QSO</h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Date/Time On</th>
+                        <td>{{qso.timeon}} UTC</td>
+                    </tr>
+                    <tr>
+                        <th>Date/Time Off</th>
+                        <td>{{qso.timeoff}} UTC</td>
+                    </tr>
+                    <tr>
+                        <th>Frequency</th>
+                        <td>{{qso.frequency}} MHz</td>
+                    </tr>
+                    <tr>
+                        <th>Mode</th>
+                        <td>{{qso.mode}}</td>
+                    </tr>
+                    <tr>
+                        <th>Power</th>
+                        <td>{{qso.power}} Watts</td>
+                    </tr>
+                    <tr>
+                        <th>Callsign</th>
+                        <td>{{qso.callsign}}</td>
+                    </tr>
+                    <tr>
+                        <th>RST Sent</th>
+                        <td>{{qso.rst_sent}}</td>
+                    </tr>
+                    <tr>
+                        <th>RST Received</th>
+                        <td>{{qso.rst_rcvd}}</td>
+                    </tr>
+                    <tr>
+                        <th>QSL Sent</th>
+                        <td>{{qso.qsl_sent}}</td>
+                    </tr>
+                    <tr>
+                        <th>QSL Received</th>
+                        <td>{{qso.qsl_rcvd}}</td>
+                    </tr>
+                    <tr>
+                        <th>Remarks</th>
+                        <td>{{qso.remarks}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <footer>
+            <p>
+                Copyright &copy; 2023 Thomas Cort
+            </p>
+        </footer>
+
+        <script src="/jquery.min.js"></script>
+        <script src="/tcort.js"></script>
+        <script src="/va2nw-logger.js"></script>
+
+    </body>
+</html>
