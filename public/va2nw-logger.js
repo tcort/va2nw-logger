@@ -44,7 +44,9 @@ function updateTimestamp() {
 
 const storedFields = [
     'mode', 'frequency', 'power',
-    'year_on', 'month_on', 'day_on', 'hour_on', 'minute_on', 'second_on',,
+    'year_since', 'month_since', 'day_since', 'hour_since', 'minute_since', 'second_since',
+    'year_after', 'month_after', 'day_after', 'hour_after', 'minute_after', 'second_after',
+    'year_on', 'month_on', 'day_on', 'hour_on', 'minute_on', 'second_on',
     'year_off', 'month_off', 'day_off', 'hour_off', 'minute_off', 'second_off',
     'now',
 ];
@@ -98,6 +100,10 @@ $(function () {
                 $(`input[name="${field}_on"]`).val()
             ).change();
         });
+    });
+
+    $('.callsign_entry').on('input', function () {
+        $(this).val($(this).val().toUpperCase().trim());
     });
 
     $(`select[name="month_on"]`).on('change', function () {

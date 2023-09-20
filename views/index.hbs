@@ -11,6 +11,7 @@
         <link rel="icon" href="/favicon.ico">
         <link rel="stylesheet" href="/tcort.css">
         <link rel="stylesheet" href="/robotomono-regular.css">
+        <link rel="stylesheet" href="/va2nw-logger.css">
     </head>
     <body>
 
@@ -27,7 +28,7 @@
                 <div>
                     <label for="timeon">UTC Time On</label>
                     <span id="timeon">
-                        <input type="number" id="year_on" name="year_on" min="1900" max="9999" step="1" size="10" placeholder="Year" required />
+                        <input type="number" id="year_on" name="year_on" min="1900" max="2099" step="1" size="10" placeholder="Year" required />
                         <select name="month_on" required>
                             <option value="01">January</option>
                             <option value="02">February</option>
@@ -53,7 +54,7 @@
                 <div>
                     <label for="timeon">UTC Time Off</label>
                     <span id="timeon">
-                        <input type="number" id="year_off" name="year_off" min="1900" max="9999" step="1" size="10" placeholder="Year" required />
+                        <input type="number" id="year_off" name="year_off" min="1900" max="2099" step="1" size="10" placeholder="Year" required />
                         <select name="month_off" required>
                             <option value="01">January</option>
                             <option value="02">February</option>
@@ -89,7 +90,7 @@
                 </div>
                 <div>
                     <label for="callsign">Station Callsign</label>
-                    <input id="callsign" type="text" name="callsign" size="10" autofocus required autocomplete="off" />
+                    <input class="callsign callsign_entry" id="callsign" type="text" name="callsign" size="10" autofocus required autocomplete="off" />
                     <label for="rst_sent">RST Sent</label>
                     <input type="number" id="rst_sent" name="rst_sent" size="10" min="0" max="599" step="1" placeholder="Signal Report" required />
                     <label for="rst_sent">RST Received</label>
@@ -111,6 +112,64 @@
             <form method="post" encType="multipart/form-data" action="/qsos">
                 <label for="adif_file">ADIF File</label> <input type="file" id="adif_file" name="adif_file" accept=".adi,.adif">
                 <input type="submit" value="Import"/>
+            </form>
+        </section>
+
+        <section>
+            <h3>Export</h3>
+            <p>Dump QSO data for another logging program or as a backup.</p>
+            <form method="get" action="/qsos">
+
+                Since:
+                <input type="number" id="year_since" name="year_since" min="1900" max="2099" step="1" size="10" placeholder="Year" value="1900" required />
+                <select name="month_since" required>
+                    <option value="01" selected>January</option>
+                    <option value="02">February</option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+                <input type="number" id="day_since" name="day_since" min="1" max="31" step="1" size="10" placeholder="Day" value="01" required /> /
+                <input type="number" id="hour_since" name="hour_since" min="0" max="23" step="1" size="10" placeholder="Hour" value="00" required /> :
+                <input type="number" id="minute_since" name="minute_since" min="0" max="59" step="1" size="10" placeholder="Minute" value="00" required /> :
+                <input type="number" id="second_since" name="second_since" min="0" max="59" step="1" size="10" placeholder="Second" value="00" required />
+
+                <br/>
+
+                Before: <input type="number" id="year_before" name="year_before" min="1900" max="2099" step="1" size="10" placeholder="Year" value="2099" required />
+                <select name="month_before" required>
+                    <option value="01">January</option>
+                    <option value="02">February</option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12" selected>December</option>
+                </select>
+                <input type="number" id="day_before" name="day_before" min="1" max="31" step="1" size="10" placeholder="Day" value="31" required /> /
+                <input type="number" id="hour_before" name="hour_before" min="0" max="23" step="1" size="10" placeholder="Hour" value="23" required /> :
+                <input type="number" id="minute_before" name="minute_before" min="0" max="59" step="1" size="10" placeholder="Minute" value="59" required /> :
+                <input type="number" id="second_before" name="second_before" min="0" max="59" step="1" size="10" placeholder="Second" value="59" required />
+
+                <input type="hidden" name="page" value="0">
+                <input type="hidden" name="pageSize" value="1000000">
+                <input type="hidden" name="fmt" value="adi">
+                <input type="hidden" name="dl" value="1">
+
+                <br/>
+                <input type="submit" value="Export"/>
             </form>
         </section>
 
