@@ -9,9 +9,9 @@
         <title>Amateur Radio Station Logs</title>
 
         <link rel="icon" href="/favicon.ico">
-        <link rel="stylesheet" href="/tcort.css">
-        <link rel="stylesheet" href="/robotomono-regular.css">
-        <link rel="stylesheet" href="/va2nw-logger.css">
+        <link rel="stylesheet" href="/tcort.css?ts={{ts}}">
+        <link rel="stylesheet" href="/robotomono-regular.css?ts={{ts}}">
+        <link rel="stylesheet" href="/va2nw-logger.css?ts={{ts}}">
     </head>
     <body>
 
@@ -28,51 +28,25 @@
                 <div>
                     <label for="timeon">UTC Time On</label>
                     <span id="timeon">
-                        <input type="number" id="year_on" name="year_on" min="1900" max="2099" step="1" size="10" placeholder="Year" required />
-                        <select name="month_on" required>
-                            <option value="01">January</option>
-                            <option value="02">February</option>
-                            <option value="03">March</option>
-                            <option value="04">April</option>
-                            <option value="05">May</option>
-                            <option value="06">June</option>
-                            <option value="07">July</option>
-                            <option value="08">August</option>
-                            <option value="09">September</option>
-                            <option value="10">October</option>
-                            <option value="11">November</option>
-                            <option value="12">December</option>
-                        </select>
-                        <input type="number" id="day_on" name="day_on" min="1" max="31" step="1" size="10" placeholder="Day" required /> /
-                        <input type="number" id="hour_on" name="hour_on" min="0" max="23" step="1" size="10" placeholder="Hour" required /> :
-                        <input type="number" id="minute_on" name="minute_on" min="0" max="59" step="1" size="10" placeholder="Minute" required /> :
-                        <input type="number" id="second_on" name="second_on" min="0" max="59" step="1" size="10" placeholder="Second" required />
+                        <input type="text" id="year_on" name="year_on" pattern="(19|20)[0-9]{2}" maxlength="4" size="10" placeholder="Year" required /> -
+                        <input type="text" id="month_on" name="month_on" pattern="((0[1-9])|(1[012]))" maxlength="2" size="10" placeholder="Month" required /> -
+                        <input type="text" id="day_on" name="day_on" pattern="((0[1-9])|([12][0-9])|30|31)" maxlength="2" size="10" placeholder="Day" required /> @
+                        <input type="text" id="hour_on" name="hour_on" pattern="(([01][0-9])|(2[0123]))" maxlength="2" size="10" placeholder="Hour" required /> :
+                        <input type="text" id="minute_on" name="minute_on" pattern="[0-5][0-9]" maxlength="2" size="10" placeholder="Minute" required /> :
+                        <input type="text" id="second_on" name="second_on" pattern="[0-5][0-9]" maxlength="2" size="10" placeholder="Second" required />
                         <button type="button" id="timeon_now">Now</button>
                         <input type="checkbox" id="now" name="now" checked />
                     </span>
                 </div>
                 <div>
                     <label for="timeon">UTC Time Off</label>
-                    <span id="timeon">
-                        <input type="number" id="year_off" name="year_off" min="1900" max="2099" step="1" size="10" placeholder="Year" required />
-                        <select name="month_off" required>
-                            <option value="01">January</option>
-                            <option value="02">February</option>
-                            <option value="03">March</option>
-                            <option value="04">April</option>
-                            <option value="05">May</option>
-                            <option value="06">June</option>
-                            <option value="07">July</option>
-                            <option value="08">August</option>
-                            <option value="09">September</option>
-                            <option value="10">October</option>
-                            <option value="11">November</option>
-                            <option value="12">December</option>
-                        </select>
-                        <input type="number" id="day_off" name="day_off" min="1" max="31" step="1" size="10" placeholder="Day" required /> /
-                        <input type="number" id="hour_off" name="hour_off" min="0" max="23" step="1" size="10" placeholder="Hour" required /> :
-                        <input type="number" id="minute_off" name="minute_off" min="0" max="59" step="1" size="10" placeholder="Minute" required /> :
-                        <input type="number" id="second_off" name="second_off" min="0" max="59" step="1" size="10" placeholder="Second" required />
+                    <span id="timeoff">
+                        <input type="text" id="year_off" name="year_off" pattern="(19|20)[0-9]{2}" maxlength="4" size="10" placeholder="Year" required /> -
+                        <input type="text" id="month_off" name="month_off" pattern="((0[1-9])|(1[012]))" maxlength="2" size="10" placeholder="Month" required /> -
+                        <input type="text" id="day_off" name="day_off" pattern="((0[1-9])|([12][0-9])|30|31)" maxlength="2" size="10" placeholder="Day" required /> @
+                        <input type="text" id="hour_off" name="hour_off" pattern="(([01][0-9])|(2[0123]))" maxlength="2" size="10" placeholder="Hour" required /> :
+                        <input type="text" id="minute_off" name="minute_off" pattern="[0-5][0-9]" maxlength="2" size="10" placeholder="Minute" required /> :
+                        <input type="text" id="second_off" name="second_off" pattern="[0-5][0-9]" maxlength="2" size="10" placeholder="Second" required />
                         <button type="button" id="timeoff_now">Now</button>
                     </span>
                 </div>
@@ -92,9 +66,9 @@
                     <label for="callsign">Station Callsign</label>
                     <input class="callsign callsign_entry" id="callsign" type="text" name="callsign" size="10" autofocus required autocomplete="off" />
                     <label for="rst_sent">RST Sent</label>
-                    <input type="number" id="rst_sent" name="rst_sent" size="10" min="0" max="599" step="1" placeholder="Signal Report" required />
+                    <input type="text" id="rst_sent" name="rst_sent" pattern="[1-5][1-9][1-9]" size="10" maxlength="3" placeholder="Signal Report" value="{{qso.rst_sent}}" required />
                     <label for="rst_sent">RST Received</label>
-                    <input type="number" id="rst_rcvd" name="rst_rcvd" size="10" min="0" max="599" step="1" placeholder="Signal Report" required />
+                    <input type="text" id="rst_rcvd" name="rst_rcvd" pattern="[1-5][1-9][1-9]" size="10" maxlength="3" placeholder="Signal Report" value="{{qso.rst_rcvd}}" required />
                 </div>
                 <div>
                     <label for="remarks">Remarks</label><br>
@@ -121,47 +95,22 @@
             <form method="get" action="/qsos">
 
                 Since:
-                <input type="number" id="year_since" name="year_since" min="1900" max="2099" step="1" size="10" placeholder="Year" value="1900" required />
-                <select name="month_since" required>
-                    <option value="01" selected>January</option>
-                    <option value="02">February</option>
-                    <option value="03">March</option>
-                    <option value="04">April</option>
-                    <option value="05">May</option>
-                    <option value="06">June</option>
-                    <option value="07">July</option>
-                    <option value="08">August</option>
-                    <option value="09">September</option>
-                    <option value="10">October</option>
-                    <option value="11">November</option>
-                    <option value="12">December</option>
-                </select>
-                <input type="number" id="day_since" name="day_since" min="1" max="31" step="1" size="10" placeholder="Day" value="01" required /> /
-                <input type="number" id="hour_since" name="hour_since" min="0" max="23" step="1" size="10" placeholder="Hour" value="00" required /> :
-                <input type="number" id="minute_since" name="minute_since" min="0" max="59" step="1" size="10" placeholder="Minute" value="00" required /> :
-                <input type="number" id="second_since" name="second_since" min="0" max="59" step="1" size="10" placeholder="Second" value="00" required />
+                        <input type="text" id="year_since" name="year_since" pattern="(19|20)[0-9]{2}" size="10" placeholder="Year" required /> -
+                        <input type="text" id="month_since" name="month_since" pattern="((0[1-9])|(1[012]))" size="10" placeholder="Month" required /> -
+                        <input type="text" id="day_since" name="day_since" pattern="((0[1-9])|([12][0-9])|30|31)" size="10" placeholder="Day" required /> @
+                        <input type="text" id="hour_since" name="hour_since" pattern="(([01][0-9])|(2[0123]))" size="10" placeholder="Hour" required /> :
+                        <input type="text" id="minute_since" name="minute_since" pattern="[0-5][0-9]" size="10" placeholder="Minute" required /> :
+                        <input type="text" id="second_since" name="second_since" pattern="[0-5][0-9]" size="10" placeholder="Second" required />
 
                 <br/>
 
-                Before: <input type="number" id="year_before" name="year_before" min="1900" max="2099" step="1" size="10" placeholder="Year" value="2099" required />
-                <select name="month_before" required>
-                    <option value="01">January</option>
-                    <option value="02">February</option>
-                    <option value="03">March</option>
-                    <option value="04">April</option>
-                    <option value="05">May</option>
-                    <option value="06">June</option>
-                    <option value="07">July</option>
-                    <option value="08">August</option>
-                    <option value="09">September</option>
-                    <option value="10">October</option>
-                    <option value="11">November</option>
-                    <option value="12" selected>December</option>
-                </select>
-                <input type="number" id="day_before" name="day_before" min="1" max="31" step="1" size="10" placeholder="Day" value="31" required /> /
-                <input type="number" id="hour_before" name="hour_before" min="0" max="23" step="1" size="10" placeholder="Hour" value="23" required /> :
-                <input type="number" id="minute_before" name="minute_before" min="0" max="59" step="1" size="10" placeholder="Minute" value="59" required /> :
-                <input type="number" id="second_before" name="second_before" min="0" max="59" step="1" size="10" placeholder="Second" value="59" required />
+                Before: 
+                        <input type="text" id="year_before" name="year_before" pattern="(19|20)[0-9]{2}" size="10" placeholder="Year" required /> -
+                        <input type="text" id="month_before" name="month_before" pattern="((0[1-9])|(1[012]))" size="10" placeholder="Month" required /> -
+                        <input type="text" id="day_before" name="day_before" pattern="((0[1-9])|([12][0-9])|30|31)" size="10" placeholder="Day" required /> @
+                        <input type="text" id="hour_before" name="hour_before" pattern="(([01][0-9])|(2[0123]))" size="10" placeholder="Hour" required /> :
+                        <input type="text" id="minute_before" name="minute_before" pattern="[0-5][0-9]" size="10" placeholder="Minute" required /> :
+                        <input type="text" id="second_before" name="second_before" pattern="[0-5][0-9]" size="10" placeholder="Second" required />
 
                 <input type="hidden" name="page" value="0">
                 <input type="hidden" name="pageSize" value="1000000">
@@ -179,9 +128,9 @@
             </p>
         </footer>
 
-        <script src="/jquery.min.js"></script>
-        <script src="/tcort.js"></script>
-        <script src="/va2nw-logger.js"></script>
+        <script src="/jquery.min.js?ts={{ts}}"></script>
+        <script src="/tcort.js?ts={{ts}}"></script>
+        <script src="/va2nw-logger.js?ts={{ts}}"></script>
 
     </body>
 </html>

@@ -10,7 +10,7 @@ function setNow(suffix = 'on') {
     const second = iso8601.slice(17, 19);
 
     $(`input[name="year_${suffix}"]`).val(year).change();
-    $(`select[name="month_${suffix}"]`).val(month).change();
+    $(`input[name="month_${suffix}"]`).val(month).change();
     $(`input[name="day_${suffix}"]`).val(day).change();
     $(`input[name="hour_${suffix}"]`).val(hour).change();
     $(`input[name="minute_${suffix}"]`).val(minute).change();
@@ -45,11 +45,32 @@ function updateTimestamp() {
 const storedFields = [
     'mode', 'frequency', 'power',
     'year_since', 'month_since', 'day_since', 'hour_since', 'minute_since', 'second_since',
-    'year_after', 'month_after', 'day_after', 'hour_after', 'minute_after', 'second_after',
+    'year_before', 'month_before', 'day_before', 'hour_before', 'minute_before', 'second_before',
     'year_on', 'month_on', 'day_on', 'hour_on', 'minute_on', 'second_on',
     'year_off', 'month_off', 'day_off', 'hour_off', 'minute_off', 'second_off',
     'now',
 ];
+
+function defaultLocalStorage() {
+    [
+        [ 'year_since', '1901' ],
+        [ 'month_since', '01' ],
+        [ 'day_since', '01' ],
+        [ 'hour_since', '00' ],
+        [ 'minute_since', '00' ],
+        [ 'second_since', '00' ],
+        [ 'year_before', '2099' ],
+        [ 'month_before', '12' ],
+        [ 'day_before', '31' ],
+        [ 'hour_before', '23' ],
+        [ 'minute_before', '59' ],
+        [ 'second_before', '59' ],
+    ].forEach(([ field, val ]) => {
+        window.localStorage.setItem(field, val);
+    });
+
+    window.localStorage.setItem('now','true');
+}
 
 function saveLocalStorage() {
     storedFields.forEach(field => {
@@ -86,6 +107,8 @@ $(function () {
         }
     });
 
+    defaultLocalStorage();
+
     loadLocalStorage();
 
     [ 'on', 'off' ].forEach(suffix => {
@@ -94,7 +117,7 @@ $(function () {
         });
     });
 
-    [ 'year', 'day', 'hour', 'minute', 'second' ].forEach(field => {
+    [ 'year', 'month', 'day', 'hour', 'minute', 'second' ].forEach(field => {
         $(`input[name="${field}_on"]`).on('change', function () {
             $(`input[name="${field}_off"]`).val(
                 $(`input[name="${field}_on"]`).val()
@@ -104,12 +127,6 @@ $(function () {
 
     $('.callsign_entry').on('input', function () {
         $(this).val($(this).val().toUpperCase().trim());
-    });
-
-    $(`select[name="month_on"]`).on('change', function () {
-        $(`select[name="month_off"]`).val(
-            $(`select[name="month_on"]`).find(':selected').val()
-        ).change();
     });
 
     setInterval(() => saveLocalStorage(), 3000);
