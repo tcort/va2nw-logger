@@ -9,9 +9,9 @@
         <title>Amateur Radio Station Logs</title>
 
         <link rel="icon" href="/favicon.ico">
-        <link rel="stylesheet" href="/tcort.css">
-        <link rel="stylesheet" href="/robotomono-regular.css">
-        <link rel="stylesheet" href="/va2nw-logger.css">
+        <link rel="stylesheet" href="/tcort.css?ts={{ts}}">
+        <link rel="stylesheet" href="/robotomono-regular.css?ts={{ts}}">
+        <link rel="stylesheet" href="/va2nw-logger.css?ts={{ts}}">
     </head>
     <body>
 
@@ -73,9 +73,16 @@
                     </tr>
                 </tbody>
             </table>
-            <form method="post" action="/qsos/{{qso.qso_id}}?_method=DELETE">
-                <input type="submit" value="Delete" />
-            </form>
+            <div class="flex">
+                <form method="get" action="/qsos/{{qso.qso_id}}">
+                    <input type="hidden" name="form" value="edit" />
+                    <input type="submit" value="Edit" />
+                </form>
+                <span>&nbsp;</span>
+                <form method="post" action="/qsos/{{qso.qso_id}}?_method=DELETE">
+                    <input type="submit" value="Delete" />
+                </form>
+            </div>
         </section>
 
         <footer>
@@ -84,8 +91,8 @@
             </p>
         </footer>
 
-        <script src="/jquery.min.js"></script>
-        <script src="/tcort.js"></script>
+        <script src="/jquery.min.js?ts={{ts}}"></script>
+        <script src="/tcort.js?ts={{ts}}"></script>
 
     </body>
 </html>

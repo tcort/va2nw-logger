@@ -15,7 +15,7 @@
  */
 
 /*
-    Version 2023.09.20a
+    Version 2023.09.21a
  */
 
 body {
@@ -196,6 +196,10 @@ progress {
 
 .center {
     text-align: center;
+}
+
+.flex {
+    display: flex;
 }
 
 .spinner {

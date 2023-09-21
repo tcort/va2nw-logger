@@ -15,6 +15,20 @@ $(function () {
     $(".clickable-row").click(function() {
         window.location = $(this).data("href");
     });
+
+    $('input').on('input', function () {
+        const maxLength = parseInt($(this).attr('maxlength'));
+        if (isNaN(maxLength)) {
+            return;
+        } else if ($(this).val().length === maxLength) {
+            const form = $(this).closest("form");
+            const inputs = $(form).find('input, textarea');
+            const thisInputIndex = $(inputs).index(this);
+            if (thisInputIndex + 1 < inputs.length) {
+                $(inputs[thisInputIndex + 1]).focus().select();
+            }
+        }
+    });
 });
 
 function encodeHtmlEntities(str) {
