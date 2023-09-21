@@ -29,6 +29,10 @@ $(function () {
             }
         }
     });
+
+    $('select[data-autoselect]').each(function () {
+        $(this).val($(this).data('autoselect')).change();
+    });
 });
 
 function encodeHtmlEntities(str) {
