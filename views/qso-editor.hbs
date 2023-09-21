@@ -51,6 +51,12 @@
                 <div>
                     <label for="frequency">Frequency</label>
                     <input type="number" id="frequency" name="frequency" size="10" min="0" max="30000" step=".000001" placeholder="MHz" value="{{qso.frequency}}" required />
+                    <label for="mode">Mode</label>
+                    <select name="mode" data-autoselect="{{qso.mode}}" required>
+                        {{#each enums.Mode}}
+                            <option value="{{@key}}">{{this}}</option>
+                        {{/each}}
+                    </select>
                     <label for="power">Power</label>
                     <input type="number" id="power" name="power" size="10" min="0" max="10000" step=".001" placeholder="Watts" value="{{qso.power}}" required />
                 </div>
