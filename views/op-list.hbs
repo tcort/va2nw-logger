@@ -18,48 +18,29 @@
         <header>
             <h1>Amateur Radio Station Logs</h1>
             <nav>
-                <a href="/">New QSO</a>
+                Contacts: <a href="/qsos/new">Create</a>, <a href="/qsos">View</a><br>
+                Operators: <a href="/ops/new">Create</a>, <a href="/ops">View</a>
             </nav>
         </header>
 
         <section>
-            <h2>QSOs</h2>
+            <h2>Operators</h2>
             <table>
                 <thead>
                     <tr>
-                        <th>Date/Time</th>
-                        <th>Freq</th>
-                        <th>Mode</th>
-                        <th>Pwr</th>
+                        <th>Name</th>
                         <th>Callsign</th>
-                        <th>RST</th>
-                        <th>QSL</th>
-                        <th>Remarks</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each qsos}}
-                    <tr class="clickable-row" data-href="/qsos/{{qso_id}}">
-                        <td class="nowrap">{{timeon}}</td>
-                        <td class="nowrap">{{frequency}}</td>
-                        <td class="nowrap center">{{mode}}</td>
-                        <td class="nowrap center">{{power}}</td>
-                        <td class="nowrap"><span class="callsign">{{callsign}}</span></td>
-                        <td class="nowrap">{{rst_sent}} / {{rst_rcvd}}</td>
-                        <td class="nowrap">{{qsl_sent}} / {{qsl_rcvd}}</td>
-                        <td>{{remarks}}</td>
+                    {{#each ops}}
+                    <tr class="clickable-row" data-href="/ops/{{op_id}}">
+                        <td class="nowrap">{{name}}</td>
+                        <td class="nowrap">{{callsign}}</td>
                     </tr>
                     {{/each}}
                 </tbody>
             </table>
-
-            <div>
-                <p class="center">
-                    {{#each pageNav}}
-                        <a href="/qsos?page={{page}}">{{label}}</a>
-                    {{/each}}
-                </p>
-            </div>
         </section>
 
         <footer>
