@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Amateur Radio Station Logs</title>
+
+        <link rel="icon" href="/favicon.ico">
+        <link rel="stylesheet" href="/tcort.css?ts={{ts}}">
+        <link rel="stylesheet" href="/robotomono-regular.css?ts={{ts}}">
+        <link rel="stylesheet" href="/va2nw-logger.css?ts={{ts}}">
+    </head>
+    <body>
+
+        <header>
+            <h1>Amateur Radio Station Logs</h1>
+            <nav>
+                Contacts: <a href="/qsos/new">Create</a>, <a href="/qsos">View</a><br>
+                Operators: <a href="/ops/new">Create</a>, <a href="/ops">View</a>
+            </nav>
+        </header>
+
+        <section>
+            <h2>Operator</h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Name</th>
+                        <td>{{op.name}}</td>
+                    </tr>
+                    <tr>
+                        <th>Callsign</th>
+                        <td><span class="callsign">{{op.callsign}}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="flex">
+                <form method="get" action="/ops/{{op.op_id}}">
+                    <input type="hidden" name="form" value="edit" />
+                    <input type="submit" value="Edit" />
+                </form>
+                <span>&nbsp;</span>
+                <form method="post" action="/ops/{{op.op_id}}?_method=DELETE">
+                    <input type="submit" value="Delete" />
+                </form>
+            </div>
+        </section>
+
+        <footer>
+            <p>
+                Copyright &copy; 2023 Thomas Cort
+            </p>
+        </footer>
+
+        <script src="/jquery.min.js?ts={{ts}}"></script>
+        <script src="/tcort.js?ts={{ts}}"></script>
+
+    </body>
+</html>
