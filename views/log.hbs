@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <title>Amateur Radio Station Logs</title>
+
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="stylesheet" href="/css/tcort.css" />
+        <link rel="stylesheet" href="/css/firacode.css" />
+        <link rel="stylesheet" href="/css/va2nw-logger.css" />
+    </head>
+    <body>
+
+        <header>
+            <h1>Amateur Radio Station Logs</h1>
+        </header>
+
+        <section>
+            <h2>View Log Entry</h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Frequency</th>
+                        <td>{{log.FREQ}} MHz</td>
+                    </tr>
+                    <tr>
+                        <th>Mode</th>
+                        <td>{{log.MODE}}</td>
+                    </tr>
+                    <tr>
+                        <th>Power</th>
+                        <td>{{log.TX_PWR}} Watts</td>
+                    </tr>
+                    <tr>
+                        <th>Callsign</th>
+                        <td><span class="callsign">{{log.CALL}}</span></td>
+                    </tr>
+                    <tr>
+                        <th>RST Sent</th>
+                        <td>{{log.RST_SENT}}</td>
+                    </tr>
+                    <tr>
+                        <th>RST Received</th>
+                        <td>{{log.RST_RCVD}}</td>
+                    </tr>
+                    <tr>
+                        <th>Notes</th>
+                        <td>{{log.NOTES}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <footer>
+            <p>
+                Copyright &copy; 2023 Thomas Cort
+            </p>
+        </footer>
+
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/tcort.js"></script>
+        <script src="/js/logs.js"></script>
+
+    </body>
+</html>
