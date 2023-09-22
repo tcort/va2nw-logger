@@ -127,17 +127,6 @@ $(function () {
 
     updateTimestamp();
 
-    function completer(baseUrl, toUpper = false) {
-        return function (input, callback) {
-            const startsWith = toUpper ? `${input}`.toUpperCase() : `${input}`;
-            fetch(baseUrl + encodeURIComponent(startsWith))
-                .then((response) => response.json())
-                .then(callsigns =>  callback(null, callsigns) )
-                .catch(err => callback(err));
-        };
-    }
-
-
     tctypeahead('#callsign_search', '#callsign_search_suggestions', completer('/callsigns?startsWith=', true));
     tctypeahead('#callsign_entry', '#callsign_entry_suggestions', completer('/callsigns?startsWith=', true));
     tctypeahead('#my_rig_entry', '#my_rig_suggestions', completer('/my-rigs?startsWith='));
@@ -173,24 +162,6 @@ $(function () {
             })
             .catch(err => console.log('error', err));
 
-    });
-
-    $('.toggle-visibility').on('click', function () {
-        const target = $(this).data('target');
-        $(`#${target}`).toggleClass('hidden');
-
-        $(this).text( $(this).text() === '-' ? '+' : '-' );
-    });
-
-    $('.navtab').on('click', function () {
-        $('.navtab').each(function () {
-            $(this).removeClass('activetab');
-        });
-        $('.navtarget').each(function () {
-            $(this).addClass('hidden');
-        });
-        $($(this).data('target')).removeClass('hidden');
-        $(this).addClass('activetab');
     });
 
     $('#show-new-entry').click();

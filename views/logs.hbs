@@ -1453,93 +1453,27 @@
                 <h3><a name="logbook"></a>Logbook</h3>
                 <table>
                     <thead>
-                        <th>&nbsp;</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Freq</th>
-                        <th>Mode</th>
-                        <th>Pwr</th>
-                        <th>Callsign</th>
-                        <th>QTH</th>
-                        <th>RST Sent</th>
-                        <th>RST Recv</th>
-                        <th>Comments</th>
+                        <tr>
+                            <th>Date/Time</th>
+                            <th>Freq</th>
+                            <th>Mode</th>
+                            <th>Pwr</th>
+                            <th>Callsign</th>
+                            <th>RST</th>
+                            <th>Remarks</th>
+                        </tr>
                     </thead>
                     <tbody>
                         {{#each logs}}
-                            <tr id="{{APP_TCADIF_QSO_ID}}" class="summary">
-                                <td><button type="button" class="toggle-visibility" data-target="{{APP_TCADIF_QSO_ID}}_details">+</button></td>
-                                <td>{{DATE_HUMAN}}</td>
-                                <td>{{TIME_HUMAN}}</td>
-                                <td>{{FREQ}}</td>
-                                <td>{{MODE}}</td>
-                                <td>{{TX_PWR}}</td>
-                                <td><a href="/logs?callsign={{CALL}}&since=1900-01-01T00:00:00Z#show-logs"><span class="callsign">{{CALL}}</span></a></td>
-                                <td>{{STATE}} {{COUNTRY}}</td>
-                                <td>{{RST_SENT}}</td>
-                                <td>{{RST_RCVD}}</td>
-                                <td>{{NOTES}}</td>
-                            </tr>
-                            <tr id="{{APP_TCADIF_QSO_ID}}_details" class="hidden">
-                                <td colspan="11">
-                                    <p>
-                                        {{MY_NAME}} <span class="callsign">({{OPERATOR}})</span> operating station <span class="callsign">{{STATION_CALLSIGN}}</span> running a {{MY_RIG}} transceiver at
-                                        {{TX_PWR}} watts into a {{MY_ANTENNA}} antenna from
-                                        {{#if MY_POTA_REF}}
-                                            POTA Ref <a href="https://pota.app/#/park/{{MY_POTA_REF}}">{{MY_POTA_REF}}</a> in
-                                        {{/if}}
-                                        {{MY_STATE}}, {{MY_COUNTRY}} (Grid: {{MY_GRIDSQUARE}}, ITU Zone: {{MY_ITU_ZONE}}, CQ Zone: {{MY_CQ_ZONE}})
-                                        made a {{MODE}} contact with {{NAME}} <a href="/logs?callsign={{CALL}}&since=1900-01-01T00:00:00Z#show-logs"><span class="callsign">{{CALL}}</span></a>
-                                        {{#if SKCC}}
-                                            (SKCC #<a href="https://www.skccgroup.com/membership_data/membership_search.php?search={{SKCC}}">{{SKCC}}</a>)
-                                        {{/if}}
-                                        {{#if FISTS}}
-                                            (FISTS #{{FISTS}})
-                                        {{/if}}
-                                        on {{FREQ}} MHz in the
-                                        {{BAND}} band on {{DATE_HUMAN}} at {{TIME_HUMAN}} UTC with a signal report of {{RST_SENT}}/{{RST_RCVD}}
-                                        {{#if POTA_REF}}
-                                            in POTA Ref <a href="https://pota.app/#/park/{{POTA_REF}}">{{POTA_REF}}</a>
-                                        {{/if}}
-                                        {{#if SOTA_REF}}
-                                            on SOTA Ref <a href="https://www.sotadata.org.uk/en/summit/{{SOTA_REF}}">{{SOTA_REF}}</a>
-                                        {{/if}}
-                                        {{#if STATE}}
-                                            in {{STATE}}
-                                        {{/if}}
-                                        {{#if COUNTRY}}
-                                            in {{COUNTRY}}
-                                        {{/if}}
-                                        {{#if GRIDSQUARE}}
-                                            in gridsquare {{GRIDSQUARE}}
-                                        {{/if}}
-                                        {{#if ITUZ}}
-                                            in ITU zone {{ITUZ}}
-                                        {{/if}}
-                                        {{#if CQZ}}
-                                            in CQ Zone {{CQZ}}
-                                        {{/if}}
-                                        {{#if CONTEST_ID}}
-                                            for the {{CONTEST_ID}} contest with an exchange of information including {{STX}} {{STX_STRING}} (sent) and {{SRX}} {{SRX_STRING}} (rcvd)
-                                        {{/if}}
-                                    </p>
-                                    {{#if NOTES}}
-                                    <p>
-                                        Notes: <em>{{NOTES}}</em>
-                                    </p>
-                                    {{/if}}
-                                    <p>
-                                        Callsign Lookup:
-                                            <a href="https://www.qrz.com/db/{{CALL}}">QRZ</a>,
-                                            <a href="https://pota.app/#/profile/{{CALL}}">POTA</a>,
-                                            <a href="https://www.skccgroup.com/membership_data/membership_search.php?search={{CALL}}">SKCC</a>,
-                                            <a href="https://www.youtube.com/results?search_query={{CALL}}">YouTube</a>
-                                    </p>
-                                    <p>
-                                        <small>Log ID: {{APP_TCADIF_QSO_ID}}</small>
-                                    </p>
-                                </td>
-                            </tr>
+                        <tr class="clickable-row" data-href="/logs/{{APP_TCADIF_QSO_ID}}">
+                            <td class="nowrap">{{DATE_HUMAN}} {{TIME_HUMAN}}</td>
+                            <td class="nowrap">{{FREQ}}</td>
+                            <td class="nowrap center">{{MODE}}</td>
+                            <td class="nowrap center">{{TX_PWR}}</td>
+                            <td class="nowrap"><span class="callsign">{{CALL}}</span></td>
+                            <td class="nowrap">{{RST_SENT}} / {{RST_RCVD}}</td>
+                            <td>{{NOTES}}</td>
+                        </tr>
                         {{/each}}
                     </tbody>
                 </table>
@@ -2390,7 +2324,7 @@
         </footer>
 
         <script src="/js/jquery.min.js"></script>
-        <script src="/js/tctypeahead.js"></script>
+        <script src="/js/tcort.js"></script>
         <script src="/js/logs.js"></script>
 
     </body>
