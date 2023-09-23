@@ -20,7 +20,7 @@
         </header>
 
         <section>
-            <h2>Contact Info</h2>
+            <h2>Contact</h2>
             <table>
                 <tbody>
                     <tr>
@@ -30,10 +30,6 @@
                     <tr>
                         <th>Mode</th>
                         <td>{{log.MODE}}</td>
-                    </tr>
-                    <tr>
-                        <th>Power</th>
-                        <td>{{log.TX_PWR}} Watts</td>
                     </tr>
                     <tr>
                         <th>Callsign</th>
@@ -50,6 +46,30 @@
                     <tr>
                         <th>Notes</th>
                         <td>{{log.NOTES}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Station</h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Station Callsign</th>
+                        <td>{{log.STATION_CALLSIGN}}</td>
+                    </tr>
+                    <tr>
+                        <th>Rig</th>
+                        <td>{{log.MY_RIG}}</td>
+                    </tr>
+                    <tr>
+                        <th>Antenna</th>
+                        <td>{{log.MY_ANTENNA}}</td>
+                    </tr>
+                    <tr>
+                        <th>Power</th>
+                        <td>{{log.TX_PWR}}</td>
                     </tr>
                 </tbody>
             </table>
