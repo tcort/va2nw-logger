@@ -20,7 +20,7 @@
         </header>
 
         <section>
-            <h2>View Log Entry</h2>
+            <h2>Contact Info</h2>
             <table>
                 <tbody>
                     <tr>
@@ -53,6 +53,29 @@
                     </tr>
                 </tbody>
             </table>
+        </section>
+
+        <section>
+            <h2>Operator</h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Name</th>
+                        <td>{{log.MY_NAME}}</td>
+                    </tr>
+                    <tr>
+                        <th>Operator Callsign</th>
+                        <td>{{log.OPERATOR}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Danger Zone</h2>
+            <form method="post" action="/logs/{{log.APP_TCADIF_QSO_ID}}?_method=DELETE">
+                <input type="submit" value="Delete Forever"/>
+            </form>
         </section>
 
         <footer>
