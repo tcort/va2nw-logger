@@ -65,7 +65,7 @@ function saveLocalStorage() {
 
 function loadLocalStorage() {
     storedFields.forEach(field => {
-        if (window.localStorage.getItem(field) === 'undefiend' || window.localStorage.getItem(field) === undefined) {
+        if (window.localStorage.getItem(field) === 'undefined' || window.localStorage.getItem(field) === undefined) {
             return;
         }
         if ($(`[name="${field}"]`).is(':checkbox')) {
