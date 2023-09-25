@@ -24,6 +24,10 @@
             <table>
                 <tbody>
                     <tr>
+                        <th>Date / Time</th>
+                        <td>{{log.DATE_HUMAN}} {{log.TIME_HUMAN}}</td>
+                    </tr>
+                    <tr>
                         <th>Frequency</th>
                         <td>{{log.FREQ}} MHz</td>
                     </tr>
@@ -34,6 +38,10 @@
                     <tr>
                         <th>Callsign</th>
                         <td><span class="callsign">{{log.CALL}}</span></td>
+                    </tr>
+                    <tr>
+                        <th>Prefix</th>
+                        <td><span class="callsign">{{log.PFX}}</span></td>
                     </tr>
                     <tr>
                         <th>RST Sent</th>
@@ -52,7 +60,59 @@
         </section>
 
         <section>
-            <h2>Station</h2>
+            <h2>Contacted Operator</h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Name</th>
+                        <td>{{log.NAME}}</td>
+                    </tr>
+                    <tr>
+                        <th>Age</th>
+                        <td>{{log.AGE}}</td>
+                    </tr>
+                    <tr>
+                        <th>SKCC</th>
+                        <td>{{log.SKCC}}</td>
+                    </tr>
+                    <tr>
+                        <th>LICW</th>
+                        <td>{{log.APP_TCADIF_LICW}}</td>
+                    </tr>
+                    <tr>
+                        <th>FISTS</th>
+                        <td>{{log.FISTS}}</td>
+                    </tr>
+                    <tr>
+                        <th>TEN-TEN</th>
+                        <td>{{log.TEN_TEN}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Contest</h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Contest ID</th>
+                        <td>{{log.CONTEST_ID}}</td>
+                    </tr>
+                    <tr>
+                        <th>Exchange Sent</th>
+                        <td>{{log.STX}} {{log.STX_STRING}}</td>
+                    </tr>
+                    <tr>
+                        <th>Exchange Received</th>
+                        <td>{{log.SRX}} {{log.SRX_STRING}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>My Station</h2>
             <table>
                 <tbody>
                     <tr>
@@ -69,14 +129,14 @@
                     </tr>
                     <tr>
                         <th>Power</th>
-                        <td>{{log.TX_PWR}}</td>
+                        <td>{{log.TX_PWR}} Watts</td>
                     </tr>
                 </tbody>
             </table>
         </section>
 
         <section>
-            <h2>Operating Location</h2>
+            <h2>My Operating Location</h2>
             <table>
                 <tbody>
                     <tr>
