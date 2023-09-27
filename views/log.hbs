@@ -92,6 +92,42 @@
         </section>
 
         <section>
+            <h2>Contacted Station Location</h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Gridsquare</th>
+                        <td>{{log.GRIDSQUARE}}{{log.GRIDSQUARE_EXT}}</td>
+                    </tr>
+                    <tr>
+                        <th>ITU Zone</th>
+                        <td>{{log.ITUZ}}</td>
+                    </tr>
+                    <tr>
+                        <th>CQ Zone</th>
+                        <td>{{log.CQZ}}</td>
+                    </tr>
+                    <tr>
+                        <th>ARRL Section</th>
+                        <td>{{log.ARRL_SECT}}</td>
+                    </tr>
+                    <tr>
+                        <th>State/Province</th>
+                        <td>{{log.STATE}}</td>
+                    </tr>
+                    <tr>
+                        <th>COUNTRY</th>
+                        <td>{{log.COUNTRY}}</td>
+                    </tr>
+                    <tr>
+                        <th>DXCC</th>
+                        <td>{{log.DXCC}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
             <h2>Contest</h2>
             <table>
                 <tbody>
@@ -131,6 +167,14 @@
                         <th>Power</th>
                         <td>{{log.TX_PWR}} Watts</td>
                     </tr>
+                    <tr>
+                        <th>Key Type</th>
+                        <td>{{log.APP_TCADIF_MY_KEY}}</td>
+                    </tr>
+                    <tr>
+                        <th>Key Info</th>
+                        <td>{{log.APP_TCADIF_MY_KEY_INFO}}</td>
+                    </tr>
                 </tbody>
             </table>
         </section>
@@ -152,12 +196,20 @@
                         <td>{{log.MY_CQ_ZONE}}</td>
                     </tr>
                     <tr>
+                        <th>ARRL Section</th>
+                        <td>{{log.MY_ARRL_SECT}}</td>
+                    </tr>
+                    <tr>
                         <th>State/Province</th>
                         <td>{{log.MY_STATE}}</td>
                     </tr>
                     <tr>
                         <th>Country</th>
                         <td>{{log.MY_COUNTRY}}</td>
+                    </tr>
+                    <tr>
+                        <th>DXCC</th>
+                        <td>{{log.DXCC}}</td>
                     </tr>
                 </tbody>
             </table>
