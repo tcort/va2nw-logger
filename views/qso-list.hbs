@@ -23,7 +23,7 @@
         </header>
 
         <section>
-            <h2>QSOs</h2>
+            <h2>{{count}} QSOs</h2>
             <table>
                 <thead>
                     <tr>
@@ -52,6 +52,12 @@
                     {{/each}}
                 </tbody>
             </table>
+
+            <div>
+                <p class="center">
+                    Page {{currentPage}} of {{npages}}
+                </p>
+            </div>
 
             <div>
                 <p class="center">
