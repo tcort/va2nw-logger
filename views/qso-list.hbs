@@ -27,7 +27,8 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Date/Time</th>
+                        <th>Date/Time On</th>
+                        <th>Date/Time Off</th>
                         <th>Freq</th>
                         <th>Mode</th>
                         <th>Pwr</th>
@@ -41,6 +42,7 @@
                     {{#each qsos}}
                     <tr class="clickable-row" data-href="/qsos/{{qso_id}}">
                         <td class="nowrap">{{timeon}}</td>
+                        <td class="nowrap">{{timeoff}}</td>
                         <td class="nowrap">{{frequency}}</td>
                         <td class="nowrap center">{{mode}}</td>
                         <td class="nowrap center">{{power}}</td>
