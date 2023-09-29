@@ -68,6 +68,16 @@
                     <input type="text" id="rst_rcvd" name="rst_rcvd" pattern="[1-5][1-9][1-9]" size="2" maxlength="3" placeholder="Signal Report" value="{{qso.rst_rcvd}}" required />
                 </div>
                 <div>
+                    QSL Sent?
+                    <input type="radio" name="qsl_sent" id="qsl_sent_y" value="Y" {{#if qso.was_qsl_sent}}checked{{else}}{{/if}} required /> <label for="qsl_sent_y">Yes</label>
+                    <input type="radio" name="qsl_sent" id="qsl_sent_n" value="N" {{#if qso.was_qsl_sent}}{{else}}checked{{/if}} required /> <label for="qsl_sent_n">No</label>
+                </div>
+                <div>
+                    QSL Received?
+                    <input type="radio" name="qsl_rcvd" id="qsl_rcvd_y" value="Y" {{#if qso.was_qsl_rcvd}}checked{{else}}{{/if}} required /> <label for="qsl_rcvd_y">Yes</label>
+                    <input type="radio" name="qsl_rcvd" id="qsl_rcvd_n" value="N" {{#if qso.was_qsl_rcvd}}{{else}}checked{{/if}} required /> <label for="qsl_rcvd_n">No</label>
+                </div>
+                <div>
                     <label for="remarks">Remarks</label><br>
                     <textarea name="remarks" id="remarks">{{qso.remarks}}</textarea>
                     <br>
