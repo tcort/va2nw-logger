@@ -15,7 +15,7 @@
  */
 
 /*
-    Version 2023.09.21a
+    Version 2023.09.30c
  */
 
 body {
@@ -31,13 +31,18 @@ body {
     padding-right: 2em;
 }
 
-header, section, footer {
+header, section {
     background: #ffffff;
     color: #454545;
     padding: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
     border: 1px solid;
+}
+
+footer {
+    color: #454545;
+    margin-top: 20px;
 }
 
 footer p {
@@ -138,6 +143,37 @@ progress {
     height: 20px;
     position: relative;
     display: block;
+}
+
+nav {
+    padding: 10px 0px 10px 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    border: 1px solid;
+    border-radius: 25px;
+    background: #ffffff;
+    color: #454545;
+}
+
+nav ul li a:hover  {
+    background: #454545;
+    color: #f2f2f2;
 }
 
 .navtab {
