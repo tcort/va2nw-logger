@@ -17,26 +17,27 @@
 
         <header>
             <h1>Amateur Radio Station Logs</h1>
+            <nav>
+                <ul>
+                    <li><a href="/logs/new">Enter a QSO</a></li>
+                    <li><a href="/logs/import">Import QSOs</a></li>
+                    <li><a href="/logs/export">Export QSOs</a></li>
+                    <li><a href="/logs">View all QSOs</a></li>
+                </ul>
+            </nav>
         </header>
 
-        <nav>
-            <ul>
-                <li><a href="/logs/new">Enter a QSO</a></li>
-                <li><a href="/logs/import">Import QSOs</a></li>
-                <li><a href="/logs/export">Export QSOs</a></li>
-                <li><a href="/logs">View all QSOs</a></li>
-            </ul>
-        </nav>
-
-        <section>
-            <h3>Import</h3>
-            <p>Load new QSO data from another logging program or updated QSO data for QSOs already in the database (e.g. LoTW reports).</p>
-            <form method="post" encType="multipart/form-data" action="/logs">
-                ADIF File:
-                    <input type="file" name="adif_file" accept=".adi,.adif"/>
-                <input type="submit" value="Import"/>
-            </form>
-        </section>
+        <main>
+            <section>
+                <h2>Import</h2>
+                <p>Load new QSO data from another logging program or updated QSO data for QSOs already in the database (e.g. LoTW reports).</p>
+                <form method="post" encType="multipart/form-data" action="/logs">
+                    ADIF File:
+                        <input type="file" name="adif_file" accept=".adi,.adif"/>
+                    <input type="submit" value="Import"/>
+                </form>
+            </section>
+        </main>
 
         <footer>
             <p>

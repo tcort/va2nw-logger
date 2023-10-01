@@ -17,235 +17,236 @@
 
         <header>
             <h1>Amateur Radio Station Logs</h1>
+            <nav>
+                <ul>
+                    <li><a href="/logs/new">Enter a QSO</a></li>
+                    <li><a href="/logs/import">Import QSOs</a></li>
+                    <li><a href="/logs/export">Export QSOs</a></li>
+                    <li><a href="/logs">View all QSOs</a></li>
+                </ul>
+            </nav>
         </header>
 
-        <nav>
-            <ul>
-                <li><a href="/logs/new">Enter a QSO</a></li>
-                <li><a href="/logs/import">Import QSOs</a></li>
-                <li><a href="/logs/export">Export QSOs</a></li>
-                <li><a href="/logs">View all QSOs</a></li>
-            </ul>
-        </nav>
+        <main>
+            <section>
+                <h2>Contact</h2>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Date / Time</th>
+                            <td>{{log.DATE_HUMAN}} {{log.TIME_HUMAN}}</td>
+                        </tr>
+                        <tr>
+                            <th>Frequency</th>
+                            <td>{{log.FREQ}} MHz</td>
+                        </tr>
+                        <tr>
+                            <th>Mode</th>
+                            <td>{{log.MODE}}</td>
+                        </tr>
+                        <tr>
+                            <th>Callsign</th>
+                            <td><span class="callsign">{{log.CALL}}</span></td>
+                        </tr>
+                        <tr>
+                            <th>Prefix</th>
+                            <td><span class="callsign">{{log.PFX}}</span></td>
+                        </tr>
+                        <tr>
+                            <th>RST Sent</th>
+                            <td>{{log.RST_SENT}}</td>
+                        </tr>
+                        <tr>
+                            <th>RST Received</th>
+                            <td>{{log.RST_RCVD}}</td>
+                        </tr>
+                        <tr>
+                            <th>Notes</th>
+                            <td>{{log.NOTES}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
 
-        <section>
-            <h2>Contact</h2>
-            <table>
-                <tbody>
-                    <tr>
-                        <th>Date / Time</th>
-                        <td>{{log.DATE_HUMAN}} {{log.TIME_HUMAN}}</td>
-                    </tr>
-                    <tr>
-                        <th>Frequency</th>
-                        <td>{{log.FREQ}} MHz</td>
-                    </tr>
-                    <tr>
-                        <th>Mode</th>
-                        <td>{{log.MODE}}</td>
-                    </tr>
-                    <tr>
-                        <th>Callsign</th>
-                        <td><span class="callsign">{{log.CALL}}</span></td>
-                    </tr>
-                    <tr>
-                        <th>Prefix</th>
-                        <td><span class="callsign">{{log.PFX}}</span></td>
-                    </tr>
-                    <tr>
-                        <th>RST Sent</th>
-                        <td>{{log.RST_SENT}}</td>
-                    </tr>
-                    <tr>
-                        <th>RST Received</th>
-                        <td>{{log.RST_RCVD}}</td>
-                    </tr>
-                    <tr>
-                        <th>Notes</th>
-                        <td>{{log.NOTES}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+            <section>
+                <h2>Contacted Operator</h2>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <td>{{log.NAME}}</td>
+                        </tr>
+                        <tr>
+                            <th>Age</th>
+                            <td>{{log.AGE}}</td>
+                        </tr>
+                        <tr>
+                            <th>SKCC</th>
+                            <td>{{log.SKCC}}</td>
+                        </tr>
+                        <tr>
+                            <th>LICW</th>
+                            <td>{{log.APP_TCADIF_LICW}}</td>
+                        </tr>
+                        <tr>
+                            <th>FISTS</th>
+                            <td>{{log.FISTS}}</td>
+                        </tr>
+                        <tr>
+                            <th>TEN-TEN</th>
+                            <td>{{log.TEN_TEN}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
 
-        <section>
-            <h2>Contacted Operator</h2>
-            <table>
-                <tbody>
-                    <tr>
-                        <th>Name</th>
-                        <td>{{log.NAME}}</td>
-                    </tr>
-                    <tr>
-                        <th>Age</th>
-                        <td>{{log.AGE}}</td>
-                    </tr>
-                    <tr>
-                        <th>SKCC</th>
-                        <td>{{log.SKCC}}</td>
-                    </tr>
-                    <tr>
-                        <th>LICW</th>
-                        <td>{{log.APP_TCADIF_LICW}}</td>
-                    </tr>
-                    <tr>
-                        <th>FISTS</th>
-                        <td>{{log.FISTS}}</td>
-                    </tr>
-                    <tr>
-                        <th>TEN-TEN</th>
-                        <td>{{log.TEN_TEN}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+            <section>
+                <h2>Contacted Station Location</h2>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Gridsquare</th>
+                            <td>{{log.GRIDSQUARE}}{{log.GRIDSQUARE_EXT}}</td>
+                        </tr>
+                        <tr>
+                            <th>ITU Zone</th>
+                            <td>{{log.ITUZ}}</td>
+                        </tr>
+                        <tr>
+                            <th>CQ Zone</th>
+                            <td>{{log.CQZ}}</td>
+                        </tr>
+                        <tr>
+                            <th>ARRL Section</th>
+                            <td>{{log.ARRL_SECT}}</td>
+                        </tr>
+                        <tr>
+                            <th>State/Province</th>
+                            <td>{{log.STATE}}</td>
+                        </tr>
+                        <tr>
+                            <th>COUNTRY</th>
+                            <td>{{log.COUNTRY}}</td>
+                        </tr>
+                        <tr>
+                            <th>DXCC</th>
+                            <td>{{log.DXCC}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
 
-        <section>
-            <h2>Contacted Station Location</h2>
-            <table>
-                <tbody>
-                    <tr>
-                        <th>Gridsquare</th>
-                        <td>{{log.GRIDSQUARE}}{{log.GRIDSQUARE_EXT}}</td>
-                    </tr>
-                    <tr>
-                        <th>ITU Zone</th>
-                        <td>{{log.ITUZ}}</td>
-                    </tr>
-                    <tr>
-                        <th>CQ Zone</th>
-                        <td>{{log.CQZ}}</td>
-                    </tr>
-                    <tr>
-                        <th>ARRL Section</th>
-                        <td>{{log.ARRL_SECT}}</td>
-                    </tr>
-                    <tr>
-                        <th>State/Province</th>
-                        <td>{{log.STATE}}</td>
-                    </tr>
-                    <tr>
-                        <th>COUNTRY</th>
-                        <td>{{log.COUNTRY}}</td>
-                    </tr>
-                    <tr>
-                        <th>DXCC</th>
-                        <td>{{log.DXCC}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+            <section>
+                <h2>Contest</h2>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Contest ID</th>
+                            <td>{{log.CONTEST_ID}}</td>
+                        </tr>
+                        <tr>
+                            <th>Exchange Sent</th>
+                            <td>{{log.STX}} {{log.STX_STRING}}</td>
+                        </tr>
+                        <tr>
+                            <th>Exchange Received</th>
+                            <td>{{log.SRX}} {{log.SRX_STRING}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
 
-        <section>
-            <h2>Contest</h2>
-            <table>
-                <tbody>
-                    <tr>
-                        <th>Contest ID</th>
-                        <td>{{log.CONTEST_ID}}</td>
-                    </tr>
-                    <tr>
-                        <th>Exchange Sent</th>
-                        <td>{{log.STX}} {{log.STX_STRING}}</td>
-                    </tr>
-                    <tr>
-                        <th>Exchange Received</th>
-                        <td>{{log.SRX}} {{log.SRX_STRING}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+            <section>
+                <h2>My Station</h2>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Station Callsign</th>
+                            <td>{{log.STATION_CALLSIGN}}</td>
+                        </tr>
+                        <tr>
+                            <th>Rig</th>
+                            <td>{{log.MY_RIG}}</td>
+                        </tr>
+                        <tr>
+                            <th>Antenna</th>
+                            <td>{{log.MY_ANTENNA}}</td>
+                        </tr>
+                        <tr>
+                            <th>Power</th>
+                            <td>{{log.TX_PWR}} Watts</td>
+                        </tr>
+                        <tr>
+                            <th>Key Type</th>
+                            <td>{{log.APP_TCADIF_MY_KEY}}</td>
+                        </tr>
+                        <tr>
+                            <th>Key Info</th>
+                            <td>{{log.APP_TCADIF_MY_KEY_INFO}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
 
-        <section>
-            <h2>My Station</h2>
-            <table>
-                <tbody>
-                    <tr>
-                        <th>Station Callsign</th>
-                        <td>{{log.STATION_CALLSIGN}}</td>
-                    </tr>
-                    <tr>
-                        <th>Rig</th>
-                        <td>{{log.MY_RIG}}</td>
-                    </tr>
-                    <tr>
-                        <th>Antenna</th>
-                        <td>{{log.MY_ANTENNA}}</td>
-                    </tr>
-                    <tr>
-                        <th>Power</th>
-                        <td>{{log.TX_PWR}} Watts</td>
-                    </tr>
-                    <tr>
-                        <th>Key Type</th>
-                        <td>{{log.APP_TCADIF_MY_KEY}}</td>
-                    </tr>
-                    <tr>
-                        <th>Key Info</th>
-                        <td>{{log.APP_TCADIF_MY_KEY_INFO}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+            <section>
+                <h2>My Operating Location</h2>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Gridsquare</th>
+                            <td>{{log.MY_GRIDSQUARE}}</td>
+                        </tr>
+                        <tr>
+                            <th>ITU Zone</th>
+                            <td>{{log.MY_ITU_ZONE}}</td>
+                        </tr>
+                        <tr>
+                            <th>CQ Zone</th>
+                            <td>{{log.MY_CQ_ZONE}}</td>
+                        </tr>
+                        <tr>
+                            <th>ARRL Section</th>
+                            <td>{{log.MY_ARRL_SECT}}</td>
+                        </tr>
+                        <tr>
+                            <th>State/Province</th>
+                            <td>{{log.MY_STATE}}</td>
+                        </tr>
+                        <tr>
+                            <th>Country</th>
+                            <td>{{log.MY_COUNTRY}}</td>
+                        </tr>
+                        <tr>
+                            <th>DXCC</th>
+                            <td>{{log.DXCC}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
 
-        <section>
-            <h2>My Operating Location</h2>
-            <table>
-                <tbody>
-                    <tr>
-                        <th>Gridsquare</th>
-                        <td>{{log.MY_GRIDSQUARE}}</td>
-                    </tr>
-                    <tr>
-                        <th>ITU Zone</th>
-                        <td>{{log.MY_ITU_ZONE}}</td>
-                    </tr>
-                    <tr>
-                        <th>CQ Zone</th>
-                        <td>{{log.MY_CQ_ZONE}}</td>
-                    </tr>
-                    <tr>
-                        <th>ARRL Section</th>
-                        <td>{{log.MY_ARRL_SECT}}</td>
-                    </tr>
-                    <tr>
-                        <th>State/Province</th>
-                        <td>{{log.MY_STATE}}</td>
-                    </tr>
-                    <tr>
-                        <th>Country</th>
-                        <td>{{log.MY_COUNTRY}}</td>
-                    </tr>
-                    <tr>
-                        <th>DXCC</th>
-                        <td>{{log.DXCC}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+            <section>
+                <h2>Operator</h2>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <td>{{log.MY_NAME}}</td>
+                        </tr>
+                        <tr>
+                            <th>Operator Callsign</th>
+                            <td>{{log.OPERATOR}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
 
-        <section>
-            <h2>Operator</h2>
-            <table>
-                <tbody>
-                    <tr>
-                        <th>Name</th>
-                        <td>{{log.MY_NAME}}</td>
-                    </tr>
-                    <tr>
-                        <th>Operator Callsign</th>
-                        <td>{{log.OPERATOR}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <section>
-            <h2>Danger Zone</h2>
-            <form method="post" action="/logs/{{log.APP_TCADIF_QSO_ID}}?_method=DELETE">
-                <input type="submit" value="Delete Forever"/>
-            </form>
-        </section>
+            <section>
+                <h2>Danger Zone</h2>
+                <form method="post" action="/logs/{{log.APP_TCADIF_QSO_ID}}?_method=DELETE">
+                    <input type="submit" value="Delete Forever"/>
+                </form>
+            </section>
+        </main>
 
         <footer>
             <p>

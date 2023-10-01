@@ -17,56 +17,57 @@
 
         <header>
             <h1>Amateur Radio Station Logs</h1>
+            <nav>
+                <ul>
+                    <li><a href="/logs/new">Enter a QSO</a></li>
+                    <li><a href="/logs/import">Import QSOs</a></li>
+                    <li><a href="/logs/export">Export QSOs</a></li>
+                    <li><a href="/logs">View all QSOs</a></li>
+                </ul>
+            </nav>
         </header>
 
-        <nav>
-            <ul>
-                <li><a href="/logs/new">Enter a QSO</a></li>
-                <li><a href="/logs/import">Import QSOs</a></li>
-                <li><a href="/logs/export">Export QSOs</a></li>
-                <li><a href="/logs">View all QSOs</a></li>
-            </ul>
-        </nav>
-
-        <section>
-            <h3>Search</h3>
-            <form name="search" method="GET" action="/logs">
-                Search by callsign:
-                <input id="callsign_search" type="text" name="callsign" placeholder="callsign" list="callsign_search_suggestions" />
-                <datalist id="callsign_search_suggestions"></datalist>
-                <input type="hidden" name="since" value="1900-01-01T00:00:00Z" />
-                <input type="submit" value="Search" />
-            </form>
-        </section>
-        <section>
-            <h3><a name="logbook"></a>Logbook</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date/Time</th>
-                        <th>Freq</th>
-                        <th>Mode</th>
-                        <th>Pwr</th>
-                        <th>Callsign</th>
-                        <th>RST</th>
-                        <th>Remarks</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each logs}}
-                    <tr class="clickable-row" data-href="/logs/{{APP_TCADIF_QSO_ID}}">
-                        <td class="nowrap">{{DATE_HUMAN}} {{TIME_HUMAN}}</td>
-                        <td class="nowrap">{{FREQ}}</td>
-                        <td class="nowrap center">{{MODE}}</td>
-                        <td class="nowrap center">{{TX_PWR}}</td>
-                        <td class="nowrap"><span class="callsign">{{CALL}}</span></td>
-                        <td class="nowrap">{{RST_SENT}} / {{RST_RCVD}}</td>
-                        <td>{{NOTES}}</td>
-                    </tr>
-                    {{/each}}
-                </tbody>
-            </table>
-        </section>
+        <main>
+            <section>
+                <h2>Search</h2>
+                <form name="search" method="GET" action="/logs">
+                    Search by callsign:
+                    <input id="callsign_search" type="text" name="callsign" placeholder="callsign" list="callsign_search_suggestions" />
+                    <datalist id="callsign_search_suggestions"></datalist>
+                    <input type="hidden" name="since" value="1900-01-01T00:00:00Z" />
+                    <input type="submit" value="Search" />
+                </form>
+            </section>
+            <section>
+                <h2><a name="logbook"></a>Logbook</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date/Time</th>
+                            <th>Freq</th>
+                            <th>Mode</th>
+                            <th>Pwr</th>
+                            <th>Callsign</th>
+                            <th>RST</th>
+                            <th>Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each logs}}
+                        <tr class="clickable-row" data-href="/logs/{{APP_TCADIF_QSO_ID}}">
+                            <td class="nowrap">{{DATE_HUMAN}} {{TIME_HUMAN}}</td>
+                            <td class="nowrap">{{FREQ}}</td>
+                            <td class="nowrap center">{{MODE}}</td>
+                            <td class="nowrap center">{{TX_PWR}}</td>
+                            <td class="nowrap"><span class="callsign">{{CALL}}</span></td>
+                            <td class="nowrap">{{RST_SENT}} / {{RST_RCVD}}</td>
+                            <td>{{NOTES}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </section>
+        </main>
 
         <footer>
             <p>
