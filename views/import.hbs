@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <title>Amateur Radio Station Logs</title>
+
+        <link rel="icon" href="/favicon.ico?ts={{ts}}" />
+        <link rel="stylesheet" href="/css/tcort.css?ts={{ts}}" />
+        <link rel="stylesheet" href="/css/firacode.css?ts={{ts}}" />
+        <link rel="stylesheet" href="/css/va2nw-logger.css?ts={{ts}}" />
+    </head>
+    <body>
+
+        <header>
+            <h1>Amateur Radio Station Logs</h1>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="/logs/new">Enter a QSO</a></li>
+                <li><a href="/logs/import">Import QSOs</a></li>
+                <li><a href="/logs/export">Export QSOs</a></li>
+                <li><a href="/logs">View all QSOs</a></li>
+            </ul>
+        </nav>
+
+        <section>
+            <h3>Import</h3>
+            <p>Load new QSO data from another logging program or updated QSO data for QSOs already in the database (e.g. LoTW reports).</p>
+            <form method="post" encType="multipart/form-data" action="/logs">
+                ADIF File:
+                    <input type="file" name="adif_file" accept=".adi,.adif"/>
+                <input type="submit" value="Import"/>
+            </form>
+        </section>
+
+        <footer>
+            <p>
+                Copyright &copy; 2023 Thomas Cort
+            </p>
+        </footer>
+
+        <script src="/js/jquery.min.js?ts={{ts}}"></script>
+        <script src="/js/tcort.js?ts={{ts}}"></script>
+        <script src="/js/logs.js?ts={{ts}}"></script>
+
+    </body>
+</html>
