@@ -81,11 +81,11 @@
                 <div class="flex">
                     <form method="get" action="/qsos/{{qso.qso_id}}">
                         <input type="hidden" name="form" value="edit" />
-                        <input type="submit" value="Edit" />
+                        <input type="submit" value="Edit QSO" />
                     </form>
                     <span>&nbsp;</span>
                     <form method="post" action="/qsos/{{qso.qso_id}}?_method=DELETE" onsubmit="return confirm('Are you sure you want to delete this record?')">
-                        <input type="submit" value="Delete" />
+                        <input type="submit" value="Delete QSO" />
                     </form>
                 </div>
             </section>
