@@ -17,64 +17,65 @@
 
         <header>
             <h1>Amateur Radio Station Logs</h1>
+            <nav>
+                <ul>
+                    <li><a href="/qsos/new">Enter a QSO</a></li>
+                    <li><a href="/qsos/import">Import QSOs</a></li>
+                    <li><a href="/qsos/export">Export QSOs</a></li>
+                    <li><a href="/qsos">View all QSOs</a></li>
+                </ul>
+            </nav>
         </header>
 
-        <nav>
-            <ul>
-                <li><a href="/qsos/new">Enter a QSO</a></li>
-                <li><a href="/qsos/import">Import QSOs</a></li>
-                <li><a href="/qsos/export">Export QSOs</a></li>
-                <li><a href="/qsos">View all QSOs</a></li>
-            </ul>
-        </nav>
+        <main>
+            <section>
+                <h2>View all QSOSs ({{count}} QSOs)</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date/Time On</th>
+                            <th>Date/Time Off</th>
+                            <th>Freq</th>
+                            <th>Mode</th>
+                            <th>Pwr</th>
+                            <th>Callsign</th>
+                            <th>RST</th>
+                            <th>QSL</th>
+                            <th>Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each qsos}}
+                        <tr class="clickable-row" data-href="/qsos/{{qso_id}}">
+                            <td class="nowrap">{{timeon}}</td>
+                            <td class="nowrap">{{timeoff}}</td>
+                            <td class="nowrap">{{frequency}}</td>
+                            <td class="nowrap center">{{mode}}</td>
+                            <td class="nowrap center">{{power}}</td>
+                            <td class="nowrap"><span class="callsign">{{callsign}}</span></td>
+                            <td class="nowrap">{{rst_sent}} / {{rst_rcvd}}</td>
+                            <td class="nowrap">{{qsl_sent}} / {{qsl_rcvd}}</td>
+                            <td>{{remarks}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
 
-        <section>
-            <h2>View all QSOSs ({{count}} QSOs)</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date/Time On</th>
-                        <th>Date/Time Off</th>
-                        <th>Freq</th>
-                        <th>Mode</th>
-                        <th>Pwr</th>
-                        <th>Callsign</th>
-                        <th>RST</th>
-                        <th>QSL</th>
-                        <th>Remarks</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each qsos}}
-                    <tr class="clickable-row" data-href="/qsos/{{qso_id}}">
-                        <td class="nowrap">{{timeon}}</td>
-                        <td class="nowrap">{{timeoff}}</td>
-                        <td class="nowrap">{{frequency}}</td>
-                        <td class="nowrap center">{{mode}}</td>
-                        <td class="nowrap center">{{power}}</td>
-                        <td class="nowrap"><span class="callsign">{{callsign}}</span></td>
-                        <td class="nowrap">{{rst_sent}} / {{rst_rcvd}}</td>
-                        <td class="nowrap">{{qsl_sent}} / {{qsl_rcvd}}</td>
-                        <td>{{remarks}}</td>
-                    </tr>
-                    {{/each}}
-                </tbody>
-            </table>
+                <div>
+                    <p class="center">
+                        Page {{currentPage}} of {{npages}}
+                    </p>
+                </div>
 
-            <div>
-                <p class="center">
-                    Page {{currentPage}} of {{npages}}
-                </p>
-            </div>
-
-            <div>
-                <p class="center">
-                    {{#each pageNav}}
-                        <a href="/qsos?page={{page}}">{{label}}</a>
-                    {{/each}}
-                </p>
-            </div>
-        </section>
+                <div>
+                    <p class="center">
+                        {{#each pageNav}}
+                            <a href="/qsos?page={{page}}">{{label}}</a>
+                        {{/each}}
+                    </p>
+                </div>
+            </section>
+        </main>
 
         <footer>
             <p>

@@ -15,7 +15,7 @@
  */
 
 /*
-    Version 2023.09.30c
+    Version 2023.10.02a
  */
 
 body {
@@ -23,26 +23,32 @@ body {
     font-size: 18px;
     text-align: left;
     line-height: 1.69;
-    max-width: 69em;
-    margin: 32px auto;
+    max-width: 69vw;
     color: #454545;
     background: #f2f2f2;
-    padding-left: 2em;
-    padding-right: 2em;
+    margin: 0px auto;
 }
 
-header, section {
-    background: #ffffff;
-    color: #454545;
-    padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: 1px solid;
+header, footer, main {
+    padding-left: 12px;
+    padding-right: 12px;
 }
 
-footer {
-    color: #454545;
-    margin-top: 20px;
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+nav li {
+    float: left;
+}
+
+nav li a {
+    display: block;
+    text-align: center;
+    padding: 0px 16px 0px 0px;
 }
 
 footer p {
@@ -51,6 +57,7 @@ footer p {
 
 h1, h2, h3 {
     line-height: 1.2345;
+    padding-top: 10px;
 }
 
 h1 {
@@ -143,37 +150,6 @@ progress {
     height: 20px;
     position: relative;
     display: block;
-}
-
-nav {
-    padding: 10px 0px 10px 0px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-}
-
-nav ul li a {
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    border: 1px solid;
-    border-radius: 25px;
-    background: #ffffff;
-    color: #454545;
-}
-
-nav ul li a:hover  {
-    background: #454545;
-    color: #f2f2f2;
 }
 
 .navtab {

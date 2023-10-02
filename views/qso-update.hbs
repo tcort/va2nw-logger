@@ -17,80 +17,81 @@
 
         <header>
             <h1>Amateur Radio Station Logs</h1>
+            <nav>
+                <ul>
+                    <li><a href="/qsos/new">Enter a QSO</a></li>
+                    <li><a href="/qsos/import">Import QSOs</a></li>
+                    <li><a href="/qsos/export">Export QSOs</a></li>
+                    <li><a href="/qsos">View all QSOs</a></li>
+                </ul>
+            </nav>
         </header>
 
-        <nav>
-            <ul>
-                <li><a href="/qsos/new">Enter a QSO</a></li>
-                <li><a href="/qsos/import">Import QSOs</a></li>
-                <li><a href="/qsos/export">Export QSOs</a></li>
-                <li><a href="/qsos">View all QSOs</a></li>
-            </ul>
-        </nav>
-
-        <section>
-            <h2>Edit a QSO</h2>
-            <form method="post" action="/qsos/{{qso.qso_id}}?_method=PUT">
-                <div>
-                    <label for="timeon">UTC Time On</label>
-                    <span id="timeon">
-                        <input type="text" id="year_on" name="year_on" pattern="(19|20)[0-9]{2}" maxlength="4" size="4" placeholder="Year" value="{{qso.year_on}}" required /> -
-                        <input type="text" id="month_on" name="month_on" pattern="((0[1-9])|(1[012]))" maxlength="2" size="2" placeholder="Month" value="{{qso.month_on}}" required /> -
-                        <input type="text" id="day_on" name="day_on" pattern="((0[1-9])|([12][0-9])|30|31)" maxlength="2" size="2" placeholder="Day" value="{{qso.day_on}}" required /> @
-                        <input type="text" id="hour_on" name="hour_on" pattern="(([01][0-9])|(2[0123]))" maxlength="2" size="2" placeholder="Hour" value="{{qso.hour_on}}" required /> :
-                        <input type="text" id="minute_on" name="minute_on" pattern="[0-5][0-9]" maxlength="2" size="2" placeholder="Minute" value="{{qso.minute_on}}" required /> :
-                        <input type="text" id="second_on" name="second_on" pattern="[0-5][0-9]" maxlength="2" size="2" placeholder="Second" value="{{qso.second_on}}" required />
-                    </span>
-                </div>
-                <div>
-                    <label for="timeoff">UTC Time Off</label>
-                    <span id="timeoff">
-                        <input type="text" id="year_off" name="year_off" pattern="(19|20)[0-9]{2}" maxlength="4" size="4" placeholder="Year" value="{{qso.year_off}}" required /> -
-                        <input type="text" id="month_off" name="month_off" pattern="((0[1-9])|(1[012]))" maxlength="2" size="2" placeholder="Month" value="{{qso.month_off}}" required /> -
-                        <input type="text" id="day_off" name="day_off" pattern="((0[1-9])|([12][0-9])|30|31)" maxlength="2" size="2" placeholder="Day" value="{{qso.day_off}}" required /> @
-                        <input type="text" id="hour_off" name="hour_off" pattern="(([01][0-9])|(2[0123]))" maxlength="2" size="2" placeholder="Hour" value="{{qso.hour_off}}" required /> :
-                        <input type="text" id="minute_off" name="minute_off" pattern="[0-5][0-9]" maxlength="2" size="2" placeholder="Minute" value="{{qso.minute_off}}" required /> :
-                        <input type="text" id="second_off" name="second_off" pattern="[0-5][0-9]" maxlength="2" size="2" placeholder="Second" value="{{qso.second_off}}" required />
-                    </span>
-                </div>
-                <div>
-                    <label for="frequency">Frequency</label>
-                    <input type="number" id="frequency" name="frequency" size="8" min="0" max="30000" step=".000001" placeholder="MHz" value="{{qso.frequency}}" required />
-                    <label for="mode">Mode</label>
-                    <select name="mode" data-autoselect="{{qso.mode}}" required>
-                        {{#each enums.Mode}}
-                            <option value="{{@key}}">{{this}}</option>
-                        {{/each}}
-                    </select>
-                    <label for="power">Power</label>
-                    <input type="number" id="power" name="power" size="8" min="0" max="10000" step=".001" placeholder="Watts" value="{{qso.power}}" required />
-                </div>
-                <div>
-                    <label for="callsign">Station Callsign</label>
-                    <input class="callsign callsign_entry" id="callsign" type="text" name="callsign" size="10" autofocus value="{{qso.callsign}}" required autocomplete="off" />
-                    <label for="rst_sent">RST Sent</label>
-                    <input type="text" id="rst_sent" name="rst_sent" pattern="[1-5][1-9][1-9]" size="2" maxlength="3" placeholder="Signal Report" value="{{qso.rst_sent}}" required />
-                    <label for="rst_sent">RST Received</label>
-                    <input type="text" id="rst_rcvd" name="rst_rcvd" pattern="[1-5][1-9][1-9]" size="2" maxlength="3" placeholder="Signal Report" value="{{qso.rst_rcvd}}" required />
-                </div>
-                <div>
-                    QSL Sent?
-                    <input type="radio" name="qsl_sent" id="qsl_sent_y" value="Y" {{#if qso.was_qsl_sent}}checked{{else}}{{/if}} required /> <label for="qsl_sent_y">Yes</label>
-                    <input type="radio" name="qsl_sent" id="qsl_sent_n" value="N" {{#if qso.was_qsl_sent}}{{else}}checked{{/if}} required /> <label for="qsl_sent_n">No</label>
-                </div>
-                <div>
-                    QSL Received?
-                    <input type="radio" name="qsl_rcvd" id="qsl_rcvd_y" value="Y" {{#if qso.was_qsl_rcvd}}checked{{else}}{{/if}} required /> <label for="qsl_rcvd_y">Yes</label>
-                    <input type="radio" name="qsl_rcvd" id="qsl_rcvd_n" value="N" {{#if qso.was_qsl_rcvd}}{{else}}checked{{/if}} required /> <label for="qsl_rcvd_n">No</label>
-                </div>
-                <div>
-                    <label for="remarks">Remarks</label><br>
-                    <textarea name="remarks" id="remarks">{{qso.remarks}}</textarea>
-                    <br>
-                    <input type="submit" value="Save" />
-                </div>
-            </form>
-        </section>
+        <main>
+            <section>
+                <h2>Edit a QSO</h2>
+                <form method="post" action="/qsos/{{qso.qso_id}}?_method=PUT">
+                    <div>
+                        <label for="timeon">UTC Time On</label>
+                        <span id="timeon">
+                            <input type="text" id="year_on" name="year_on" pattern="(19|20)[0-9]{2}" maxlength="4" size="4" placeholder="Year" value="{{qso.year_on}}" required /> -
+                            <input type="text" id="month_on" name="month_on" pattern="((0[1-9])|(1[012]))" maxlength="2" size="2" placeholder="Month" value="{{qso.month_on}}" required /> -
+                            <input type="text" id="day_on" name="day_on" pattern="((0[1-9])|([12][0-9])|30|31)" maxlength="2" size="2" placeholder="Day" value="{{qso.day_on}}" required /> @
+                            <input type="text" id="hour_on" name="hour_on" pattern="(([01][0-9])|(2[0123]))" maxlength="2" size="2" placeholder="Hour" value="{{qso.hour_on}}" required /> :
+                            <input type="text" id="minute_on" name="minute_on" pattern="[0-5][0-9]" maxlength="2" size="2" placeholder="Minute" value="{{qso.minute_on}}" required /> :
+                            <input type="text" id="second_on" name="second_on" pattern="[0-5][0-9]" maxlength="2" size="2" placeholder="Second" value="{{qso.second_on}}" required />
+                        </span>
+                    </div>
+                    <div>
+                        <label for="timeoff">UTC Time Off</label>
+                        <span id="timeoff">
+                            <input type="text" id="year_off" name="year_off" pattern="(19|20)[0-9]{2}" maxlength="4" size="4" placeholder="Year" value="{{qso.year_off}}" required /> -
+                            <input type="text" id="month_off" name="month_off" pattern="((0[1-9])|(1[012]))" maxlength="2" size="2" placeholder="Month" value="{{qso.month_off}}" required /> -
+                            <input type="text" id="day_off" name="day_off" pattern="((0[1-9])|([12][0-9])|30|31)" maxlength="2" size="2" placeholder="Day" value="{{qso.day_off}}" required /> @
+                            <input type="text" id="hour_off" name="hour_off" pattern="(([01][0-9])|(2[0123]))" maxlength="2" size="2" placeholder="Hour" value="{{qso.hour_off}}" required /> :
+                            <input type="text" id="minute_off" name="minute_off" pattern="[0-5][0-9]" maxlength="2" size="2" placeholder="Minute" value="{{qso.minute_off}}" required /> :
+                            <input type="text" id="second_off" name="second_off" pattern="[0-5][0-9]" maxlength="2" size="2" placeholder="Second" value="{{qso.second_off}}" required />
+                        </span>
+                    </div>
+                    <div>
+                        <label for="frequency">Frequency</label>
+                        <input type="number" id="frequency" name="frequency" size="8" min="0" max="30000" step=".000001" placeholder="MHz" value="{{qso.frequency}}" required />
+                        <label for="mode">Mode</label>
+                        <select name="mode" data-autoselect="{{qso.mode}}" required>
+                            {{#each enums.Mode}}
+                                <option value="{{@key}}">{{this}}</option>
+                            {{/each}}
+                        </select>
+                        <label for="power">Power</label>
+                        <input type="number" id="power" name="power" size="8" min="0" max="10000" step=".001" placeholder="Watts" value="{{qso.power}}" required />
+                    </div>
+                    <div>
+                        <label for="callsign">Station Callsign</label>
+                        <input class="callsign callsign_entry" id="callsign" type="text" name="callsign" size="10" autofocus value="{{qso.callsign}}" required autocomplete="off" />
+                        <label for="rst_sent">RST Sent</label>
+                        <input type="text" id="rst_sent" name="rst_sent" pattern="[1-5][1-9][1-9]" size="2" maxlength="3" placeholder="Signal Report" value="{{qso.rst_sent}}" required />
+                        <label for="rst_sent">RST Received</label>
+                        <input type="text" id="rst_rcvd" name="rst_rcvd" pattern="[1-5][1-9][1-9]" size="2" maxlength="3" placeholder="Signal Report" value="{{qso.rst_rcvd}}" required />
+                    </div>
+                    <div>
+                        QSL Sent?
+                        <input type="radio" name="qsl_sent" id="qsl_sent_y" value="Y" {{#if qso.was_qsl_sent}}checked{{else}}{{/if}} required /> <label for="qsl_sent_y">Yes</label>
+                        <input type="radio" name="qsl_sent" id="qsl_sent_n" value="N" {{#if qso.was_qsl_sent}}{{else}}checked{{/if}} required /> <label for="qsl_sent_n">No</label>
+                    </div>
+                    <div>
+                        QSL Received?
+                        <input type="radio" name="qsl_rcvd" id="qsl_rcvd_y" value="Y" {{#if qso.was_qsl_rcvd}}checked{{else}}{{/if}} required /> <label for="qsl_rcvd_y">Yes</label>
+                        <input type="radio" name="qsl_rcvd" id="qsl_rcvd_n" value="N" {{#if qso.was_qsl_rcvd}}{{else}}checked{{/if}} required /> <label for="qsl_rcvd_n">No</label>
+                    </div>
+                    <div>
+                        <label for="remarks">Remarks</label><br>
+                        <textarea name="remarks" id="remarks">{{qso.remarks}}</textarea>
+                        <br>
+                        <input type="submit" value="Save" />
+                    </div>
+                </form>
+            </section>
+        </main>
 
         <footer>
             <p>
