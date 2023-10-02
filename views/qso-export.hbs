@@ -17,49 +17,50 @@
 
         <header>
             <h1>Amateur Radio Station Logs</h1>
+            <nav>
+                <ul>
+                    <li><a href="/qsos/new">Enter a QSO</a></li>
+                    <li><a href="/qsos/import">Import QSOs</a></li>
+                    <li><a href="/qsos/export">Export QSOs</a></li>
+                    <li><a href="/qsos">View all QSOs</a></li>
+                </ul>
+            </nav>
         </header>
 
-        <nav>
-            <ul>
-                <li><a href="/qsos/new">Enter a QSO</a></li>
-                <li><a href="/qsos/import">Import QSOs</a></li>
-                <li><a href="/qsos/export">Export QSOs</a></li>
-                <li><a href="/qsos">View all QSOs</a></li>
-            </ul>
-        </nav>
+        <main>
+            <section>
+                <h3>Export QSOs</h3>
+                <p>Dump QSO data for another logging program or as a backup.</p>
+                <form method="get" action="/qsos">
 
-        <section>
-            <h3>Export QSOs</h3>
-            <p>Dump QSO data for another logging program or as a backup.</p>
-            <form method="get" action="/qsos">
+                    Since:
+                            <input type="text" id="year_since" name="year_since" pattern="(19|20)[0-9]{2}" size="4" placeholder="Year" required /> -
+                            <input type="text" id="month_since" name="month_since" pattern="((0[1-9])|(1[012]))" size="2" placeholder="Month" required /> -
+                            <input type="text" id="day_since" name="day_since" pattern="((0[1-9])|([12][0-9])|30|31)" size="2" placeholder="Day" required /> @
+                            <input type="text" id="hour_since" name="hour_since" pattern="(([01][0-9])|(2[0123]))" size="2" placeholder="Hour" required /> :
+                            <input type="text" id="minute_since" name="minute_since" pattern="[0-5][0-9]" size="2" placeholder="Minute" required /> :
+                            <input type="text" id="second_since" name="second_since" pattern="[0-5][0-9]" size="2" placeholder="Second" required />
 
-                Since:
-                        <input type="text" id="year_since" name="year_since" pattern="(19|20)[0-9]{2}" size="4" placeholder="Year" required /> -
-                        <input type="text" id="month_since" name="month_since" pattern="((0[1-9])|(1[012]))" size="2" placeholder="Month" required /> -
-                        <input type="text" id="day_since" name="day_since" pattern="((0[1-9])|([12][0-9])|30|31)" size="2" placeholder="Day" required /> @
-                        <input type="text" id="hour_since" name="hour_since" pattern="(([01][0-9])|(2[0123]))" size="2" placeholder="Hour" required /> :
-                        <input type="text" id="minute_since" name="minute_since" pattern="[0-5][0-9]" size="2" placeholder="Minute" required /> :
-                        <input type="text" id="second_since" name="second_since" pattern="[0-5][0-9]" size="2" placeholder="Second" required />
+                    <br/>
 
-                <br/>
+                    Before: 
+                            <input type="text" id="year_before" name="year_before" pattern="(19|20)[0-9]{2}" size="4" placeholder="Year" required /> -
+                            <input type="text" id="month_before" name="month_before" pattern="((0[1-9])|(1[012]))" size="2" placeholder="Month" required /> -
+                            <input type="text" id="day_before" name="day_before" pattern="((0[1-9])|([12][0-9])|30|31)" size="2" placeholder="Day" required /> @
+                            <input type="text" id="hour_before" name="hour_before" pattern="(([01][0-9])|(2[0123]))" size="2" placeholder="Hour" required /> :
+                            <input type="text" id="minute_before" name="minute_before" pattern="[0-5][0-9]" size="2" placeholder="Minute" required /> :
+                            <input type="text" id="second_before" name="second_before" pattern="[0-5][0-9]" size="2" placeholder="Second" required />
 
-                Before: 
-                        <input type="text" id="year_before" name="year_before" pattern="(19|20)[0-9]{2}" size="4" placeholder="Year" required /> -
-                        <input type="text" id="month_before" name="month_before" pattern="((0[1-9])|(1[012]))" size="2" placeholder="Month" required /> -
-                        <input type="text" id="day_before" name="day_before" pattern="((0[1-9])|([12][0-9])|30|31)" size="2" placeholder="Day" required /> @
-                        <input type="text" id="hour_before" name="hour_before" pattern="(([01][0-9])|(2[0123]))" size="2" placeholder="Hour" required /> :
-                        <input type="text" id="minute_before" name="minute_before" pattern="[0-5][0-9]" size="2" placeholder="Minute" required /> :
-                        <input type="text" id="second_before" name="second_before" pattern="[0-5][0-9]" size="2" placeholder="Second" required />
+                    <input type="hidden" name="page" value="0">
+                    <input type="hidden" name="pageSize" value="1000000">
+                    <input type="hidden" name="fmt" value="adi">
+                    <input type="hidden" name="dl" value="1">
 
-                <input type="hidden" name="page" value="0">
-                <input type="hidden" name="pageSize" value="1000000">
-                <input type="hidden" name="fmt" value="adi">
-                <input type="hidden" name="dl" value="1">
-
-                <br/>
-                <input type="submit" value="Export"/>
-            </form>
-        </section>
+                    <br/>
+                    <input type="submit" value="Export"/>
+                </form>
+            </section>
+        </main>
 
         <footer>
             <p>

@@ -17,78 +17,79 @@
 
         <header>
             <h1>Amateur Radio Station Logs</h1>
+            <nav>
+                <ul>
+                    <li><a href="/qsos/new">Enter a QSO</a></li>
+                    <li><a href="/qsos/import">Import QSOs</a></li>
+                    <li><a href="/qsos/export">Export QSOs</a></li>
+                    <li><a href="/qsos">View all QSOs</a></li>
+                </ul>
+            </nav>
         </header>
 
-        <nav>
-            <ul>
-                <li><a href="/qsos/new">Enter a QSO</a></li>
-                <li><a href="/qsos/import">Import QSOs</a></li>
-                <li><a href="/qsos/export">Export QSOs</a></li>
-                <li><a href="/qsos">View all QSOs</a></li>
-            </ul>
-        </nav>
-
-        <section>
-            <h2>QSO</h2>
-            <table>
-                <tbody>
-                    <tr>
-                        <th>Date/Time On</th>
-                        <td>{{qso.timeon}} UTC</td>
-                    </tr>
-                    <tr>
-                        <th>Date/Time Off</th>
-                        <td>{{qso.timeoff}} UTC</td>
-                    </tr>
-                    <tr>
-                        <th>Frequency</th>
-                        <td>{{qso.frequency}} MHz</td>
-                    </tr>
-                    <tr>
-                        <th>Mode</th>
-                        <td>{{qso.mode}}</td>
-                    </tr>
-                    <tr>
-                        <th>Power</th>
-                        <td>{{qso.power}} Watts</td>
-                    </tr>
-                    <tr>
-                        <th>Callsign</th>
-                        <td><span class="callsign">{{qso.callsign}}</span></td>
-                    </tr>
-                    <tr>
-                        <th>RST Sent</th>
-                        <td>{{qso.rst_sent}}</td>
-                    </tr>
-                    <tr>
-                        <th>RST Received</th>
-                        <td>{{qso.rst_rcvd}}</td>
-                    </tr>
-                    <tr>
-                        <th>QSL Sent</th>
-                        <td>{{qso.qsl_sent}}</td>
-                    </tr>
-                    <tr>
-                        <th>QSL Received</th>
-                        <td>{{qso.qsl_rcvd}}</td>
-                    </tr>
-                    <tr>
-                        <th>Remarks</th>
-                        <td>{{qso.remarks}}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="flex">
-                <form method="get" action="/qsos/{{qso.qso_id}}">
-                    <input type="hidden" name="form" value="edit" />
-                    <input type="submit" value="Edit" />
-                </form>
-                <span>&nbsp;</span>
-                <form method="post" action="/qsos/{{qso.qso_id}}?_method=DELETE" onsubmit="return confirm('Are you sure you want to delete this record?')">
-                    <input type="submit" value="Delete" />
-                </form>
-            </div>
-        </section>
+        <main>
+            <section>
+                <h2>QSO</h2>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Date/Time On</th>
+                            <td>{{qso.timeon}} UTC</td>
+                        </tr>
+                        <tr>
+                            <th>Date/Time Off</th>
+                            <td>{{qso.timeoff}} UTC</td>
+                        </tr>
+                        <tr>
+                            <th>Frequency</th>
+                            <td>{{qso.frequency}} MHz</td>
+                        </tr>
+                        <tr>
+                            <th>Mode</th>
+                            <td>{{qso.mode}}</td>
+                        </tr>
+                        <tr>
+                            <th>Power</th>
+                            <td>{{qso.power}} Watts</td>
+                        </tr>
+                        <tr>
+                            <th>Callsign</th>
+                            <td><span class="callsign">{{qso.callsign}}</span></td>
+                        </tr>
+                        <tr>
+                            <th>RST Sent</th>
+                            <td>{{qso.rst_sent}}</td>
+                        </tr>
+                        <tr>
+                            <th>RST Received</th>
+                            <td>{{qso.rst_rcvd}}</td>
+                        </tr>
+                        <tr>
+                            <th>QSL Sent</th>
+                            <td>{{qso.qsl_sent}}</td>
+                        </tr>
+                        <tr>
+                            <th>QSL Received</th>
+                            <td>{{qso.qsl_rcvd}}</td>
+                        </tr>
+                        <tr>
+                            <th>Remarks</th>
+                            <td>{{qso.remarks}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="flex">
+                    <form method="get" action="/qsos/{{qso.qso_id}}">
+                        <input type="hidden" name="form" value="edit" />
+                        <input type="submit" value="Edit" />
+                    </form>
+                    <span>&nbsp;</span>
+                    <form method="post" action="/qsos/{{qso.qso_id}}?_method=DELETE" onsubmit="return confirm('Are you sure you want to delete this record?')">
+                        <input type="submit" value="Delete" />
+                    </form>
+                </div>
+            </section>
+        </main>
 
         <footer>
             <p>
