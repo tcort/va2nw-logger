@@ -15,7 +15,7 @@
  */
 
 /*
-    Version 2023.10.02a
+    Version 2023.10.02b
  */
 
 body {
@@ -223,6 +223,30 @@ progress {
     animation: spin 2s linear infinite;
     margin: 0px auto;
 }
+
+.form-row {
+    width: 100%;
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.form-col-label {
+    float: left;
+    width: 25%;
+}
+
+.form-col-input {
+    float: left;
+    width: 75%;
+}
+
+@media screen and (max-width: 600px) {
+    .form-col-label, .form-col-input, input[type=submit] {
+        width: 100%;
+    }
+}
+
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
