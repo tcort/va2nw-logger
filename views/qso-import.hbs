@@ -32,8 +32,17 @@
                 <h3>Import QSOs</h3>
                 <p>Load new QSO data from another logging program.</p>
                 <form method="post" encType="multipart/form-data" action="/qsos">
-                    <label for="adif_file">ADIF File</label> <input type="file" id="adif_file" name="adif_file" accept=".adi,.adif">
-                    <input type="submit" value="Import QSOs"/>
+                    <div class="form-row">
+                        <div class="form-col-label">
+                            <label for="adif_file">ADIF File</label>
+                        </div>
+                        <div class="form-col-input">
+                            <input type="file" id="adif_file" name="adif_file" accept=".adi,.adif">
+                        </div>
+                    </div>
+                    <div>
+                        <input type="submit" value="Import QSOs"/>
+                    </div>
                 </form>
             </section>
         </main>
