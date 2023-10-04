@@ -66,12 +66,12 @@ function defaultLocalStorage() {
         [ 'minute_before', '59' ],
         [ 'second_before', '59' ],
     ].forEach(([ field, val ]) => {
-        if (window.localStorage.getItem(field) === undefined) {
+        if (window.localStorage.getItem(field) === undefined || window.localStorage.getItem(field) === 'undefined') {
             window.localStorage.setItem(field, val);
         }
     });
 
-    if (window.localStorage.getItem('now') === undefined) {
+    if (window.localStorage.getItem('now') === undefined || window.localStorage.getItem(now) === 'undefined') {
         window.localStorage.setItem('now','true');
     }
 }
