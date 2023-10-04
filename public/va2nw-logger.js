@@ -77,6 +77,7 @@ function defaultLocalStorage() {
 }
 
 function saveLocalStorage() {
+console.log('save', Date.now());
     storedFields.forEach(field => {
         let val = $(`[name="${field}"]`).val();
         if (val === null && $(`[name="${field}"]`)?.[0]?.tagName === "SELECT") {
@@ -133,7 +134,9 @@ $(function () {
         $(this).val($(this).val().toUpperCase().trim());
     });
 
-    setInterval(() => saveLocalStorage(), 3000);
+    if ($('.autosave').length > 0) {
+        setInterval(() => saveLocalStorage(), 3000);
+    }
 
     updateTimestamp();
 
