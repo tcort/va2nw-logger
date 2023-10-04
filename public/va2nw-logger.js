@@ -71,7 +71,7 @@ function defaultLocalStorage() {
         }
     });
 
-    if (window.localStorage.getItem('now') === undefined || window.localStorage.getItem(now) === 'undefined') {
+    if (window.localStorage.getItem('now') === undefined || window.localStorage.getItem('now') === 'undefined') {
         window.localStorage.setItem('now','true');
     }
 }
