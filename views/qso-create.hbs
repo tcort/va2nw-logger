@@ -33,19 +33,12 @@
                 <form method="post" action="/qsos">
                     <div class="form-row">
                         <div class="form-col-label">
-                            <label for="dateon">UTC Date On</label>
-                        </div>
-                        <div class="form-col-input" id="dateon">
-                            <input type="text" id="year_on" name="year_on" pattern="(19|20)[0-9]{2}" maxlength="4" size="4" placeholder="Year" required /> -
-                            <input type="text" id="month_on" name="month_on" pattern="((0[1-9])|(1[012]))" maxlength="2" size="2" placeholder="Month" required /> -
-                            <input type="text" id="day_on" name="day_on" pattern="((0[1-9])|([12][0-9])|30|31)" maxlength="2" size="2" placeholder="Day" required />
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-col-label">
                             <label for="timeon">UTC Time On</label>
                         </div>
                         <div class="form-col-input" id="timeon">
+                            <input type="text" id="year_on" name="year_on" pattern="(19|20)[0-9]{2}" maxlength="4" size="4" placeholder="Year" required /> -
+                            <input type="text" id="month_on" name="month_on" pattern="((0[1-9])|(1[012]))" maxlength="2" size="2" placeholder="Month" required /> -
+                            <input type="text" id="day_on" name="day_on" pattern="((0[1-9])|([12][0-9])|30|31)" maxlength="2" size="2" placeholder="Day" required />
                             <input type="text" id="hour_on" name="hour_on" pattern="(([01][0-9])|(2[0123]))" maxlength="2" size="2" placeholder="Hour" required /> :
                             <input type="text" id="minute_on" name="minute_on" pattern="[0-5][0-9]" maxlength="2" size="2" placeholder="Minute" required /> :
                             <input type="text" id="second_on" name="second_on" pattern="[0-5][0-9]" maxlength="2" size="2" placeholder="Second" required />
@@ -55,19 +48,12 @@
                     </div>
                     <div class="form-row">
                         <div class="form-col-label">
-                            <label for="dateoff">UTC Date Off</label>
-                        </div>
-                        <div class="form-col-input" id="dateoff">
-                            <input type="text" id="year_off" name="year_off" pattern="(19|20)[0-9]{2}" maxlength="4" size="4" placeholder="Year" required /> -
-                            <input type="text" id="month_off" name="month_off" pattern="((0[1-9])|(1[012]))" maxlength="2" size="2" placeholder="Month" required /> -
-                            <input type="text" id="day_off" name="day_off" pattern="((0[1-9])|([12][0-9])|30|31)" maxlength="2" size="2" placeholder="Day" required />
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-col-label">
                             <label for="timeoff">UTC Time Off</label>
                         </div>
                         <div class="form-col-input" id="timeoff">
+                            <input type="text" id="year_off" name="year_off" pattern="(19|20)[0-9]{2}" maxlength="4" size="4" placeholder="Year" required /> -
+                            <input type="text" id="month_off" name="month_off" pattern="((0[1-9])|(1[012]))" maxlength="2" size="2" placeholder="Month" required /> -
+                            <input type="text" id="day_off" name="day_off" pattern="((0[1-9])|([12][0-9])|30|31)" maxlength="2" size="2" placeholder="Day" required />
                             <input type="text" id="hour_off" name="hour_off" pattern="(([01][0-9])|(2[0123]))" maxlength="2" size="2" placeholder="Hour" required /> :
                             <input type="text" id="minute_off" name="minute_off" pattern="[0-5][0-9]" maxlength="2" size="2" placeholder="Minute" required /> :
                             <input type="text" id="second_off" name="second_off" pattern="[0-5][0-9]" maxlength="2" size="2" placeholder="Second" required />
@@ -117,19 +103,10 @@
 
                     <div class="form-row">
                         <div class="form-col-label">
-
-                            <label for="rst_sent">RST Sent</label>
+                            <label for="rst">RST Sent/Rcvd</label>
                         </div>
-                        <div class="form-col-input">
+                        <div id="rst" class="form-col-input">
                             <input type="text" id="rst_sent" name="rst_sent" pattern="[1-5][1-9][1-9]" size="3" maxlength="3" placeholder="Signal Report"  required />
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            <label for="rst_sent">RST Received</label>
-                        </div>
-                        <div class="form-col-input">
                             <input type="text" id="rst_rcvd" name="rst_rcvd" pattern="[1-5][1-9][1-9]" size="3" maxlength="3" placeholder="Signal Report" required />
                         </div>
                     </div>
