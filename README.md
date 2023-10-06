@@ -1,6 +1,8 @@
 # va2nw-logger
 
-Amateur radio contact logging.
+`va2nw-logger` is amateur radio contact logging software which emulates
+paper logs. The goal is to be as simple as a paper log, more convenient
+than a paper log, and able to transfer contacts digitally (e.g. to LoTW).
 
 ## Local Installation
 
