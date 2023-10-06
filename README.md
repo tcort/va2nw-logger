@@ -2,7 +2,13 @@
 
 `va2nw-logger` is amateur radio contact logging software which emulates
 paper logs. The goal is to be as simple as a paper log, more convenient
-than a paper log, and able to transfer contacts digitally (e.g. to LoTW).
+than a paper log, and able to export log data. It can export log data
+for Logbook of the World, Parks on the Air, Summits on the Air, and
+[Ham Stats](https://www.hamstats.com), and other logging programs.
+
+The ethos is to do one thing and do it well. This is contact logging
+software, so everything else is omitted. By design there are no spots, no
+solar conditions, no rig control, no awards tracking, etc. Just logging.
 
 ## Local Installation
 
