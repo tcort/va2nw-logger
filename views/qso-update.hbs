@@ -125,7 +125,7 @@
                             QSL Received?
                         </div>
                         <div class="form-col-input">
-                            <input type="radio" name="qsl_rcvd" id="qsl_rcvd_y" value="Y" {{#if qso.was_qsl_rcvd}}checked{{else}}{{/if}} required /> <label for="qsl_rcvd_y">Yes</label>
+                            <input type="radio" name="qsl_rcvd" id="qsl_rcvd_y" value="Y" {{#if qso.was_qsl_rcvd}}checked{{else}}{{/if}} required /> <label for="qsl_rcvd_y">Yes</label> /
                             <input type="radio" name="qsl_rcvd" id="qsl_rcvd_n" value="N" {{#if qso.was_qsl_rcvd}}{{else}}checked{{/if}} required /> <label for="qsl_rcvd_n">No</label>
                         </div>
                     </div>
@@ -144,7 +144,7 @@
                             &nbsp;
                         </div>
                         <div class="form-col-input">
-                            <input type="submit" value="Save QSO"/>
+                            <button type="submit" class="button-primary">Save QSO</button>
                         </div>
                     </div>
                 </form>
