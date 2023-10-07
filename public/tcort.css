@@ -29,11 +29,6 @@ body {
     margin: 0px auto;
 }
 
-header, footer, main {
-    padding-left: 12px;
-    padding-right: 12px;
-}
-
 nav ul {
     list-style-type: none;
     margin: 0;
@@ -231,9 +226,13 @@ progress {
 }
 
 
-@media screen and (max-width: 600px) {
-    .form-col-label, .form-col-input, input[type=submit] {
+@media screen and (max-width: 800px) {
+    .form-col-label, .form-col-input, button[type=submit] {
         width: 100%;
+    }
+
+    body {
+        max-width: 92vw;
     }
 }
 
