@@ -19,13 +19,13 @@
  */
 
 body {
+    background-color: #FFFFFF;
+    color: #333333;
 	font-family: "Trebuchet MS", Verdana, "Lucida Sans", Arial, Geneva, Helvetica, Helv, "Myriad Web", Syntax, sans-serif;
     font-size: 18px;
     text-align: left;
     line-height: 1.69;
     max-width: 69vw;
-    color: #454545;
-    background: #f2f2f2;
     margin: 0px auto;
 }
 
@@ -62,11 +62,9 @@ h1, h2, h3 {
 
 h1 {
     font-weight: bold;
-    color: #454545;
 }
 
 h2, h3 {
-    color: #707070;
 	border: 1px solid #cccccc;
 	border-width: 0px 0px 1px 0px;
 }
@@ -77,12 +75,10 @@ p {
 }
 
 a {
-    color: black;
     font-weight: bold;
 }
 
 a:hover {
-    color: #ff0033;
     text-decoration: underline;
 }
 
@@ -92,24 +88,23 @@ img {
 }
 
 table {
+    border-collapse: collapse;
     width: 100%;
+}
+
+th {
+    background-color: #800080;
+    color: #FFFFFF;
+}
+
+td {
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
 }
 
 th, td {
     padding-left: 5px;
     padding-right: 5px;
-}
-
-tbody tr:nth-child(odd) {
-    background-color: #eeeeee;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #ffffff;
-}
-
-tbody tr:hover {
-    background-color: #aaaaaa;
 }
 
 input[type=url],
@@ -123,13 +118,13 @@ input[type=reset],
 select,
 button,
 textarea {
+    background-color: #F5F5F5;
+    border: 1px solid #999999;
     border: 2px solid grey;
     border-radius: 4px;
     padding: 6px 10px;
     margin: 4px 0;
     box-sizing: border-box;
-    background-color: #f8f8f8;
-    color: #000000;
 }
 
 textarea {
@@ -158,17 +153,6 @@ progress {
     padding: 6px 10px;
     margin: 0;
     box-sizing: border-box;
-    background: #aaaaaa;
-    color: #454545;
-}
-
-.navtab:hover  {
-    background: #454545;
-    color: #f2f2f2;
-}
-
-.activetab {
-    background: #f2f2f2;
 }
 
 .comma-separated-list {
@@ -229,7 +213,7 @@ progress {
     content: "";
     display: table;
     clear: both;
-}
+ }
 
 .form-col-label {
     float: left;
@@ -240,6 +224,12 @@ progress {
     float: left;
     width: 75%;
 }
+
+.button-primary {
+    background-color: #800080;
+    color: #FFFFFF;
+}
+
 
 @media screen and (max-width: 600px) {
     .form-col-label, .form-col-input, input[type=submit] {
@@ -252,4 +242,5 @@ progress {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
 

@@ -33,39 +33,39 @@
                 <table>
                     <tbody>
                         <tr>
-                            <th>Date/Time On</th>
+                            <th class="nowrap">Date/Time On</th>
                             <td>{{qso.timeon}} UTC</td>
                         </tr>
                         <tr>
-                            <th>Date/Time Off</th>
+                            <th class="nowrap">Date/Time Off</th>
                             <td>{{qso.timeoff}} UTC</td>
                         </tr>
                         <tr>
-                            <th>Frequency</th>
+                            <th class="nowrap">Frequency</th>
                             <td>{{qso.frequency}} MHz</td>
                         </tr>
                         <tr>
-                            <th>Mode</th>
+                            <th class="nowrap">Mode</th>
                             <td>{{qso.mode}}</td>
                         </tr>
                         <tr>
-                            <th>Power</th>
+                            <th class="nowrap">Power</th>
                             <td>{{qso.power}} Watts</td>
                         </tr>
                         <tr>
-                            <th>Callsign</th>
+                            <th class="nowrap'>Callsign</th>
                             <td><span class="callsign">{{qso.callsign}}</span></td>
                         </tr>
                         <tr>
-                            <th>RST Sent / Rcvd</th>
+                            <th class="nowrap">RST Sent / Rcvd</th>
                             <td>{{qso.rst_sent}} / {{qso.rst_rcvd}}</td>
                         </tr>
                         <tr>
-                            <th>QSL Sent / Rcvd</th>
+                            <th class="nowrap">QSL Sent / Rcvd</th>
                             <td>{{qso.qsl_sent}} / {{qso.qsl_rcvd}}</td>
                         </tr>
                         <tr>
-                            <th>Remarks</th>
+                            <th class="nowrap">Remarks</th>
                             <td>{{qso.remarks}}</td>
                         </tr>
                     </tbody>
@@ -73,11 +73,11 @@
                 <div class="flex">
                     <form method="get" action="/qsos/{{qso.qso_id}}">
                         <input type="hidden" name="form" value="edit" />
-                        <input type="submit" value="Edit QSO" />
+                        <button type="submit" class="button-primary">Edit QSO</button>
                     </form>
                     <span>&nbsp;</span>
                     <form method="post" action="/qsos/{{qso.qso_id}}?_method=DELETE" onsubmit="return confirm('Are you sure you want to delete this record?')">
-                        <input type="submit" value="Delete QSO" />
+                        <button type="submit" class="button-primary">Delete QSO</button>
                     </form>
                 </div>
             </section>
