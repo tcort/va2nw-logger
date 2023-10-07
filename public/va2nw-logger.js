@@ -77,7 +77,6 @@ function defaultLocalStorage() {
 }
 
 function saveLocalStorage() {
-console.log('save', Date.now());
     storedFields.forEach(field => {
         let val = $(`[name="${field}"]`).val();
         if (val === null && $(`[name="${field}"]`)?.[0]?.tagName === "SELECT") {
@@ -85,7 +84,9 @@ console.log('save', Date.now());
         } else if ($(`[name="${field}"]`).is(':checkbox')) {
             val = $(`[name="${field}"]`).is(':checked');
         }
-        window.localStorage.setItem(field, val);
+        if (val !== undefined) {
+            window.localStorage.setItem(field, val);
+        }
     });
 }
 
