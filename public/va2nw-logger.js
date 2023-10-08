@@ -2,36 +2,16 @@ function setNow(suffix = 'on') {
     const now = new Date();
     const iso8601 = now.toISOString().length === 27 ? now.toISOString().slice(3) : now.toISOString();
 
-    const year = iso8601.slice(0, 4);
-    const month = iso8601.slice(5, 7);
-    const day = iso8601.slice(8, 10);
-    const hour = iso8601.slice(11, 13);
-    const minute = iso8601.slice(14, 16);
-    const second = iso8601.slice(17, 19);
+    const date = iso8601.slice(0, 10);
+    const time = iso8601.slice(11, 19);
 
-    $(`input[name="year_${suffix}"]`).val(year).change();
-    $(`input[name="month_${suffix}"]`).val(month).change();
-    $(`input[name="day_${suffix}"]`).val(day).change();
-    $(`input[name="hour_${suffix}"]`).val(hour).change();
-    $(`input[name="minute_${suffix}"]`).val(minute).change();
-    $(`input[name="second_${suffix}"]`).val(second).change();
-
+    $(`input[name="date_${suffix}"]`).val(date).change();
+    $(`input[name="time_${suffix}"]`).val(time).change();
 }
 
 function updateTimestamp() {
 
     if ($('input[name="now"]').is(':checked')) {
-
-        const now = new Date();
-        const iso8601 = now.toISOString().length === 27 ? now.toISOString().slice(3) : now.toISOString();
-
-        const year = iso8601.slice(0, 4);
-        const month = iso8601.slice(5, 7);
-        const day = iso8601.slice(8, 10);
-        const hour = iso8601.slice(11, 13);
-        const minute = iso8601.slice(14, 16);
-        const second = iso8601.slice(17, 19);
-
         if ($('input[name="callsign"]').val().trim() === '') {
             setNow('on');
         } else {
@@ -44,8 +24,7 @@ function updateTimestamp() {
 
 const storedFields = [
     'mode', 'frequency', 'power',
-    'year_since', 'month_since', 'day_since', 'hour_since', 'minute_since', 'second_since',
-    'year_before', 'month_before', 'day_before', 'hour_before', 'minute_before', 'second_before',
+    'date_since', 'time_since', 'date_before', 'time_before',
     'year_on', 'month_on', 'day_on', 'hour_on', 'minute_on', 'second_on',
     'year_off', 'month_off', 'day_off', 'hour_off', 'minute_off', 'second_off',
     'now',
@@ -53,18 +32,10 @@ const storedFields = [
 
 function defaultLocalStorage() {
     [
-        [ 'year_since', '1901' ],
-        [ 'month_since', '01' ],
-        [ 'day_since', '01' ],
-        [ 'hour_since', '00' ],
-        [ 'minute_since', '00' ],
-        [ 'second_since', '00' ],
-        [ 'year_before', '2099' ],
-        [ 'month_before', '12' ],
-        [ 'day_before', '31' ],
-        [ 'hour_before', '23' ],
-        [ 'minute_before', '59' ],
-        [ 'second_before', '59' ],
+        [ 'date_since', '1900-01-01' ],
+        [ 'time_since', '00:00:00' ],
+        [ 'date_before', '2099-12-31' ],
+        [ 'time_before', '00:00:00' ],
     ].forEach(([ field, val ]) => {
         if (window.localStorage.getItem(field) === undefined || window.localStorage.getItem(field) === 'undefined') {
             window.localStorage.setItem(field, val);
@@ -123,7 +94,7 @@ $(function () {
         });
     });
 
-    [ 'year', 'month', 'day', 'hour', 'minute', 'second' ].forEach(field => {
+    [ 'date', 'time' ].forEach(field => {
         $(`input[name="${field}_on"]`).on('change', function () {
             $(`input[name="${field}_off"]`).val(
                 $(`input[name="${field}_on"]`).val()

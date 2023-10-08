@@ -19,10 +19,10 @@
             <h1>Amateur Radio Station Logs</h1>
             <nav>
                 <ul>
-                    <li><a href="/qsos/new">Enter a QSO</a></li>
-                    <li><a href="/qsos/import">Import QSOs</a></li>
-                    <li><a href="/qsos/export">Export QSOs</a></li>
-                    <li><a href="/qsos">View all QSOs</a></li>
+                    <li><a href="/qsos/new">Create</a></li>
+                    <li><a href="/qsos/import">Import</a></li>
+                    <li><a href="/qsos/export">Export</a></li>
+                    <li><a href="/qsos">List</a></li>
                 </ul>
             </nav>
         </header>
@@ -35,29 +35,21 @@
 
                     <div class="form-row">
                         <div class="form-col-label">
-                            <label for="since">Since</label>
+                            <label for="since">Since UTC</label>
                         </div>
                         <div class="form-col-input" id="since">
-                            <input type="text" id="year_since" name="year_since" pattern="(19|20)[0-9]{2}" size="4" maxlength="4" placeholder="Year" required /> -
-                            <input type="text" id="month_since" name="month_since" pattern="((0[1-9])|(1[012]))" size="2" maxlength="2" placeholder="Month" required /> -
-                            <input type="text" id="day_since" name="day_since" pattern="((0[1-9])|([12][0-9])|30|31)" size="2" maxlength="2" placeholder="Day" required /> @
-                            <input type="text" id="hour_since" name="hour_since" pattern="(([01][0-9])|(2[0123]))" size="2" maxlength="2" placeholder="Hour" required /> :
-                            <input type="text" id="minute_since" name="minute_since" pattern="[0-5][0-9]" size="2" maxlength="2" placeholder="Minute" required /> :
-                            <input type="text" id="second_since" name="second_since" pattern="[0-5][0-9]" size="2" maxlength="2" placeholder="Second" required />
+                            <input type="date" id="date_since" name="date_since" required /> @
+                            <input type="time" id="time_since" name="time_since" required />
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-col-label">
-                            <label for="before">Before</label>
+                            <label for="before">Before UTC</label>
                         </div>
                         <div class="form-col-input" id="before">
-                            <input type="text" id="year_before" name="year_before" pattern="(19|20)[0-9]{2}" size="4" maxlength="4" placeholder="Year" required /> -
-                            <input type="text" id="month_before" name="month_before" pattern="((0[1-9])|(1[012]))" size="2" maxlength="2" placeholder="Month" required /> -
-                            <input type="text" id="day_before" name="day_before" pattern="((0[1-9])|([12][0-9])|30|31)" size="2" maxlength="2" placeholder="Day" required /> @
-                            <input type="text" id="hour_before" name="hour_before" pattern="(([01][0-9])|(2[0123]))" size="2" maxlength="2" placeholder="Hour" required /> :
-                            <input type="text" id="minute_before" name="minute_before" pattern="[0-5][0-9]" size="2" maxlength="2" placeholder="Minute" required /> :
-                            <input type="text" id="second_before" name="second_before" pattern="[0-5][0-9]" size="2" maxlength="2" placeholder="Second" required />
+                            <input type="date" id="date_before" name="date_before" required /> @
+                            <input type="time" id="time_before" name="time_before" required />
                         </div>
                     </div>
 
