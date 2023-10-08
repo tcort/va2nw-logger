@@ -24,9 +24,10 @@ function updateTimestamp() {
 
 const storedFields = [
     'mode', 'frequency', 'power',
-    'date_since', 'time_since', 'date_before', 'time_before',
-    'year_on', 'month_on', 'day_on', 'hour_on', 'minute_on', 'second_on',
-    'year_off', 'month_off', 'day_off', 'hour_off', 'minute_off', 'second_off',
+    'date_since', 'time_since',
+    'date_before', 'time_before',
+    'date_on', 'time_on',
+    'date_off', 'time_off',
     'now',
 ];
 
