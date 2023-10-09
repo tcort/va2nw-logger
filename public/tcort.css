@@ -15,7 +15,7 @@
  */
 
 /*
-    Version 2023.10.08a
+    Version 2023.10.09a
  */
 
 body {
@@ -249,9 +249,14 @@ progress {
     }
 }
 
-
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
 
+.callsign, input[type="text"] {
+    -webkit-font-feature-settings: "liga" on, "calt" on;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-family: 'Roboto Mono';
+}
