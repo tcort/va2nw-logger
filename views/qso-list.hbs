@@ -28,7 +28,29 @@
 
         <main>
             <section>
-                <h2>View all QSOSs ({{count}} QSOs)</h2>
+                <h3>Search</h3>
+                <form name="search" method="GET" action="/qsos">
+                    <div class="form-row">
+                        <div class="form-col-label">
+                            <label for="callsign">Callsign</label>
+                        </div>
+                        <div class="form-col-input">
+                            <input class="callsign" type="text" name="callsign" value="{{callsign}}" autofocus required />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-col-label">
+                            &nbsp;
+                        </div>
+                        <div class="form-col-input">
+                            <input type="hidden" name="since" value="1900-01-01T00:00:00Z" />
+                            <button type="submit" class="button-primary">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+            <section>
+                <h2>{{count}} QSOs</h2>
                 <table>
                     <thead>
                         <tr>
@@ -69,7 +91,7 @@
                 <div>
                     <p class="center">
                         {{#each pageNav}}
-                            <a href="/qsos?page={{page}}">{{label}}</a>
+                            <a href="/qsos?{{{query}}}">{{label}}</a>
                         {{/each}}
                     </p>
                 </div>
