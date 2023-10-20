@@ -35,7 +35,7 @@
                             <label for="callsign">Callsign</label>
                         </div>
                         <div class="form-col-input">
-                            <input class="callsign" type="text" name="callsign" value="{{callsign}}" autofocus required />
+                            <input class="callsign callsign_entry" id="callsign" type="text" name="callsign" size="10" value="{{callsign}}" autofocus autocomplete="off" required />
                         </div>
                     </div>
                     <div class="form-row">
@@ -110,6 +110,7 @@
 
         <script src="/jquery.min.js?ts={{ts}}"></script>
         <script src="/tcort.js?ts={{ts}}"></script>
+        <script src="/va2nw-logger.js?ts={{ts}}"></script>
 
     </body>
 </html>
