@@ -54,8 +54,9 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Date/Time On</th>
-                            <th>Date/Time Off</th>
+                            <th>Date</th>
+                            <th>Time On</th>
+                            <th>Time Off</th>
                             <th>Freq</th>
                             <th>Mode</th>
                             <th>Pwr</th>
@@ -68,6 +69,7 @@
                     <tbody>
                         {{#each qsos}}
                         <tr class="clickable-row" data-href="/qsos/{{qso_id}}">
+                            <td class="nowrap">{{dateon}}</td>
                             <td class="nowrap">{{timeon}}</td>
                             <td class="nowrap">{{timeoff}}</td>
                             <td class="nowrap">{{frequency}}</td>
