@@ -96,8 +96,8 @@
                             <label for="rst">RST Sent/Rcvd</label>
                         </div>
                         <div class="form-col-input" id="rst">
-                            <input type="text" id="rst_sent" name="rst_sent" pattern="[1-5][1-9][1-9]?" size="3" maxlength="3" placeholder="Signal Report" value="{{qso.rst_sent}}" required />
-                            <input type="text" id="rst_rcvd" name="rst_rcvd" pattern="[1-5][1-9][1-9]?" size="3" maxlength="3" placeholder="Signal Report" value="{{qso.rst_rcvd}}" required />
+                            <input type="text" id="rst_sent" name="rst_sent" pattern="-?[0-9]{1,3}" size="3" maxlength="3" placeholder="Signal Report" value="{{qso.rst_sent}}" required />
+                            <input type="text" id="rst_rcvd" name="rst_rcvd" pattern="-?[0-9]{1,3}" size="3" maxlength="3" placeholder="Signal Report" value="{{qso.rst_rcvd}}" required />
                         </div>
                     </div>
 
