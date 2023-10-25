@@ -28,7 +28,7 @@ const storedFields = [
     'date_before', 'time_before',
     'date_on', 'time_on',
     'date_off', 'time_off',
-    'now',
+    'now', 'station_callsign',
 ];
 
 function defaultLocalStorage() {

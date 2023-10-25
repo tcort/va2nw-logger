@@ -33,6 +33,15 @@
 
                     <div class="form-row">
                         <div class="form-col-label">
+                            <label for="station_callsign">Station Callsign</label>
+                        </div>
+                        <div class="form-col-input">
+                            <input class="callsign callsign_entry" id="station_callsign" type="text" name="station_callsign" size="10" required autocomplete="off" value="{{qso.station_callsign}}" />
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-col-label">
                             <label for="timeon">UTC Time On</label>
                         </div>
                         <div class="form-col-input" id="timeon">
@@ -83,7 +92,7 @@
 
                     <div class="form-row">
                         <div class="form-col-label">
-                            <label for="callsign">Station Callsign</label>
+                            <label for="callsign">Callsign</label>
                         </div>
                         <div class="form-col-input">
                             <input class="callsign callsign_entry" id="callsign" type="text" name="callsign" size="10" autofocus required autocomplete="off" value="{{qso.callsign}}" />
