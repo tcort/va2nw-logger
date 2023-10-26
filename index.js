@@ -23,6 +23,7 @@ app.set('views', path.join(__dirname, 'views'));
 if (process.env.NODE_ENV === 'production') {
     app.enable('view cache');
 }
+app.set('etag', false);
 
 app.use(require('./lib/routes'));
 
