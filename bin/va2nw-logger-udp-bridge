@@ -1,0 +1,43 @@
+'use strict';
+
+/* config */
+
+const MCAST_PORT = '2237';
+const MCAST_ADDR = '224.0.0.1';
+const LOG_DEST = 'http://127.0.0.1/qsos';
+
+const ADDITIONS = {
+    MY_RIG:wq
+};
+
+// with HTTP BASIC Authorization
+// const LOG_DEST = 'http://guest:guest@127.0.0.1/qsos';
+
+const dgram = require('node:dgram');
+
+const server = dgram.createSocket({
+    type: 'udp4',
+    reuseAddr: true,
+});
+
+server.on('error', (err) => {
+    console.error(`server error:\n${err.stack}`);
+    server.close();
+});
+
+server.on('message', (msg, rinfo) => {
+    console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
+    // TODO parse
+    // TODO upload
+});
+
+server.on('listening', () => {
+    const address = server.address();
+    console.log(`server listening ${address.address}:${address.port}`);
+});
+
+server.bind(MCAST_PORT, () => {
+    server.setBroadcast(true);
+    server.setMulticastTTL(128);
+    server.addMembership(MCAST_ADDR);
+});

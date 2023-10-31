@@ -7,6 +7,11 @@
     "start": "node index.js",
     "test": "mocha"
   },
+  "bin": {
+    "va2nw-logger-master-scp-loader": "bin/va2nw-logger-master-scp-loader",
+    "va2nw-logger-skcc-roster-loader": "bin/va2nw-logger-skcc-roster-loader",
+    "va2nw-logger-udp-bridge": "bin/va2nw-logger-udp-bridge"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tcort/va2nw-logger.git"
