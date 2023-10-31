@@ -1,35 +1,32 @@
+function setNow(suffix = '') {
+
+    const now = new Date();
+    const iso8601 = now.toISOString().length === 27 ? now.toISOString().slice(3) : now.toISOString();
+
+    const year = iso8601.slice(0, 4);
+    const month = iso8601.slice(5, 7);
+    const day = iso8601.slice(8, 10);
+    const hour = iso8601.slice(11, 13);
+    const minute = iso8601.slice(14, 16);
+    const second = iso8601.slice(17, 19);
+
+
+    $(`select[name="YEAR${suffix}"]`).val(year).change();
+    $(`select[name="MONTH${suffix}"]`).val(month).change();
+    $(`select[name="DAY${suffix}"]`).val(day).change();
+    $(`select[name="HOUR${suffix}"]`).val(hour).change();
+    $(`select[name="MINUTE${suffix}"]`).val(minute).change();
+    $(`select[name="SECOND${suffix}"]`).val(second).change();
+}
+
 function updateTimestamp() {
 
     if ($('input[name="NOW"]').is(':checked')) {
 
-        const now = new Date();
-        const iso8601 = now.toISOString().length === 27 ? now.toISOString().slice(3) : now.toISOString();
-
-        const year = iso8601.slice(0, 4);
-        const month = iso8601.slice(5, 7);
-        const day = iso8601.slice(8, 10);
-        const hour = iso8601.slice(11, 13);
-        const minute = iso8601.slice(14, 16);
-        const second = iso8601.slice(17, 19);
-
         if ($('input[name="CALL"]').val().trim() === '') {
-
-            $('select[name="YEAR"]').val(year).change();
-            $('select[name="MONTH"]').val(month).change();
-            $('select[name="DAY"]').val(day).change();
-            $('select[name="HOUR"]').val(hour).change();
-            $('select[name="MINUTE"]').val(minute).change();
-            $('select[name="SECOND"]').val(second).change();
-
+            setNow('');
         } else {
-
-            $('select[name="YEAR_OFF"]').val(year).change();
-            $('select[name="MONTH_OFF"]').val(month).change();
-            $('select[name="DAY_OFF"]').val(day).change();
-            $('select[name="HOUR_OFF"]').val(hour).change();
-            $('select[name="MINUTE_OFF"]').val(minute).change();
-            $('select[name="SECOND_OFF"]').val(second).change();
-
+            setNow('_OFF');
         }
     }
 
@@ -170,21 +167,11 @@ $(function () {
 
     });
 
-    $('#show-new-entry').click();
-
-    const hashNav = () => {
-        if ([
-            '#show-new-entry',
-            '#show-logs',
-            '#show-stats',
-            '#show-import-export',
-        ].includes(window.location.hash)) {
-            $(window.location.hash).click();
-        }
-    };
-
-    $(window).on('hashchange', () => hashNav());
-    hashNav();
+    [ 'on', 'off' ].forEach(suffix => {
+        $(`button[id="time${suffix}_now"]`).on('click', function () {
+            setNow(suffix === 'on' ? '' : '_OFF');
+        });
+    });
 
 });
 
