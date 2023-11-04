@@ -1,3 +1,4 @@
 node_modules/
 logbook.sqlite3
 backups/
+*~

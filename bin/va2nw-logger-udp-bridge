@@ -29,7 +29,10 @@ server.on('error', (err) => {
 server.on('message', (input, rinfo) => {
     console.log(`server got: ${input} from ${rinfo.address}:${rinfo.port}`);
     try {
+require('fs').writeFileSync('sample', input);
         const adif = ADIF.parse(input);
+console.log(adif);
+console.log(adif.qsos);
         if (adif.qsos.length === 0) {
             return; // no qsos found in message, nothing to do.
         }
