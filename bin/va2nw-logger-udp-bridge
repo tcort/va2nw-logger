@@ -27,7 +27,7 @@ server.on('error', (err) => {
 });
 
 server.on('message', (input, rinfo) => {
-    console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
+    console.log(`server got: ${input} from ${rinfo.address}:${rinfo.port}`);
     try {
         const adif = ADIF.parse(input);
         if (adif.qsos.length === 0) {
