@@ -9,7 +9,6 @@ const MCAST_ADDR = '224.0.0.1';
 const LOG_DEST = 'http://127.0.0.1/qsos';
 
 const ADDITIONS = {
-    MY_RIG:wq
 };
 
 // with HTTP BASIC Authorization
