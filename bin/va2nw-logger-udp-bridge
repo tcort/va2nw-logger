@@ -1,5 +1,7 @@
 'use strict';
 
+const { ADIF } = require('tcadif');
+
 /* config */
 
 const MCAST_PORT = '2237';
@@ -25,10 +27,19 @@ server.on('error', (err) => {
     server.close();
 });
 
-server.on('message', (msg, rinfo) => {
+server.on('message', (input, rinfo) => {
     console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
-    // TODO parse
-    // TODO upload
+    try {
+        const adif = ADIF.parse(input);
+        if (adif.qsos.length === 0) {
+            return; // no qsos found in message, nothing to do.
+        }
+
+	console.log(adif.stringify());
+        // TODO upload
+    } catch (err) {
+        console.log('err', err);
+    }
 });
 
 server.on('listening', () => {
