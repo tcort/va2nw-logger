@@ -9,7 +9,7 @@ const { ADIF } = require('tcadif');
 
 const MCAST_PORT = '2237';
 const MCAST_ADDR = '224.0.0.1';
-const LOG_DEST = 'http://127.0.0.1/logs';
+const LOG_DEST = 'http://127.0.0.1:3000/logs';
 
 const ADDITIONS = {
     MY_RIG: 'Yaesu FT-891',
@@ -20,13 +20,16 @@ const ADDITIONS = {
 
 function upload(json) {
     const dest = new URL(LOG_DEST);
-    const data = JSON.stringify(json);
+    const data = JSON.stringify(Object.assign({}, ADDITIONS, json));
 
     const httplib = dest.protocol === 'https' ? https : http;
 
     const options = url.urlToHttpOptions(dest);
-    options['Content-Type'] = 'application/json';
-    options['Content-Length'] = data.length;
+    options.method = 'POST';
+    options.headers = {
+        'Content-Type': 'application/json',
+        'Content-Length': data.length,
+    };
 
     const req = httplib.request(options, (res) => {
         let data = '';
@@ -68,8 +71,7 @@ server.on('message', (input, rinfo) => {
             return; // no qsos found in message, nothing to do.
         }
 
-	console.log(adif.stringify());
-        // TODO upload
+        upload(adif.toObject());
     } catch (err) {
         console.log('err', err);
     }
