@@ -1,18 +1,53 @@
 'use strict';
 
+const url = require('url');
+const http = require('http');
+const https = require('https');
 const { ADIF } = require('tcadif');
 
 /* config */
 
 const MCAST_PORT = '2237';
 const MCAST_ADDR = '224.0.0.1';
-const LOG_DEST = 'http://127.0.0.1/qsos';
+const LOG_DEST = 'http://127.0.0.1/logs';
 
 const ADDITIONS = {
+    MY_RIG: 'Yaesu FT-891',
 };
 
 // with HTTP BASIC Authorization
-// const LOG_DEST = 'http://guest:guest@127.0.0.1/qsos';
+// const LOG_DEST = 'https://guest:guest@127.0.0.1/logs';
+
+function upload(json) {
+    const dest = new URL(LOG_DEST);
+    const data = JSON.stringify(json);
+
+    const httplib = dest.protocol === 'https' ? https : http;
+
+    const options = url.urlToHttpOptions(dest);
+    options['Content-Type'] = 'application/json';
+    options['Content-Length'] = data.length;
+
+    const req = httplib.request(options, (res) => {
+        let data = '';
+
+        console.log('Status Code:', res.statusCode);
+
+        res.on('data', (chunk) => {
+            data += chunk;
+        });
+
+        res.on('end', () => {
+            console.log('Body: ', JSON.parse(data));
+        });
+
+    }).on("error", (err) => {
+        console.log("Error: ", err.message);
+    });
+
+    req.write(data);
+    req.end();
+}
 
 const dgram = require('node:dgram');
 

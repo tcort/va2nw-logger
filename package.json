@@ -8,9 +8,9 @@
     "test": "mocha"
   },
   "bin": {
-    "va2nw-logger-master-scp-loader": "bin/va2nw-logger-master-scp-loader",
-    "va2nw-logger-skcc-roster-loader": "bin/va2nw-logger-skcc-roster-loader",
-    "va2nw-logger-udp-bridge": "bin/va2nw-logger-udp-bridge"
+    "va2nw-logger-master-scp-loader": "bin/va2nw-logger-master-scp-loader.js",
+    "va2nw-logger-skcc-roster-loader": "bin/va2nw-logger-skcc-roster-loader.js",
+    "va2nw-logger-udp-bridge": "bin/va2nw-logger-udp-bridge.js"
   },
   "repository": {
     "type": "git",
@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/tcort/va2nw-logger#readme",
   "dependencies": {
-    "async": "^3.2.4",
+    "async": "^3.2.5",
     "bytes": "^3.1.2",
     "comb-uuid": "^1.0.2",
     "cors": "^2.8.5",
