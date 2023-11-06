@@ -9,14 +9,14 @@ const { ADIF } = require('tcadif');
 
 const MCAST_PORT = '2237';
 const MCAST_ADDR = '224.0.0.1';
-const LOG_DEST = 'http://127.0.0.1:3000/logs';
+const LOG_DEST = 'http://localhost:3000/logs';
 
 const ADDITIONS = {
     MY_RIG: 'Yaesu FT-891',
 };
 
 // with HTTP BASIC Authorization
-// const LOG_DEST = 'https://guest:guest@127.0.0.1/logs';
+// const LOG_DEST = 'https://guest:guest@localhost:3000/logs';
 
 function upload(json) {
     const dest = new URL(LOG_DEST);
@@ -71,7 +71,7 @@ server.on('message', (input, rinfo) => {
             return; // no qsos found in message, nothing to do.
         }
 
-        upload(adif.toObject());
+        adif.qsos.forEach(qso => upload(qso.toObject()));
     } catch (err) {
         console.log('err', err);
     }
