@@ -7,12 +7,13 @@ const { ADIF } = require('tcadif');
 
 /* config */
 
+// TODO move to config file
 const MCAST_PORT = '2237';
 const MCAST_ADDR = '224.0.0.1';
 const LOG_DEST = 'http://localhost:3000/logs';
 
 const ADDITIONS = {
-    MY_RIG: 'Yaesu FT-891',
+    // MY_RIG: 'Yaesu FT-891',
 };
 
 // with HTTP BASIC Authorization
@@ -22,7 +23,7 @@ function upload(json) {
     const dest = new URL(LOG_DEST);
     const data = JSON.stringify(Object.assign({}, ADDITIONS, json));
 
-    const httplib = dest.protocol === 'https' ? https : http;
+    const httplib = dest.protocol === 'https:' ? https : http;
 
     const options = url.urlToHttpOptions(dest);
     options.method = 'POST';
