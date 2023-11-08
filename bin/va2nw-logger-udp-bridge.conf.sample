@@ -1,0 +1,35 @@
+{
+    "input": {
+        "MCAST_PORT": '2237',
+        "MCAST_ADDR": '224.0.0.1',
+    },
+    "output": {
+        "LOG_DEST": "http://localhost:3000/logs"
+        "ADDITIONS": {
+            "MY_ALTITUDE": "95.3",
+            "MY_ANTENNA": "Homebrew EFRW 29' + 17'",
+            "MY_ARRL_SECT": "QC",
+            "MY_CITY": "Gatineau",
+            "MY_CNTY": "Outaouais",
+            "MY_COUNTRY": "CANADA",
+            "MY_CQ_ZONE": "05",
+            "MY_DXCC": "1",
+            "MY_FISTS": "14205",
+            "MY_GRIDSQUARE": "FN25CK55",
+            "MY_GRIDSQUARE_EXT": "DW",
+            "MY_ITU_ZONE": "04",
+            "MY_LAT": "N045 26.488",
+            "MY_LON": "W075 47.422",
+            "MY_NAME": "Thomas Cort",
+            "MY_POSTAL_CODE": "J9A 3K5",
+            "MY_RIG": "Yaesu FT-891",
+            "MY_STATE": "QC",
+            "MY_STREET": "rue de l'Arc-en-Ciel",
+            "OPERATOR": "VA2EPR",
+            "STATION_CALLSIGN": "VA2EPR",
+            "OWNER_CALLSIGN": "VA2EPR",
+            "QSO_RANDOM": "Y"
+        }
+    }
+}
+

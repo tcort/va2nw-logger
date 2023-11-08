@@ -1,27 +1,33 @@
 'use strict';
 
-const url = require('url');
+const { ADIF } = require('tcadif');
+const dgram = require('dgram');
+const fs = require('fs');
 const http = require('http');
 const https = require('https');
-const { ADIF } = require('tcadif');
+const path = require('path');
+const url = require('url');
 
 /* config */
 
-// TODO move to config file
-const MCAST_PORT = '2237';
-const MCAST_ADDR = '224.0.0.1';
-const LOG_DEST = 'http://localhost:3000/logs';
+let userConfig = {};
+try {
+    userConfig = require('./va2nw-logger-udp-bridge.conf');
+} catch (e) { /* ignore errors */ }
 
-const ADDITIONS = {
-    // MY_RIG: 'Yaesu FT-891',
-};
+let defaultConfig = {};
+try {
+    defaultConfig = require('./va2nw-logger-udp-bridge.conf.defaults');
+} catch (e) { /* ignore errors */ }
 
-// with HTTP BASIC Authorization
-// const LOG_DEST = 'https://guest:guest@localhost:3000/logs';
+const config = Object.assign({}, defaultConfig, userConfig);
 
-function upload(json) {
-    const dest = new URL(LOG_DEST);
-    const data = JSON.stringify(Object.assign({}, ADDITIONS, json));
+/* uploader */
+
+function upload(qso) {
+    const dest = new URL(config.output.LOG_DEST);
+    const json = qso.toObject();
+    const data = JSON.stringify(Object.assign({}, config.output.ADDITIONS, json));
 
     const httplib = dest.protocol === 'https:' ? https : http;
 
@@ -36,6 +42,7 @@ function upload(json) {
         let data = '';
 
         console.log('Status Code:', res.statusCode);
+        console.log('LOG:', qso.stringify({ recordDelim: '\n', fieldDelim: ' ' }));
 
         res.on('data', (chunk) => {
             data += chunk;
@@ -53,7 +60,7 @@ function upload(json) {
     req.end();
 }
 
-const dgram = require('node:dgram');
+/* receiver */
 
 const server = dgram.createSocket({
     type: 'udp4',
@@ -72,7 +79,7 @@ server.on('message', (input, rinfo) => {
             return; // no qsos found in message, nothing to do.
         }
 
-        adif.qsos.forEach(qso => upload(qso.toObject()));
+        adif.qsos.forEach(qso => upload(qso));
     } catch (err) {
         console.log('err', err);
     }
@@ -83,8 +90,8 @@ server.on('listening', () => {
     console.log(`server listening ${address.address}:${address.port}`);
 });
 
-server.bind(MCAST_PORT, () => {
+server.bind(config.input.MCAST_PORT, () => {
     server.setBroadcast(true);
     server.setMulticastTTL(128);
-    server.addMembership(MCAST_ADDR);
+    server.addMembership(config.input.MCAST_ADDR);
 });
