@@ -12,13 +12,17 @@ const url = require('url');
 
 let userConfig = {};
 try {
-    userConfig = require('./va2nw-logger-udp-bridge.conf');
-} catch (e) { /* ignore errors */ }
+    userConfig = JSON.parse(fs.readFileSync('./va2nw-logger-udp-bridge.conf').toString());
+} catch (e) {
+    console.error('Trouble loading user config', e);
+}
 
 let defaultConfig = {};
 try {
-    defaultConfig = require('./va2nw-logger-udp-bridge.conf.defaults');
-} catch (e) { /* ignore errors */ }
+    defaultConfig = JSON.parse(fs.readFileSync('./va2nw-logger-udp-bridge.conf.defaults').toString());
+} catch (e) {
+    console.error('Trouble loading default config', e);
+}
 
 const config = Object.assign({}, defaultConfig, userConfig);
 
@@ -27,7 +31,7 @@ const config = Object.assign({}, defaultConfig, userConfig);
 function upload(qso) {
     const dest = new URL(config.output.LOG_DEST);
     const json = qso.toObject();
-    const data = JSON.stringify(Object.assign({}, config.output.ADDITIONS, json));
+    const body = JSON.stringify(Object.assign({}, config.output.ADDITIONS, json));
 
     const httplib = dest.protocol === 'https:' ? https : http;
 
@@ -35,28 +39,29 @@ function upload(qso) {
     options.method = 'POST';
     options.headers = {
         'Content-Type': 'application/json',
-        'Content-Length': data.length,
+        'Content-Length': body.length,
     };
 
     const req = httplib.request(options, (res) => {
         let data = '';
 
-        console.log('Status Code:', res.statusCode);
-        console.log('LOG:', qso.stringify({ recordDelim: '\n', fieldDelim: ' ' }));
+        console.log('Code:', res.statusCode);
+        console.log('Hdrs:', res.headers);
+        console.log('SENT:', body);
 
         res.on('data', (chunk) => {
             data += chunk;
         });
 
         res.on('end', () => {
-            console.log('Body: ', JSON.parse(data));
+            console.log('RECV: ', data);
         });
 
     }).on("error", (err) => {
         console.log("Error: ", err.message);
     });
 
-    req.write(data);
+    req.write(body);
     req.end();
 }
 

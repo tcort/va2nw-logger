@@ -1,10 +1,10 @@
 {
     "input": {
-        "MCAST_PORT": '2237',
-        "MCAST_ADDR": '224.0.0.1',
+        "MCAST_PORT": "2237",
+        "MCAST_ADDR": "224.0.0.1"
     },
     "output": {
-        "LOG_DEST": "http://localhost:3000/logs"
+        "LOG_DEST": "http://localhost:3000/logs",
         "ADDITIONS": { }
     }
 }
