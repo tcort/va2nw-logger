@@ -1,6 +1,6 @@
 'use strict';
 
-const { QSO } = require('tcadif');
+const { ADIF, QSO } = require('tcadif');
 const dgram = require('dgram');
 const fs = require('fs');
 const http = require('http');
@@ -47,7 +47,9 @@ function upload(qso) {
 
         res.on('data', (chunk) => data += chunk);
         res.on('end', () => {
-            console.log(`${res.statusCode}:`, new QSO(JSON.parse(data))).stringify({ fieldDelim: ' ' });
+            const json = JSON.parse(data);
+            const qso = new QSO(json);
+            console.log(`${res.statusCode}:`, qso.stringify({ fieldDelim: ' '}));
         });
 
     }).on("error", (err) => {
