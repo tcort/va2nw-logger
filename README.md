@@ -13,6 +13,7 @@ Amateur radio contact logging.
 - Auto-suggest callsign from logs, SKCC roster, and Super Check Partials.
 - Supports SOTA, POTA, and IOTA.
 - Compatible with <a href="https://www.hamstats.com/">HamStats</a>.
+- Interfaces with WSJT-X to log FT8 and other digital mode QSOs.
 
 ## Local Installation
 
