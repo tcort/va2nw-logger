@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "udp-bridge": "cd bin && node va2nw-logger-udp-bridge.js",
     "test": "mocha"
   },
   "bin": {
