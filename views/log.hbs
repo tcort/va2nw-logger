@@ -240,6 +240,23 @@
             </section>
 
             <section>
+                <h2>Export</h2>
+                <form method="get" action="/logs/{{log.APP_TCADIF_QSO_ID}}">
+                    Format:
+                        <select name="fmt">
+                            <option value="adi">ADIF</option>
+                            <option value="cab">Cabrillo</option>
+                            <option value="csv">CSV</option>
+                            <option value="json">JSON</option>
+                        </select>
+                        <br/>
+                    <input type="hidden" name="dl" value="1" />
+                    <br/>
+                    <input type="submit" value="Export"/>
+                </form>
+            </section>
+
+            <section>
                 <h2>Danger Zone</h2>
                 <form method="post" action="/logs/{{log.APP_TCADIF_QSO_ID}}?_method=DELETE" onsubmit="return confirm('Are you sure you want to delete this log entry?')">
                     <input type="submit" value="Delete Forever"/>
