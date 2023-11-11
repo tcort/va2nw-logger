@@ -12,14 +12,14 @@ const url = require('url');
 
 let userConfig = {};
 try {
-    userConfig = JSON.parse(fs.readFileSync('./va2nw-logger-udp-bridge.conf').toString());
+    userConfig = JSON.parse(fs.readFileSync(path.join(__dirname, 'va2nw-logger-udp-bridge.conf')).toString());
 } catch (e) {
     console.error('Trouble loading user config', e);
 }
 
 let defaultConfig = {};
 try {
-    defaultConfig = JSON.parse(fs.readFileSync('./va2nw-logger-udp-bridge.conf.defaults').toString());
+    defaultConfig = JSON.parse(fs.readFileSync(path.join(__dirname, 'va2nw-logger-udp-bridge.conf.defaults')).toString());
 } catch (e) {
     console.error('Trouble loading default config', e);
 }
