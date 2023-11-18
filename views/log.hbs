@@ -44,6 +44,10 @@
                             <td>{{log.MODE}}</td>
                         </tr>
                         <tr>
+                            <th>Submode</th>
+                            <td>{{log.SUBMODE}}</td>
+                        </tr>
+                        <tr>
                             <th>Callsign</th>
                             <td><span class="callsign">{{log.CALL}}</span></td>
                         </tr>
@@ -99,6 +103,14 @@
                             <th>TEN-TEN</th>
                             <td>{{log.TEN_TEN}}</td>
                         </tr>
+                        <tr>
+                            <th>E-mail</th>
+                            <td><a href="mailto:{{log.EMAIL}}">{{log.EMAIL}}</a></td>
+                        </tr>
+                        <tr>
+                            <th>Website</th>
+                            <td><a href="{{log.WEB}}">{{log.WEB}}</a></td>
+                        </tr>
                     </tbody>
                 </table>
             </section>
@@ -122,6 +134,10 @@
                         <tr>
                             <th>ARRL Section</th>
                             <td>{{log.ARRL_SECT}}</td>
+                        </tr>
+                        <tr>
+                            <th>City</th>
+                            <td>{{log.QTH}}</td>
                         </tr>
                         <tr>
                             <th>State/Province</th>
@@ -154,6 +170,26 @@
                         <tr>
                             <th>Exchange Received</th>
                             <td>{{log.SRX}} {{log.SRX_STRING}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <h2>QSL Information</h2>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Sent</th>
+                            <td>{{#if log.QSL_SENT}}Yes{{else}}No{{/if}}</td>
+                        </tr>
+                        <tr>
+                            <th>Received</th>
+                            <td>{{#if log.QSL_RCVD}}Yes{{else}}No{{/if}}</td>
+                        </tr>
+                        </tr>
+                            <th>Message</th>
+                            <td>{{log.QSLMSG}}</td>
                         </tr>
                     </tbody>
                 </table>
