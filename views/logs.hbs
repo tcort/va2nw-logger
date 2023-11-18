@@ -42,7 +42,8 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Date/Time</th>
+                            <th>Date</th>
+                            <th>Time</th>
                             <th>Freq</th>
                             <th>Mode</th>
                             <th>Pwr</th>
@@ -54,7 +55,8 @@
                     <tbody>
                         {{#each logs}}
                         <tr class="clickable-row" data-href="/logs/{{APP_TCADIF_QSO_ID}}">
-                            <td class="nowrap">{{DATE_HUMAN}} {{TIME_HUMAN}}</td>
+                            <td class="nowrap">{{DATE_HUMAN}}</td>
+                            <td class="nowrap">{{TIME_HUMAN}}</td>
                             <td class="nowrap">{{FREQ}}</td>
                             <td class="nowrap center">{{MODE}}</td>
                             <td class="nowrap center">{{TX_PWR}}</td>
