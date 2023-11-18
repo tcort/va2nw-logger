@@ -31,8 +31,8 @@
                 <h2>Search</h2>
                 <form name="search" method="GET" action="/logs">
                     Search by callsign:
-                    <input id="callsign_search" type="text" name="callsign" placeholder="callsign" list="callsign_search_suggestions" />
-                    <datalist id="callsign_search_suggestions"></datalist>
+                    <input id="callsign_entry" type="text" name="callsign" size="10" class="callsign" placeholder="callsign" list="callsign_entry_suggestions" autocomplete="off" autofocus required />
+                    <datalist id="callsign_entry_suggestions"></datalist>
                     <input type="hidden" name="since" value="1900-01-01T00:00:00Z" />
                     <input type="submit" value="Search" />
                 </form>
