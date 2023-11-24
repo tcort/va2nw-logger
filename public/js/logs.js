@@ -1,32 +1,21 @@
-function setNow(suffix = '') {
-
+function setNow(suffix = 'on') {
     const now = new Date();
     const iso8601 = now.toISOString().length === 27 ? now.toISOString().slice(3) : now.toISOString();
 
-    const year = iso8601.slice(0, 4);
-    const month = iso8601.slice(5, 7);
-    const day = iso8601.slice(8, 10);
-    const hour = iso8601.slice(11, 13);
-    const minute = iso8601.slice(14, 16);
-    const second = iso8601.slice(17, 19);
+    const date = iso8601.slice(0, 10);
+    const time = iso8601.slice(11, 19);
 
-
-    $(`select[name="YEAR${suffix}"]`).val(year).change();
-    $(`select[name="MONTH${suffix}"]`).val(month).change();
-    $(`select[name="DAY${suffix}"]`).val(day).change();
-    $(`select[name="HOUR${suffix}"]`).val(hour).change();
-    $(`select[name="MINUTE${suffix}"]`).val(minute).change();
-    $(`select[name="SECOND${suffix}"]`).val(second).change();
+    $(`input[name="date_${suffix}"]`).val(date).change();
+    $(`input[name="time_${suffix}"]`).val(time).change();
 }
 
 function updateTimestamp() {
 
-    if ($('input[name="NOW"]').is(':checked')) {
-
+    if ($('input[name="now"]').is(':checked')) {
         if ($('input[name="CALL"]').val().trim() === '') {
-            setNow('');
+            setNow('on');
         } else {
-            setNow('_OFF');
+            setNow('off');
         }
     }
 
@@ -36,13 +25,14 @@ function updateTimestamp() {
 const storedFields = [
     'QSO_RANDOM',
     'STATION_CALLSIGN', 'OPERATOR', 'MY_GRIDSQUARE', 'MODE', 'FREQ', 'TX_PWR',
-    'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'SECOND', 'NOW', 'MY_RIG', 'MY_ANTENNA',
-    'YEAR_OFF', 'MONTH_OFF', 'DAY_OFF', 'HOUR_OFF', 'MINUTE_OFF', 'SECOND_OFF',
     'MY_NAME', 'MY_POTA_REF', 'MY_SOTA_REF', 'MY_IOTA_REF', 'MY_DXCC', 'MY_STATE', 'MY_CQ_ZONE', 'MY_ITU_ZONE',
     'MY_COUNTRY', 'MY_ARRL_SECT', 'CONTEST_ID',
-    'BEFORE_YEAR', 'BEFORE_MONTH', 'BEFORE_DAY', 'BEFORE_HOUR', 'BEFORE_MINUTE', 'BEFORE_SECOND',
-    'SINCE_YEAR', 'SINCE_MONTH', 'SINCE_DAY', 'SINCE_HOUR', 'SINCE_MINUTE', 'SINCE_SECOND',
     'STX', 'STX_STRING', 'APP_TCADIF_MY_KEY', 'APP_TCADIF_MY_KEY_INFO',
+    'date_since', 'time_since',
+    'date_before', 'time_before',
+    'date_on', 'time_on',
+    'date_off', 'time_off',
+    'now',
 ];
 
 function saveLocalStorage() {
@@ -93,6 +83,10 @@ function defaultLocalStorage() {
         [ 'BEFORE_MINUTE', '59' ],
         [ 'BEFORE_SECOND', '59' ],
         [ 'QSO_RANDOM', 'Y' ],
+        [ 'date_since', '1900-01-01' ],
+        [ 'time_since', '00:00:00' ],
+        [ 'date_before', '2099-12-31' ],
+        [ 'time_before', '00:00:00' ],
     ].forEach(([ field, val ]) => {
         if (window.localStorage.getItem(field) === 'undefined') {
             window.localStorage.setItem(field, val);
@@ -118,17 +112,7 @@ $(function () {
 
     loadLocalStorage();
 
-    [ 'YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'SECOND' ].forEach(field => {
-        $(`select[name="${field}"]`).on('change', function () {
-            $(`select[name="${field}_OFF"]`).val(
-                $(`select[name="${field}"]`).find(":selected").val()
-            ).change();
-        });
-    });
-
     setInterval(() => saveLocalStorage(), 3000);
-
-    updateTimestamp();
 
     tctypeahead('#callsign_search', '#callsign_search_suggestions', completer('/callsigns?startsWith=', true));
     tctypeahead('#callsign_entry', '#callsign_entry_suggestions', completer('/callsigns?startsWith=', true));
@@ -169,10 +153,19 @@ $(function () {
 
     [ 'on', 'off' ].forEach(suffix => {
         $(`button[id="time${suffix}_now"]`).on('click', function () {
-            setNow(suffix === 'on' ? '' : '_OFF');
+            setNow(suffix);
         });
     });
 
+    [ 'date', 'time' ].forEach(field => {
+        $(`input[name="${field}_on"]`).on('change', function () {
+            $(`input[name="${field}_off"]`).val(
+                $(`input[name="${field}_on"]`).val()
+            ).change();
+        });
+    });
+
+    updateTimestamp();
 });
 
 
