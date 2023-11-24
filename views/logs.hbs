@@ -30,11 +30,25 @@
             <section>
                 <h2>Search</h2>
                 <form name="search" method="GET" action="/logs">
-                    Search by callsign:
-                    <input id="callsign_entry" type="text" name="callsign" size="10" class="callsign" placeholder="callsign" list="callsign_entry_suggestions" autocomplete="off" autofocus required />
-                    <datalist id="callsign_entry_suggestions"></datalist>
-                    <input type="hidden" name="since" value="1900-01-01T00:00:00Z" />
-                    <input type="submit" value="Search" />
+                    <div class="form-row">
+                        <div class="form-col-label">
+                            <label for="callsign_entry">By callsign</label>
+                        </div>
+                        <div class="form-col-input">
+                            <input id="callsign_entry" type="text" name="callsign" size="10" class="callsign" placeholder="callsign" list="callsign_entry_suggestions" autocomplete="callsign_entry" autofocus required />
+                            <datalist id="callsign_entry_suggestions"></datalist>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-col-label">
+                            &nbsp;
+                            <input type="hidden" name="since" value="1900-01-01T00:00:00Z" />
+                        </div>
+                        <div class="form-col-input">
+                            <input type="submit" value="Search" />
+                        </div>
+                    </div>
                 </form>
             </section>
             {{#if callsign}}

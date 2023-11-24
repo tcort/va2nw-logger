@@ -131,9 +131,11 @@ $(function () {
             .catch(err => console.log('error', err));
     });
 
-    $('#callsign_entry').on('input', function () {
-
+    $('input.callsign').on('input', function () {
         $(this).val($(this).val().toUpperCase().trim());
+    });
+
+    $('#callsign_entry').on('input', function () {
 
         const input = $(this).val();
 

@@ -46,7 +46,7 @@
                         <br/>
                     <div id="recent_qsos"></div>
                     Callsign:
-                        <input id="callsign_entry" type="text" name="CALL" size="10" list="callsign_entry_suggestions" autofocus required autocomplete="off" />
+                        <input id="callsign_entry" type="text" name="CALL" class="callsign" size="10" list="callsign_entry_suggestions" autofocus required autocomplete="callsign" />
                         <datalist id="callsign_entry_suggestions"></datalist>
                     RST Sent: <input type="text" name="RST_SENT" value="599" size="3" />
                     RST Recv: <input type="text" name="RST_RCVD" value="599" size="3" />
@@ -384,7 +384,7 @@
                             <br/>
                     <h3>Station</h3>
                     Station Callsign:
-                        <input type="text" name="STATION_CALLSIGN" size="10" />
+                        <input type="text" class="callsign" name="STATION_CALLSIGN" size="10" />
                     Rig:
                         <input id="my_rig_entry" type="text" name="MY_RIG" list="my_rig_suggestions"/>
                         <datalist id="my_rig_suggestions"></datalist>
@@ -643,7 +643,7 @@
 
                     <h3>Operator</h3>
                     Callsign:
-                        <input type="text" name="OPERATOR" size="10" />
+                        <input type="text" class="callsign" name="OPERATOR" size="10" />
                     Name:
                         <input type="text" name="MY_NAME" />
                         <br/>

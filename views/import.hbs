@@ -31,9 +31,22 @@
                 <h2>Import</h2>
                 <p>Load new QSO data from another logging program or updated QSO data for QSOs already in the database (e.g. LoTW reports).</p>
                 <form method="post" encType="multipart/form-data" action="/logs">
-                    ADIF File:
-                        <input type="file" name="adif_file" accept=".adi,.adif"/>
-                    <input type="submit" value="Import"/>
+                    <div class="form-row">
+                        <div class="form-col-label">
+                            <label for="adif_file">ADIF File</label>
+                        </div>
+                        <div class="form-col-input">
+                            <input type="file" id="adif_file" name="adif_file" accept=".adi,.adif"/>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-col-label">
+                            &nbsp;
+                        </div>
+                        <div class="form-col-input">
+                            <input type="submit" value="Import"/>
+                        </div>
+                    </div>
                 </form>
             </section>
         </main>
