@@ -49,7 +49,7 @@ function upload(qso) {
         res.on('end', () => {
             const json = JSON.parse(data);
             const qso = new QSO(json);
-            console.log(`${res.statusCode}:`, qso.stringify({ fieldDelim: ' '}));
+            console.log(`${res.statusCode}:`, qso.stringify({ fieldDelim: ' ', verbosity: 'compact' }));
         });
 
     }).on("error", (err) => {
