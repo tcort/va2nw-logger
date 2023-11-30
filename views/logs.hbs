@@ -86,7 +86,7 @@
                 </table>
             {{/if}}
             <section>
-                <h2><a name="logbook"></a>Logbook</h2>
+                <h2><a name="logbook"></a>Logbook ({{count}} Entries)</h2>
                 <table>
                     <thead>
                         <tr>
@@ -115,6 +115,20 @@
                         {{/each}}
                     </tbody>
                 </table>
+
+                <div>
+                    <p class="center">
+                        Page {{currentPage}} of {{npages}}
+                    </p>
+                </div>
+
+                <div>
+                    <p class="center">
+                        {{#each pageNav}}
+                            <a href="/logs?{{{query}}}">{{label}}</a>
+                        {{/each}}
+                    </p>
+                </div>
             </section>
         </main>
 
