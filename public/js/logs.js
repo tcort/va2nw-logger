@@ -28,6 +28,7 @@ const storedFields = [
     'MY_NAME', 'MY_POTA_REF', 'MY_SOTA_REF', 'MY_IOTA_REF', 'MY_DXCC', 'MY_STATE', 'MY_CQ_ZONE', 'MY_ITU_ZONE',
     'MY_COUNTRY', 'MY_ARRL_SECT', 'CONTEST_ID',
     'STX', 'STX_STRING', 'APP_TCADIF_MY_KEY', 'APP_TCADIF_MY_KEY_INFO',
+    'MY_ANTENNA', 'MY_RIG',
     'date_since', 'time_since',
     'date_before', 'time_before',
     'date_on', 'time_on',
