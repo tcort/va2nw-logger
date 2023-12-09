@@ -122,7 +122,12 @@ $(function () {
     tctypeahead('#app_tcadif_my_key_info_entry', '#app_tcadif_my_key_info_suggestions', completer('/app-tcadif-my-key-info?startsWith='));
 
     $('#skcc-roster-lookup').on('click', function () {
-        fetch('/skcc/' + encodeURIComponent($('input[name="CALL"]').val()))
+        const input = $('input[name="CALL"]').val().trim();
+        if (input.length === 0) {
+            return;
+        }
+
+        fetch('/skcc/' + encodeURIComponent(input))
             .then((response) => response.json())
             .then(member => {
                 $('input[name="SKCC"]').val(member.NR);
@@ -138,13 +143,17 @@ $(function () {
 
     $('#callsign_entry').on('input', function () {
 
-        const input = $(this).val();
+        $('#recent_qsos').html('');
+
+        const input = $(this).val().trim();
+        if (input.length === 0) {
+            return;
+        }
 
         fetch('/logs?limit=3&fmt=json&since=1900-01-01T00:00:00Z&order=desc&callsign=' + encodeURIComponent(input))
             .then((response) => response.json())
             .then(logs => {
                 if (logs.length === 0) {
-                    $('#recent_qsos').html('');
                     return;
                 }
                 const html = 'Recent QSOs: ' + logs.map((log, index) => `${log.TIMESTAMP.split('T')[0]} (${log.BAND})`).join(', ');
