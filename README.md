@@ -89,6 +89,7 @@ server {
     access_log /var/log/nginx/YOUR_DOMAIN_NAME_HERE.log combined;
 
     server_tokens off;
+    etag off;
 
     add_header Strict-Transport-Security "max-age=15552000; includeSubDomains; preload";
     add_header X-Content-Type-Options nosniff;
