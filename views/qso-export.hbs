@@ -52,6 +52,20 @@
                         </div>
                     </div>
 
+                    <div class="form-row">
+                        <div class="form-col-label">
+                            <label for="station_callsign">Station Callsign</label>
+                        </div>
+                        <div class="form-col-input">
+                            <select name="station_callsign" id="station_callsign" class="nosave">
+                                <option value="%">- Any -</option>
+                                {{#each station_callsigns}}
+                                    <option value="{{this}}">{{this}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+
                     <input type="hidden" name="page" value="0">
                     <input type="hidden" name="pageSize" value="1000000">
                     <input type="hidden" name="fmt" value="adi">
