@@ -50,11 +50,11 @@ function defaultLocalStorage() {
 
 function saveLocalStorage() {
     storedFields.forEach(field => {
-        let val = $(`[name="${field}"]`).val();
-        if (val === null && $(`[name="${field}"]`)?.[0]?.tagName === "SELECT") {
-            val = $(`[name="${field}"]`).find(":selected").val();
-        } else if ($(`[name="${field}"]`).is(':checkbox')) {
-            val = $(`[name="${field}"]`).is(':checked');
+        let val = $(`[name="${field}"]:not(.nosave)`).val();
+        if (val === null && $(`[name="${field}"]:not(.nosave)`)?.[0]?.tagName === "SELECT") {
+            val = $(`[name="${field}"]:not(.nosave)`).find(":selected").val();
+        } else if ($(`[name="${field}"]:not(.nosave)`).is(':checkbox')) {
+            val = $(`[name="${field}"]:not(.nosave)`).is(':checked');
         }
         if (val !== undefined) {
             window.localStorage.setItem(field, val);
@@ -64,10 +64,10 @@ function saveLocalStorage() {
 
 function loadLocalStorage() {
     storedFields.forEach(field => {
-        if ($(`[name="${field}"]`).is(':checkbox')) {
-            $(`[name="${field}"]`).prop('checked', window.localStorage.getItem(field) === 'true' ?? true);
+        if ($(`[name="${field}"]:not(.nosave)`).is(':checkbox')) {
+            $(`[name="${field}"]:not(.nosave)`).prop('checked', window.localStorage.getItem(field) === 'true' ?? true);
         } else {
-            $(`[name="${field}"]`).val(window.localStorage.getItem(field) ?? '').change();
+            $(`[name="${field}"]:not(.nosave)`).val(window.localStorage.getItem(field) ?? '').change();
         }
     });
 }
