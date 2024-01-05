@@ -75,6 +75,12 @@
                 </table>
                 <div class="flex">
                     <form method="get" action="/qsos/{{qso.qso_id}}">
+                        <input type="hidden" name="dl" value="1" />
+                        <input type="hidden" name="fmt" value="adi" />
+                        <button type="submit" class="button-primary">Export ADIF</button>
+                    </form>
+                    <span>&nbsp;</span>
+                    <form method="get" action="/qsos/{{qso.qso_id}}">
                         <input type="hidden" name="form" value="edit" />
                         <button type="submit" class="button-primary">Edit QSO</button>
                     </form>
