@@ -3,7 +3,7 @@
 NOW=`date +%Y%m%d%H%M%S`
 DIR="backup-${NOW}"
 ARC="${DIR}.tar"
-BACKUP_DIR=backups
+BACKUP_DIR=`pwd`/backups
 
 mkdir ${DIR}
 git archive --format=tar HEAD > ${DIR}/code-${NOW}.tar
