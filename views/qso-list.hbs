@@ -114,6 +114,7 @@
                 <table>
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Date</th>
                             <th>Time On</th>
                             <th>Time Off</th>
@@ -128,14 +129,15 @@
                     </thead>
                     <tbody>
                         {{#each qsos}}
-                        <tr class="clickable-row" data-href="/qsos/{{qso_id}}">
+                        <tr>
+                            <td><a href="/qsos/{{qso_id}}">{{qso_id}}</a></td>
                             <td class="nowrap">{{dateon}}</td>
                             <td class="nowrap">{{timeon}}</td>
                             <td class="nowrap">{{timeoff}}</td>
                             <td class="nowrap">{{frequency}}</td>
                             <td class="nowrap center">{{mode}}</td>
                             <td class="nowrap center">{{power}}</td>
-                            <td class="nowrap"><span class="callsign">{{callsign}}</span></td>
+                            <td class="nowrap"><a href="/qsos?callsign={{callsign}}&remarks=&station_callsign=%25&since=1900-01-01T00%3A00%3A00Z"><span class="callsign">{{callsign}}</span></a></td>
                             <td class="nowrap">{{rst_sent}} / {{rst_rcvd}}</td>
                             <td class="nowrap">{{qsl_sent}} / {{qsl_rcvd}}</td>
                             <td>{{remarks}}</td>
