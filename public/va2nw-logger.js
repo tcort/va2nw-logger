@@ -103,7 +103,7 @@ $(function () {
         });
     });
 
-    $('.callsign_entry').on('input', function () {
+    $('.callsign_entry').on('blur', function () {
         $(this).val($(this).val().toUpperCase().trim());
     });
 
