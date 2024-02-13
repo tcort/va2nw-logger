@@ -113,4 +113,26 @@ $(function () {
 
     updateTimestamp();
 
+    $('#callsign').on('input', function () {
+
+        $('#recent_qsos').html('');
+
+        const input = $(this).val().trim();
+        if (input.length === 0) {
+            return;
+        }
+
+        fetch('/qsos?page=0&pageSize=5&fmt=json&since=1900-01-01T00:00:00Z&order=desc&callsign=' + encodeURIComponent(input))
+            .then((response) => response.json())
+            .then(qsos => {
+                if (qsos.length === 0) {
+                    return;
+                }
+                const html = qsos.map(qso => `${qso.timeon.split('T')[0]} (${qso.frequency.toString().split('.')[0]} MHz)`).join(', ');
+                $('#recent_qsos').html(html);
+            })
+            .catch(err => console.log('error', err));
+
+    });
+
 });
