@@ -126,10 +126,15 @@ $(function () {
             .then((response) => response.json())
             .then(qsos => {
                 if (qsos.length === 0) {
+                    $('input[name="name"]').val('');
+                    $('input[name="spc"]').val('');
                     return;
                 }
                 const html = qsos.map(qso => `${qso.timeon.split('T')[0]} (${qso.frequency.toString().split('.')[0]} MHz)`).join(', ');
                 $('#recent_qsos').html(html);
+
+                $('input[name="name"]').val(qsos.map(qso => qso.name).find(name => typeof name === 'string' && name.length > 0) ?? '');
+                $('input[name="spc"]').val(qsos.map(qso => qso.spc).find(spc => typeof spc === 'string' && spc.length > 0) ?? '');
             })
             .catch(err => console.log('error', err));
 
