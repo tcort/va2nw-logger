@@ -2,6 +2,8 @@
 
 const cors = require('cors');
 const express = require('express');
+const fs = require('fs');
+const hbs = require('hbs');
 const http = require('http');
 const path = require('path');
 
@@ -16,6 +18,14 @@ app.set('case sensitive routing', true);
 app.set('trust proxy', true);
 app.disable('x-powered-by');
 app.use(cors({ origin: true, credentials: true }));
+
+fs
+    .readdirSync(path.join(__dirname, 'partials'))
+    .forEach(partialFile => {
+        const partialName = path.basename(partialFile, path.extname(partialFile));
+        const partialText = fs.readFileSync(path.join(__dirname, 'partials', partialFile)).toString();
+        hbs.registerPartial(partialName, partialText);
+    });
 
 /* rendering */
 app.set('view engine', 'hbs');
