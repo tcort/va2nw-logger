@@ -4,7 +4,7 @@
                             <label for="mode">Mode</label>
                         </div>
                         <div class="form-col-input">
-                            <select name="mode" required>
+                            <select name="mode" data-autoselect="{{qso.mode}}" required>
                                 {{#each enums.Mode}}
                                     <option value="{{@key}}">{{this}}</option>
                                 {{/each}}

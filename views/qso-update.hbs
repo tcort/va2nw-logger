@@ -31,148 +31,21 @@
                 <h2>Edit a QSO</h2>
                 <form method="post" action="/qsos/{{qso.qso_id}}?_method=PUT">
 
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            <label for="station_callsign">Station Callsign</label>
-                        </div>
-                        <div class="form-col-input">
-                            <input class="callsign callsign_entry" id="station_callsign" type="text" name="station_callsign" size="10" required autocomplete="off" value="{{qso.station_callsign}}" />
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            <label for="operator">Operator</label>
-                        </div>
-                        <div class="form-col-input">
-                            <input class="callsign callsign_entry" id="operator" type="text" name="operator" size="10" required autocomplete="off" value="{{qso.operator}}" />
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            <label for="timeon">UTC Time On</label>
-                        </div>
-                        <div class="form-col-input" id="timeon">
-                            <input type="date" id="date_on" name="date_on" value="{{qso.date_on}}" required /> @
-                            <input type="time" id="time_on" name="time_on" step="1" value="{{qso.time_on}}" required />
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            <label for="timeoff">UTC Time Off</label>
-                        </div>
-                        <div class="form-col-input" id="timeoff">
-                            <input type="date" id="date_off" name="date_off" value="{{qso.date_off}}" required /> @
-                            <input type="time" id="time_off" name="time_off" step="1" value="{{qso.time_off}}" required />
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            <label for="frequency">Frequency</label>
-                        </div>
-                        <div class="form-col-input">
-                            <input type="number" id="frequency" name="frequency" size="8" min="0" max="30000" step=".000001" placeholder="MHz" value="{{qso.frequency}}" required />
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            <label for="mode">Mode</label>
-                        </div>
-                        <div class="form-col-input">
-                            <select name="mode" data-autoselect="{{qso.mode}}" required>
-                                {{#each enums.Mode}}
-                                    <option value="{{@key}}">{{this}}</option>
-                                {{/each}}
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            <label for="power">Power</label>
-                        </div>
-                        <div class="form-col-input">
-                            <input type="number" id="power" name="power" size="8" min="0" max="10000" step=".001" placeholder="Watts" value="{{qso.power}}" required />
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            <label for="callsign">Callsign</label>
-                        </div>
-                        <div class="form-col-input">
-                            <input class="callsign callsign_entry" id="callsign" type="text" name="callsign" size="10" autofocus required autocomplete="off" value="{{qso.callsign}}" />
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-col-label">
-
-                            <label for="rst">RST Sent/Rcvd</label>
-                        </div>
-                        <div class="form-col-input" id="rst">
-                            <input type="text" id="rst_sent" name="rst_sent" pattern="-?[0-9]{1,3}" size="3" maxlength="3" placeholder="Signal Report" value="{{qso.rst_sent}}" required />
-                            <input type="text" id="rst_rcvd" name="rst_rcvd" pattern="-?[0-9]{1,3}" size="3" maxlength="3" placeholder="Signal Report" value="{{qso.rst_rcvd}}" required />
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            <label for="contacted_op">Contacted Operator's Callsign</label>
-                        </div>
-                        <div class="form-col-input">
-                            <input class="callsign callsign_entry" id="contacted_op" type="text" name="contacted_op" size="10" autocomplete="off" value="{{qso.contacted_op}}" />
-                        </div>
-                    </div>
-
-
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            <label for="spc">State/Province/Country</label>
-                        </div>
-                        <div class="form-col-input">
-                            <input type="text" id="spc" name="spc" size="3" placeholder="QTH" value="{{qso.spc}}" />
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            <label for="name">Name</label>
-                        </div>
-                        <div class="form-col-input">
-                            <input type="text" id="name" name="name" placeholder="OP" value="{{qso.name}}" />
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            <label for="skcc">SKCC</label>
-                        </div>
-                        <div class="form-col-input">
-                            <input type="text" id="skcc" name="skcc" placeholder="Member NR" value="{{qso.skcc}}" />
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            <label for="fists">FISTS</label>
-                        </div>
-                        <div class="form-col-input">
-                            <input type="text" id="fists" name="fists" placeholder="Member NR" value="{{qso.fists}}" />
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            <label for="remarks">Remarks</label><br>
-                        </div>
-                        <div class="form-col-input">
-                            <textarea name="remarks" id="remarks">{{qso.remarks}}</textarea>
-                        </div>
-                    </div>
+                    {{> station_callsign }}
+                    {{> operator }}
+                    {{> timeon }}
+                    {{> timeoff }}
+                    {{> frequency }}
+                    {{> mode }}
+                    {{> power }}
+                    {{> callsign }}
+                    {{> rst }}
+                    {{> contacted_op }}
+                    {{> spc }}
+                    {{> name }}
+                    {{> skcc }}
+                    {{> fists }}
+                    {{> remarks }}
 
                     <div class="form-row">
                         <div class="form-col-label">
