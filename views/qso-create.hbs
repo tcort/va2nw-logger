@@ -29,23 +29,38 @@
         <main>
             <section>
                 <h2>Enter a QSO</h2>
-                <form method="post" action="/qsos" class="autosave">
+                <form method="post" action="/qsos?input_mode={{input_mode}}" class="autosave">
 
-                    {{> station_callsign }}
-                    {{> operator }}
-                    {{> timeon }}
-                    {{> timeoff }}
-                    {{> frequency }}
-                    {{> mode }}
-                    {{> power }}
-                    {{> callsign_with_skcc }}
-                    {{> rst }}
-                    {{> contacted_op }}
-                    {{> spc }}
-                    {{> name }}
-                    {{> skcc }}
-                    {{> fists }}
-                    {{> remarks }}
+                    {{#if input_mode_default}}
+                        {{> station_callsign }}
+                        {{> operator }}
+                        {{> timeon }}
+                        {{> timeoff }}
+                        {{> frequency }}
+                        {{> mode }}
+                        {{> power }}
+                        {{> callsign_with_skcc }}
+                        {{> rst }}
+                        {{> contacted_op }}
+                        {{> spc }}
+                        {{> name }}
+                        {{> skcc }}
+                        {{> fists }}
+                        {{> remarks }}
+                    {{/if}}
+
+                    {{#if input_mode_sst}}
+                        {{> station_callsign }}
+                        {{> operator }}
+                        {{> timeon }}
+                        {{> timeoff }}
+                        {{> frequency }}
+                        {{> mode }}
+                        {{> power }}
+                        {{> callsign }}
+                        {{> name }}
+                        {{> spc }}
+                    {{/if}}
 
                     <div class="form-row">
                         <div class="form-col-label">
