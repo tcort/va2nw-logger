@@ -115,9 +115,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Date</th>
-                            <th>Time On</th>
-                            <th>Time Off</th>
+                            <th>Date / Time On</th>
                             <th>Freq</th>
                             <th>Mode</th>
                             <th>Pwr</th>
@@ -126,7 +124,6 @@
                             <th>QTH</th>
                             <th>OP</th>
                             <th>SKCC</th>
-                            <th>FISTS</th>
                             <th>Remarks</th>
                         </tr>
                     </thead>
@@ -134,9 +131,7 @@
                         {{#each qsos}}
                         <tr>
                             <td><a href="/qsos/{{qso_id}}">{{qso_id}}</a></td>
-                            <td class="nowrap">{{dateon}}</td>
-                            <td class="nowrap">{{timeon}}</td>
-                            <td class="nowrap">{{timeoff}}</td>
+                            <td class="nowrap">{{dateon}} {{timeon}}</td>
                             <td class="nowrap">{{frequency}}</td>
                             <td class="nowrap center">{{mode}}</td>
                             <td class="nowrap center">{{power}}</td>
@@ -145,7 +140,6 @@
                             <td class="nowrap">{{spc}}</td>
                             <td class="nowrap">{{name}}</td>
                             <td class="nowrap">{{skcc}}</td>
-                            <td class="nowrap">{{fists}}</td>
                             <td>{{remarks}}</td>
                         </tr>
                         {{/each}}
