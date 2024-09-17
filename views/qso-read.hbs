@@ -40,16 +40,16 @@
                             <td><span class="callsign">{{qso.operator}}</span></td>
                         </tr>
                         <tr>
-                            <th class="nowrap">Date/Time On</th>
+                            <th class="nowrap">Date / Time On</th>
                             <td>{{qso.dateon}} {{qso.timeon}} UTC</td>
                         </tr>
                         <tr>
-                            <th class="nowrap">Date/Time Off</th>
+                            <th class="nowrap">Date / Time Off</th>
                             <td>{{qso.dateoff}} {{qso.timeoff}} UTC</td>
                         </tr>
                         <tr>
-                            <th class="nowrap">Frequency</th>
-                            <td>{{qso.frequency}} MHz</td>
+                            <th class="nowrap">Frequency / Band</th>
+                            <td>{{qso.frequency}} MHz / {{qso.band}}</td>
                         </tr>
                         <tr>
                             <th class="nowrap">Mode</th>
@@ -64,16 +64,32 @@
                             <td><a href="/qsos?callsign={{qso.callsign}}&remarks=&station_callsign=%25&since=1900-01-01T00%3A00%3A00Z"><span class="callsign">{{qso.callsign}}</span></a></td>
                         </tr>
                         <tr>
-                            <th class="nowrap">RST Sent / Rcvd</th>
-                            <td>{{qso.rst_sent}} / {{qso.rst_rcvd}}</td>
-                        </tr>
-                        <tr>
                             <th class="nowrap">Contacted Operator's Callsign</th>
                             <td>{{qso.contacted_op}}</td>
                         </tr>
                         <tr>
-                            <th class="nowrap">State/Province/Country</th>
-                            <td>{{qso.spc}}</td>
+                            <th class="nowrap">RST (Sent / Rcvd)</th>
+                            <td>{{qso.rst_sent}} / {{qso.rst_rcvd}}</td>
+                        </tr>
+                        <tr>
+                            <th class="nowrap">QTH (Mine / Theirs)</th>
+                            <td>{{qso.my_spc}} / {{qso.spc}}</td>
+                        </tr>
+                        <tr>
+                            <th class="nowrap">Gridsquare (Mine / Theirs)</th>
+                            <td>{{qso.my_gridsquare}} / {{qso.gridsquare}}</td>
+                        </tr>
+                        <tr>
+                            <th class="nowrap">Country (Mine / Theirs)</th>
+                            <td>{{qso.my_country}} / {{qso.country}}</td>
+                        </tr>
+                        <tr>
+                            <th class="nowrap">CQ Zone (Mine / Theirs)</th>
+                            <td>{{qso.my_cq_zone}} / {{qso.cq_zone}}</td>
+                        </tr>
+                        <tr>
+                            <th class="nowrap">ITU Zone (Mine / Theirs)</th>
+                            <td>{{qso.my_itu_zone}} / {{qso.itu_zone}}</td>
                         </tr>
                         <tr>
                             <th class="nowrap">Name</th>

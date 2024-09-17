@@ -24,6 +24,12 @@
                     <li><a href="/qsos">List</a></li>
                 </ul>
             </nav>
+            <p>
+                Input Mode  
+                {{#each VALID_INPUT_MODES}}
+                    : <a href="/qsos/new?input_mode={{this}}">{{this}}</a>
+                {{/each}}
+            </p>
         </header>
 
         <main>
@@ -40,8 +46,8 @@
                         {{> mode }}
                         {{> power }}
                         {{> callsign_with_skcc }}
-                        {{> rst }}
                         {{> contacted_op }}
+                        {{> rst }}
                         {{> spc }}
                         {{> name }}
                         {{> skcc }}
@@ -60,6 +66,66 @@
                         {{> callsign }}
                         {{> name }}
                         {{> spc }}
+                    {{/if}}
+
+                    {{#if input_mode_sota}}
+                        {{> station_callsign }}
+                        {{> operator }}
+                        {{> my_sota }}
+                        {{> timeon }}
+                        {{> frequency }}
+                        {{> mode }}
+                        {{> power }}
+                        {{> callsign }}
+                        {{> spc }}
+                        {{> sota }}
+                    {{/if}}
+
+                    {{#if input_mode_pota}}
+                        {{> station_callsign }}
+                        {{> operator }}
+                        {{> my_pota }}
+                        {{> timeon }}
+                        {{> frequency }}
+                        {{> mode }}
+                        {{> power }}
+                        {{> callsign }}
+                        {{> spc }}
+                        {{> pota }}
+                    {{/if}}
+
+                    {{#if input_mode_pota_skcc}}
+                        {{> station_callsign }}
+                        {{> operator }}
+                        {{> my_pota }}
+                        {{> timeon }}
+                        {{> timeoff }}
+                        {{> frequency }}
+                        {{> mode }}
+                        {{> power }}
+                        {{> callsign_with_skcc }}
+                        {{> contacted_op }}
+                        {{> rst }}
+                        {{> spc }}
+                        {{> name }}
+                        {{> skcc }}
+                        {{> pota }}
+                    {{/if}}
+
+                    {{#if input_mode_skcc}}
+                        {{> station_callsign }}
+                        {{> operator }}
+                        {{> timeon }}
+                        {{> timeoff }}
+                        {{> frequency }}
+                        {{> mode }}
+                        {{> power }}
+                        {{> callsign_with_skcc }}
+                        {{> contacted_op }}
+                        {{> rst }}
+                        {{> spc }}
+                        {{> name }}
+                        {{> skcc }}
                     {{/if}}
 
                     <div class="form-row">
