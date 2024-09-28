@@ -12,7 +12,7 @@ function setNow(suffix = 'on') {
 function updateTimestamp() {
 
     if ($('input[name="now"]').is(':checked')) {
-        if ($('input[name="callsign"]').val().trim() === '') {
+        if ($('input[name="callsign"]').val().trim() === '' || $('input[name="callsign"]').is(':focus')) {
             setNow('on');
         } else {
             setNow('off');
