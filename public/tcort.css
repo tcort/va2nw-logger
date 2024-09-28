@@ -1,0 +1,119 @@
+/*
+    Copyright (c) 2023 Thomas Cort <linuxgeek@gmail.com>
+
+    Permission to use, copy, modify, and distribute this software for any
+    purpose with or without fee is hereby granted, provided that the above
+    copyright notice and this permission notice appear in all copies.
+
+    THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+    WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+    MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+    ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+    WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+    ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+    OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ */
+
+/*
+    Version 2023.10.10a
+ */
+
+body {
+	font-family: "Trebuchet MS", Verdana, "Lucida Sans", Arial, Geneva, Helvetica, Helv, "Myriad Web", Syntax, sans-serif;
+    font-size: 18px;
+    text-align: left;
+    line-height: 1.69;
+    max-width: 69vw;
+    margin: 0px auto;
+}
+
+h1, h2, h3 {
+    line-height: 1.2345;
+}
+
+h1 {
+    font-weight: bold;
+    color: #454545;
+}
+
+h2, h3 {
+    color: #707070;
+	border: 1px solid #cccccc;
+	border-width: 0px 0px 1px 0px;
+}
+
+a {
+    color: black;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #ff0033;
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+table {
+    width: 100%;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #eeeeee;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+tbody tr:hover {
+    background-color: #aaaaaa;
+}
+
+.hidden {
+    display: none;
+}
+
+progress {
+    border-radius: 4px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25) inset;
+    height: 20px;
+    position: relative;
+    display: block;
+}
+
+@media print {
+    body {
+        max-width: none;
+    }
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.flex {
+    display: flex;
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        max-width: none;
+    }
+}
+
+
+.callsign, input[type="text"] {
+    -webkit-font-feature-settings: "liga" on, "calt" on;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-family: 'Roboto Mono';
+}
+
+.footer {
+    background-color: white;
+    color: false;
+}
