@@ -1,0 +1,19 @@
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Station Callsign</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded">
+                                    <span class="select">
+                                        <select name="station_callsign" id="station_callsign" class="nosave">
+                                            <option value="%">- Any -</option>
+                                            {{#each station_callsigns}}
+                                                <option value="{{this}}">{{this}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>

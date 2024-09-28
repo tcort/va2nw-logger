@@ -6,74 +6,55 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Amateur Radio Station Logs</title>
+        <title>List | VA2NW Logger</title>
 
         <link rel="icon" href="/favicon.ico">
-        <link rel="stylesheet" href="/tcort.css">
-        <link rel="stylesheet" href="/robotomono-regular.css">
+        <link rel="stylesheet" href="/bulma/css/bulma.min.css">
     </head>
     <body>
 
-        <header>
-            <h1>Amateur Radio Station Logs</h1>
-            <nav>
-                <ul>
-                    <li><a href="/qsos/new">Create</a></li>
-                    <li><a href="/qsos/import">Import</a></li>
-                    <li><a href="/qsos/export">Export</a></li>
-                    <li><a href="/qsos">List</a></li>
-                </ul>
-            </nav>
-        </header>
+        {{> header }}
 
         <main>
-            <section>
-                <h3>Search</h3>
+            <section class="section">
+                <h1 class="title">Search</h1>
                 <form name="search" method="GET" action="/qsos">
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            <label for="callsign">Callsign</label>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Callsign</label>
                         </div>
-                        <div class="form-col-input">
-                            <input class="callsign callsign_entry" id="callsign" type="text" name="callsign" size="10" value="{{callsign}}" autofocus autocomplete="off" />
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            <label for="remarks">Remarks</label>
-                        </div>
-                        <div class="form-col-input">
-                            <input type="text" name="remarks" value="{{remarks}}" autocomplete="off" />
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded">
+                                    <input class="input callsign callsign_entry" id="callsign" type="text" name="callsign" value="{{callsign}}" autofocus autocomplete="off" />
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            <label for="station_callsign">Station Callsign</label>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Remarks</label>
                         </div>
-                        <div class="form-col-input">
-                            <select name="station_callsign" id="station_callsign" class="nosave">
-                                <option value="%">- Any -</option>
-                                {{#each station_callsigns}}
-                                    <option value="{{this}}">{{this}}</option>
-                                {{/each}}
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            &nbsp;
-                        </div>
-                        <div class="form-col-input">
-                            <input type="hidden" name="since" value="1900-01-01T00:00:00Z" />
-                            <button type="submit" class="button-primary">Search</button>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded">
+                                    <input class="input" type="text" name="remarks" value="{{remarks}}" autocomplete="off" />
+                                </p>
+                            </div>
                         </div>
                     </div>
+
+                    {{> station_callsign_select }}
+
+                    {{> submit }}
+
                 </form>
             </section>
             {{#if callsign}}
-            <section>
-                <h2><a name="callsign-lookup"></a>Callsign Lookup</h2>
-                <table>
+            <section class="section">
+                <h1 class="title"><a name="callsign-lookup"></a>Callsign Lookup</h1>
+                <table class="table">
                     <thead>
                         <tr>
                             <th>Service</th>
@@ -109,21 +90,18 @@
                 </table>
             </section>
             {{/if}}
-            <section>
-                <h2>{{count}} QSOs</h2>
-                <table>
+            <section class="section">
+                <h1 class="title">{{count}} QSOs</h1>
+                <table class="table">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Date / Time On</th>
-                            <th>Freq</th>
+                            <th>Time On</th>
+                            <th><abbr title="Frequency">Freq</abbr></th>
                             <th>Mode</th>
-                            <th>Pwr</th>
+                            <th><abbr title="Power">Pwr<abbr></th>
                             <th>Callsign</th>
                             <th>RST</th>
-                            <th>QTH</th>
-                            <th>OP</th>
-                            <th>SKCC</th>
                             <th>Remarks</th>
                         </tr>
                     </thead>
@@ -137,41 +115,35 @@
                             <td class="nowrap center">{{power}}</td>
                             <td class="nowrap"><a href="/qsos?callsign={{callsign}}&remarks=&station_callsign=%25&since=1900-01-01T00%3A00%3A00Z"><span class="callsign">{{callsign}}</span></a></td>
                             <td class="nowrap">{{rst_sent}} / {{rst_rcvd}}</td>
-                            <td class="nowrap">{{spc}}</td>
-                            <td class="nowrap">{{name}}</td>
-                            <td class="nowrap">{{skcc}}</td>
                             <td>{{remarks}}</td>
                         </tr>
                         {{/each}}
                     </tbody>
                 </table>
 
-                <div>
-                    <p class="center">
+                <div class="block">
+                    <p class="has-text-centered">
                         Page {{currentPage}} of {{npages}}
                     </p>
                 </div>
 
-                <div>
-                    <p class="center">
+                <nav class="pagination" role="navigation" aria-label="pagination">
+                    <ul class="pagination-list">
                         {{#each pageNav}}
-                            <a href="/qsos?{{{query}}}">{{label}}</a>
+                            <li>
+                                <a class="pagination-link" aria-label="Goto {{label}} page" href="/qsos?{{{query}}}">{{label}}</a>
+                            </li>
                         {{/each}}
-                    </p>
-                </div>
+                    </ul>
+                </nav>
+
+
             </section>
         </main>
 
-        <footer>
-            <p>
-                <small>
-                    Copyright &copy; 2023, 2024 Thomas Cort
-                </small>
-            </p>
-        </footer>
+        {{> footer }}
 
         <script src="/jquery.min.js"></script>
-        <script src="/tcort.js"></script>
         <script src="/va2nw-logger.js"></script>
 
     </body>

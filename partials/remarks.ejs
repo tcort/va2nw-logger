@@ -1,11 +1,12 @@
-
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            <label for="remarks">Remarks</label><br>
-                        </div>
-                        <div class="form-col-input">
-                            <textarea name="remarks" id="remarks">{{qso.remarks}}</textarea>
-                        </div>
-                    </div>
-
-
+<div class="field is-horizontal">
+    <div class="field-label is-normal">
+        <label class="label">Remarks</label>
+    </div>
+    <div class="field-body">
+        <div class="field">
+            <p class="control is-expanded">
+                <textarea class="textarea" name="remarks" id="remarks">{{qso.remarks}}</textarea>
+            </p>
+        </div>
+    </div>
+</div>

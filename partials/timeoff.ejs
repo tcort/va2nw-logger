@@ -1,12 +1,22 @@
-
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            <label for="timeoff">UTC Time Off</label>
-                        </div>
-                        <div class="form-col-input" id="timeoff">
-                            <input type="date" id="date_off" name="date_off" value="{{qso.date_off}}" required /> @
-                            <input type="time" id="time_off" name="time_off" step="1" value="{{qso.time_off}}" required />
-                            <button type="button" class="button-primary" id="timeoff_now">Now</button>
-                        </div>
-                    </div>
-
+<div class="field is-horizontal">
+    <div class="field-label is-normal">
+        <label class="label">Time Off</label>
+    </div>
+    <div class="field-body">
+        <div class="field">
+            <p class="control is-expanded">
+                <input class="input" type="date" id="date_off" name="date_off" value="{{qso.date_off}}" required />
+            </p>
+        </div>
+        <div class="field">
+            <p class="control is-expanded">
+                <input class="input" type="time" id="time_off" name="time_off" step="1" value="{{qso.time_off}}" required />
+            </p>
+        </div>
+        <div class="field">
+            <p class="control is-expanded">
+                <button type="button" class="button is-light" id="timeoff_now">Now</button>
+            </p>
+        </div>
+    </div>
+</div>

@@ -1,10 +1,12 @@
-
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            <label for="station_callsign">Station Callsign</label>
-                        </div>
-                        <div class="form-col-input">
-                            <input class="callsign callsign_entry" id="station_callsign" type="text" name="station_callsign" size="10" required autocomplete="off" value="{{qso.station_callsign}}" />
-                        </div>
-                    </div>
-
+<div class="field is-horizontal">
+    <div class="field-label is-normal">
+        <label class="label">Station Callsign</label>
+    </div>
+    <div class="field-body">
+        <div class="field">
+            <p class="control is-expanded">
+                <input class="input callsign callsign_entry" id="station_callsign" type="text" name="station_callsign" required autocomplete="off" value="{{qso.station_callsign}}" />
+            </p>
+        </div>
+    </div>
+</div>

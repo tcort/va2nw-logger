@@ -6,104 +6,38 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Amateur Radio Station Logs</title>
+        <title>Export | VA2NW Logger</title>
 
         <link rel="icon" href="/favicon.ico">
-        <link rel="stylesheet" href="/tcort.css">
-        <link rel="stylesheet" href="/robotomono-regular.css">
+        <link rel="stylesheet" href="/bulma/css/bulma.min.css">
     </head>
     <body>
 
-        <header>
-            <h1>Amateur Radio Station Logs</h1>
-            <nav>
-                <ul>
-                    <li><a href="/qsos/new">Create</a></li>
-                    <li><a href="/qsos/import">Import</a></li>
-                    <li><a href="/qsos/export">Export</a></li>
-                    <li><a href="/qsos">List</a></li>
-                </ul>
-            </nav>
-        </header>
+        {{> header }}
 
         <main>
-            <section>
-                <h3>Export QSOs</h3>
-                <p>Dump QSO data for another logging program or as a backup.</p>
+            <section class="section">
+                <h1 class="title">Export</h1>
+                <p class="block">Dump QSO data for another logging program or as a backup.</p>
                 <form method="get" action="/qsos" class="autosave">
 
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            <label for="since">Since UTC</label>
-                        </div>
-                        <div class="form-col-input" id="since">
-                            <input type="date" id="date_since" name="date_since" required /> @
-                            <input type="time" id="time_since" name="time_since" step="1" required />
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            <label for="before">Before UTC</label>
-                        </div>
-                        <div class="form-col-input" id="before">
-                            <input type="date" id="date_before" name="date_before" required /> @
-                            <input type="time" id="time_before" name="time_before" step="1" required />
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            <label for="station_callsign">Station Callsign</label>
-                        </div>
-                        <div class="form-col-input">
-                            <select name="station_callsign" id="station_callsign" class="nosave">
-                                <option value="%">- Any -</option>
-                                {{#each station_callsigns}}
-                                    <option value="{{this}}">{{this}}</option>
-                                {{/each}}
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            <label for="fmt">Format</label>
-                        </div>
-                        <div class="form-col-input">
-                            <select name="fmt" id="fmt">
-                                <option value="adi">ADIF</option>
-                                <option value="json">JSON</option>
-                            </select>
-                        </div>
-                    </div>
+                    {{> since_utc }}
+                    {{> before_utc }}
+                    {{> station_callsign_select }}
+                    {{> format_select }}
 
                     <input type="hidden" name="page" value="0">
                     <input type="hidden" name="pageSize" value="1000000">
                     <input type="hidden" name="dl" value="1">
 
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            &nbsp;
-                        </div>
-                        <div class="form-col-input">
-                            <button type="submit" class="button-primary">Export QSOs</button>
-                        </div>
-                    </div>
+                    {{> submit }}
                 </form>
             </section>
         </main>
 
-        <footer>
-            <p>
-                <small>
-                    Copyright &copy; 2023, 2024 Thomas Cort
-                </small>
-            </p>
-        </footer>
+        {{> footer }}
 
         <script src="/jquery.min.js"></script>
-        <script src="/tcort.js"></script>
         <script src="/va2nw-logger.js"></script>
 
     </body>

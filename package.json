@@ -28,6 +28,7 @@
   "homepage": "https://github.com/tcort/va2nw-logger#readme",
   "dependencies": {
     "async": "^3.2.5",
+    "bulma": "^1.0.2",
     "bytes": "^3.1.2",
     "cors": "^2.8.5",
     "express": "^4.19.2",

@@ -6,61 +6,29 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Amateur Radio Station Logs</title>
+        <title>Import | VA2NW Logger</title>
 
         <link rel="icon" href="/favicon.ico">
-        <link rel="stylesheet" href="/tcort.css">
-        <link rel="stylesheet" href="/robotomono-regular.css">
+        <link rel="stylesheet" href="/bulma/css/bulma.min.css">
     </head>
     <body>
 
-        <header>
-            <h1>Amateur Radio Station Logs</h1>
-            <nav>
-                <ul>
-                    <li><a href="/qsos/new">Create</a></li>
-                    <li><a href="/qsos/import">Import</a></li>
-                    <li><a href="/qsos/export">Export</a></li>
-                    <li><a href="/qsos">List</a></li>
-                </ul>
-            </nav>
-        </header>
+        {{> header }}
 
         <main>
-            <section>
-                <h3>Import QSOs</h3>
-                <p>Load new QSO data from another logging program.</p>
+            <section class="section">
+                <h1 class="title">Import</h1>
+                <p class="block">Load new QSO data from another logging program.</p>
                 <form method="post" encType="multipart/form-data" action="/qsos">
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            <label for="adif_file">ADIF File</label>
-                        </div>
-                        <div class="form-col-input">
-                            <input type="file" id="adif_file" name="adif_file" accept=".adi,.adif">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            &nbsp;
-                        </div>
-                        <div class="form-col-input">
-                            <button type="submit" class="button-primary">Import QSOs</button>
-                        </div>
-                    </div>
+                    {{> adif_file }}
+                    {{> submit }}
                 </form>
             </section>
         </main>
 
-        <footer>
-            <p>
-                <small>
-                    Copyright &copy; 2023, 2024 Thomas Cort
-                </small>
-            </p>
-        </footer>
+        {{> footer }}
 
         <script src="/jquery.min.js"></script>
-        <script src="/tcort.js"></script>
         <script src="/va2nw-logger.js"></script>
 
     </body>
