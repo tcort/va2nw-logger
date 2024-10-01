@@ -1,0 +1,18 @@
+<div class="field is-horizontal">
+    <div class="field-label is-normal">
+        <label class="label">Mode</label>
+    </div>
+    <div class="field-body">
+        <div class="field">
+            <p class="control is-expanded">
+                <span class="select">
+                    <select name="mode" data-autoselect="{{qso.mode}}" required>
+                        {{#each enums.Mode}}
+                            <option value="{{@key}}">{{this}}</option>
+                        {{/each}}
+                    </select>
+                </span>
+            </p>
+        </div>
+    </div>
+</div>

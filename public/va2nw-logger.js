@@ -12,7 +12,7 @@ function setNow(suffix = 'on') {
 function updateTimestamp() {
 
     if ($('input[name="now"]').is(':checked')) {
-        if ($('input[name="callsign"]').val().trim() === '') {
+        if ($('input[name="callsign"]').val().trim() === '' || $('input[name="callsign"]').is(':focus')) {
             setNow('on');
         } else {
             setNow('off');
@@ -29,7 +29,6 @@ const storedFields = [
     'date_on', 'time_on',
     'date_off', 'time_off',
     'now', 'station_callsign',
-    'operator', 'my_sota', 'my_pota',
 ];
 
 function defaultLocalStorage() {
@@ -115,46 +114,17 @@ $(function () {
     updateTimestamp();
 
     $('#callsign').on('input', function () {
-
-        $('#recent_qsos').html('');
-
-        const input = $(this).val().trim();
-        if (input.length === 0) {
-            return;
-        }
-
-        fetch('/qsos?page=0&pageSize=5&fmt=json&since=1900-01-01T00:00:00Z&order=desc&callsign=' + encodeURIComponent(input))
-            .then((response) => response.json())
-            .then(qsos => {
-                if (qsos.length === 0) {
-                    $('input[name="name"]').val('');
-                    $('input[name="spc"]').val('');
-                    return;
-                }
-                const html = qsos.map(qso => `${qso.timeon.split('T')[0]} (${qso.frequency.toString().split('.')[0]} MHz)`).join(', ');
-                $('#recent_qsos').html(html);
-
-                $('input[name="name"]').val(qsos.map(qso => qso.name).find(name => typeof name === 'string' && name.length > 0) ?? '');
-                $('input[name="spc"]').val(qsos.map(qso => qso.spc).find(spc => typeof spc === 'string' && spc.length > 0) ?? '');
-            })
-            .catch(err => console.log('error', err));
-
+        $(this).val($(this).val().trim().toUpperCase());
     });
 
-    $('.skcc-roster-lookup').on('click', function () {
-        const input = $($(this).data('src')).val().trim();
-        if (input.length === 0) {
-            return;
-        }
 
-        fetch('/skcc/' + encodeURIComponent(input))
-            .then((response) => response.json())
-            .then(member => {
-                $('input[name="skcc"]').val(member.member_nr);
-                $('input[name="spc"]').val(member.spc);
-                $('input[name="name"]').val(member.name);
-            })
-            .catch(err => console.log('error', err));
+});
+
+
+
+$(document).ready(function() {
+    $(".navbar-burger").click(function() {
+        $(".navbar-burger").toggleClass("is-active");
+        $(".navbar-menu").toggleClass("is-active");
     });
-
 });

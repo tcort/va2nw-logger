@@ -6,73 +6,41 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Amateur Radio Station Logs</title>
+        <title>Edit | VA2NW Logger</title>
 
         <link rel="icon" href="/favicon.ico">
-        <link rel="stylesheet" href="/tcort.css">
-        <link rel="stylesheet" href="/robotomono-regular.css">
+
+        {{> stylesheets }}
+
     </head>
     <body>
 
-        <header>
-            <h1>Amateur Radio Station Logs</h1>
-            <nav>
-                <ul>
-                    <li><a href="/qsos/new">Create</a></li>
-                    <li><a href="/qsos/import">Import</a></li>
-                    <li><a href="/qsos/export">Export</a></li>
-                    <li><a href="/qsos">List</a></li>
-                </ul>
-            </nav>
-        </header>
+        {{> header }}
 
         <main>
-            <section>
-                <h2>Edit a QSO</h2>
+            <section class="section">
+                <h1 class="title">Edit</h1>
+                <p class="block">Edit the details of this QSO.</p>
                 <form method="post" action="/qsos/{{qso.qso_id}}?_method=PUT">
 
                     {{> station_callsign }}
-                    {{> operator }}
-                    {{> timeon }}
-                    {{> timeoff }}
                     {{> frequency }}
                     {{> mode }}
                     {{> power }}
+                    {{> timeon }}
+                    {{> timeoff }}
                     {{> callsign }}
-                    {{> contacted_op }}
                     {{> rst }}
-                    {{> spc }}
-                    {{> name }}
-                    {{> skcc }}
-                    {{> fists }}
-                    {{> sota }}
-                    {{> my_sota }}
-                    {{> pota }}
-                    {{> my_pota }}
                     {{> remarks }}
 
-                    <div class="form-row">
-                        <div class="form-col-label">
-                            &nbsp;
-                        </div>
-                        <div class="form-col-input">
-                            <button type="submit" class="button-primary">Save QSO</button>
-                        </div>
-                    </div>
+                    {{> submit }}
                 </form>
             </section>
         </main>
 
-        <footer>
-            <p>
-                <small>
-                    Copyright &copy; 2023, 2024 Thomas Cort
-                </small>
-            </p>
-        </footer>
+        {{> footer }}
 
-        <script src="/jquery.min.js"></script>
-        <script src="/tcort.js"></script>
+        {{> scripts }}
 
     </body>
 </html>

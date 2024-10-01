@@ -6,45 +6,37 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Amateur Radio Station Logs</title>
+        <title>View | VA2NW Logger</title>
 
         <link rel="icon" href="/favicon.ico">
-        <link rel="stylesheet" href="/tcort.css">
-        <link rel="stylesheet" href="/robotomono-regular.css">
+
+        {{> stylesheets }}
+
     </head>
     <body>
 
-        <header>
-            <h1>Amateur Radio Station Logs</h1>
-            <nav>
-                <ul>
-                    <li><a href="/qsos/new">Create</a></li>
-                    <li><a href="/qsos/import">Import</a></li>
-                    <li><a href="/qsos/export">Export</a></li>
-                    <li><a href="/qsos">List</a></li>
-                </ul>
-            </nav>
-        </header>
+        {{> header }}
 
         <main>
-            <section>
-                <h2>QSO</h2>
-                <table>
+            <section class="section">
+                <h1 class="title">View</h1>
+                <p class="block">Details of QSO</p>
+                <table class="table">
                     <tbody>
                         <tr>
                             <th class="nowrap">Station Callsign</th>
                             <td><span class="callsign">{{qso.station_callsign}}</span></td>
                         </tr>
                         <tr>
-                            <th class="nowrap">Operator</th>
-                            <td><span class="callsign">{{qso.operator}}</span></td>
+                            <th class="nowrap">Callsign</th>
+                            <td><a href="/qsos?callsign={{qso.callsign}}&remarks=&station_callsign=%25&since=1900-01-01T00%3A00%3A00Z"><span class="callsign">{{qso.callsign}}</span></a></td>
                         </tr>
                         <tr>
-                            <th class="nowrap">Date / Time On</th>
+                            <th class="nowrap">Time On</th>
                             <td>{{qso.dateon}} {{qso.timeon}} UTC</td>
                         </tr>
                         <tr>
-                            <th class="nowrap">Date / Time Off</th>
+                            <th class="nowrap">Time Off</th>
                             <td>{{qso.dateoff}} {{qso.timeoff}} UTC</td>
                         </tr>
                         <tr>
@@ -60,60 +52,8 @@
                             <td>{{qso.power}} Watts</td>
                         </tr>
                         <tr>
-                            <th class="nowrap">Callsign</th>
-                            <td><a href="/qsos?callsign={{qso.callsign}}&remarks=&station_callsign=%25&since=1900-01-01T00%3A00%3A00Z"><span class="callsign">{{qso.callsign}}</span></a></td>
-                        </tr>
-                        <tr>
-                            <th class="nowrap">Contacted Operator's Callsign</th>
-                            <td>{{qso.contacted_op}}</td>
-                        </tr>
-                        <tr>
                             <th class="nowrap">RST (Sent / Rcvd)</th>
                             <td>{{qso.rst_sent}} / {{qso.rst_rcvd}}</td>
-                        </tr>
-                        <tr>
-                            <th class="nowrap">QTH (Mine / Theirs)</th>
-                            <td>{{qso.my_spc}} / {{qso.spc}}</td>
-                        </tr>
-                        <tr>
-                            <th class="nowrap">Gridsquare (Mine / Theirs)</th>
-                            <td>{{qso.my_gridsquare}} / {{qso.gridsquare}}</td>
-                        </tr>
-                        <tr>
-                            <th class="nowrap">Country (Mine / Theirs)</th>
-                            <td>{{qso.my_country}} / {{qso.country}}</td>
-                        </tr>
-                        <tr>
-                            <th class="nowrap">CQ Zone (Mine / Theirs)</th>
-                            <td>{{qso.my_cq_zone}} / {{qso.cq_zone}}</td>
-                        </tr>
-                        <tr>
-                            <th class="nowrap">ITU Zone (Mine / Theirs)</th>
-                            <td>{{qso.my_itu_zone}} / {{qso.itu_zone}}</td>
-                        </tr>
-                        <tr>
-                            <th class="nowrap">POTA (Mine / Theirs)</th>
-                            <td>{{qso.my_pota}} / {{qso.pota}}</td>
-                        </tr>
-                        <tr>
-                            <th class="nowrap">SOTA (Mine / Theirs)</th>
-                            <td>{{qso.my_sota}} / {{qso.sota}}</td>
-                        </tr>
-                        <tr>
-                            <th class="nowrap">Contest</th>
-                            <td>{{qso.contest}}</td>
-                        </tr>
-                        <tr>
-                            <th class="nowrap">Name</th>
-                            <td>{{qso.name}}</td>
-                        </tr>
-                        <tr>
-                            <th class="nowrap">SKCC</th>
-                            <td>{{qso.skcc}}</td>
-                        </tr>
-                        <tr>
-                            <th class="nowrap">FISTS</th>
-                            <td>{{qso.fists}}</td>
                         </tr>
                         <tr>
                             <th class="nowrap">Remarks</th>
@@ -125,31 +65,24 @@
                     <form method="get" action="/qsos/{{qso.qso_id}}">
                         <input type="hidden" name="dl" value="1" />
                         <input type="hidden" name="fmt" value="adi" />
-                        <button type="submit" class="button-primary">Export ADIF</button>
+                        {{> export }}
                     </form>
                     <span>&nbsp;</span>
                     <form method="get" action="/qsos/{{qso.qso_id}}">
                         <input type="hidden" name="form" value="edit" />
-                        <button type="submit" class="button-primary">Edit QSO</button>
+                        {{> edit }}
                     </form>
                     <span>&nbsp;</span>
                     <form method="post" action="/qsos/{{qso.qso_id}}?_method=DELETE" onsubmit="return confirm('Are you sure you want to delete this record?')">
-                        <button type="submit" class="button-primary">Delete QSO</button>
+                        {{> delete }}
                     </form>
                 </div>
             </section>
         </main>
 
-        <footer>
-            <p>
-                <small>
-                    Copyright &copy; 2023, 2024 Thomas Cort
-                </small>
-            </p>
-        </footer>
+        {{> footer }}
 
-        <script src="/jquery.min.js"></script>
-        <script src="/tcort.js"></script>
+        {{> scripts }}
 
     </body>
 </html>
