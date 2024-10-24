@@ -70,6 +70,8 @@ function loadLocalStorage() {
             $(`.autosave [name="${field}"]:not(.nosave)`).val(window.localStorage.getItem(field) ?? '').change();
         }
     });
+
+    $(`textarea[name="remarks"]`).val(window.localStorage.getItem('remarks') ?? '').change();
 }
 
 
@@ -110,6 +112,10 @@ $(function () {
     if ($('.autosave').length > 0) {
         setInterval(() => saveLocalStorage(), 3000);
     }
+
+    $('#remarks_save').on('click', function () {
+        window.localStorage.setItem('remarks', $('textarea[name="remarks"]').val());
+    });
 
     updateTimestamp();
 
