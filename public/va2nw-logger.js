@@ -71,7 +71,7 @@ function loadLocalStorage() {
         }
     });
 
-    $(`textarea[name="remarks"]`).val(window.localStorage.getItem('remarks') ?? '').change();
+    $(`.autosave textarea[name="remarks"]`).val(window.localStorage.getItem('remarks') ?? '').change();
 }
 
 
