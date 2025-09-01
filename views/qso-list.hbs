@@ -104,6 +104,9 @@
                             <th><abbr title="Power">Pwr<abbr></th>
                             <th>Callsign</th>
                             <th>RST</th>
+                            <th>SKCC</th>
+                            <th>QTH</th>
+                            <th>Name</th>
                             <th>Remarks</th>
                         </tr>
                     </thead>
@@ -117,6 +120,9 @@
                             <td class="nowrap center">{{power}}</td>
                             <td class="nowrap"><a href="/qsos?callsign={{callsign}}&remarks=&station_callsign=%25&since=1900-01-01T00%3A00%3A00Z"><span class="callsign">{{callsign}}</span></a></td>
                             <td class="nowrap">{{rst_sent}} / {{rst_rcvd}}</td>
+                            <td class="nowrap">{{skcc}}</td>
+                            <td class="nowrap">{{spc}}</td>
+                            <td class="nowrap">{{name}}</td>
                             <td>{{remarks}}</td>
                         </tr>
                         {{/each}}

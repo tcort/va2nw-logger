@@ -1,0 +1,28 @@
+<div class="field is-horizontal">
+    <div class="field-label is-normal">
+        <label class="label">Freq / Mode / Pwr</label>
+    </div>
+    <div class="field-body">
+        <div class="field">
+            <p class="control is-expanded">
+                <input class="input" type="number" id="frequency" name="frequency" size="12" min="0" max="30000" step=".000001" placeholder="MHz" value="{{qso.frequency}}" required />
+            </p>
+        </div>
+        <div class="field">
+            <p class="control is-expanded">
+                <span class="select">
+                    <select name="mode" data-autoselect="{{qso.mode}}" required>
+                        {{#each enums.Mode}}
+                            <option value="{{@key}}">{{this}}</option>
+                        {{/each}}
+                    </select>
+                </span>
+            </p>
+        </div>
+        <div class="field">
+            <p class="control is-expanded">
+                <input class="input" type="number" id="power" name="power" size="8" min="0" max="10000" step=".001" placeholder="Watts" value="{{qso.power}}" required />
+            </p>
+        </div>
+    </div>
+</div>
