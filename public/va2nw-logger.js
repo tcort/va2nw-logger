@@ -154,11 +154,23 @@ $(function () {
         fetch('/skcc/' + encodeURIComponent(input))
             .then((response) => response.json())
             .then(member => {
+                if (member.name === 'SKCC_MEMBER_NOT_FOUND') {
+                    return; // error (not found)
+                }
                 $('input[name="skcc"]').val(member.member_nr);
                 $('input[name="spc"]').val(member.spc);
                 $('input[name="name"]').val(member.name);
             })
             .catch(err => console.log('error', err));
+    });
+
+    $('[data-qso_id]').on('click', function () {
+        const qso_id = $(this).data('qso_id');
+        if (qso_id.length === 0) {
+            return;
+        }
+
+        document.location = '/qsos/' + encodeURIComponent(qso_id);
     });
 
 });

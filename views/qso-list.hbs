@@ -97,7 +97,6 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Time On</th>
                             <th><abbr title="Frequency">Freq</abbr></th>
                             <th>Mode</th>
@@ -112,8 +111,7 @@
                     </thead>
                     <tbody>
                         {{#each qsos}}
-                        <tr>
-                            <td><a href="/qsos/{{qso_id}}">{{qso_id}}</a></td>
+                        <tr data-qso_id="{{qso_id}}">
                             <td class="nowrap">{{dateon}} {{timeon}}</td>
                             <td class="nowrap">{{frequency}}</td>
                             <td class="nowrap center">{{mode}}</td>
