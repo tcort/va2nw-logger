@@ -145,6 +145,22 @@ $(function () {
 
     });
 
+    $('.skcc-roster-lookup').on('click', function () {
+        const input = $($(this).data('src')).val().trim();
+        if (input.length === 0) {
+            return;
+        }
+
+        fetch('/skcc/' + encodeURIComponent(input))
+            .then((response) => response.json())
+            .then(member => {
+                $('input[name="skcc"]').val(member.member_nr);
+                $('input[name="spc"]').val(member.spc);
+                $('input[name="name"]').val(member.name);
+            })
+            .catch(err => console.log('error', err));
+    });
+
 });
 
 
