@@ -21,17 +21,47 @@
             <section class="section">
                 <h1 class="title">Create</h1>
                 <p class="block">Enter details of a recent QSO</p>
-                <p class="block"><input type="checkbox" id="now" name="now" /> Automatic Timekeeping</p>
-                <form method="post" action="/qsos" class="autosave">
+                <p class="block">
+                    <form method="get" action="/qsos/new">
+                        <select name="logger_mode">
+                            <option value="default" {{#if logger_mode_default}}selected{{/if}}>Default</option>
+                            <option value="contest" {{#if logger_mode_contest}}selected{{/if}}>Contest</option>
+                            <option value="skcc"    {{#if logger_mode_skcc}}selected{{/if}}>SKCC</option>
+                        </select>
+                    </form>
+                </p>
+                <p class="block autosave"><input type="checkbox" id="now" name="now" /> Automatic Timekeeping</p>
+                <form method="post" action="/qsos?logger_mode={{logger_mode}}" class="autosave">
 
-                    {{> station_callsign }}
-                    {{> freq_mode_pwr }}
-                    {{> timeon }}
-                    {{> timeoff }}
-                    {{> callsign }}
-                    {{> rst }}
-                    {{> spc_name }}
-                    {{> remarks }}
+                    {{#if logger_mode_default}}
+                        {{> station_callsign }}
+                        {{> freq_mode_pwr }}
+                        {{> timeon }}
+                        {{> timeoff }}
+                        {{> callsign }}
+                        {{> rst }}
+                        {{> spc_name }}
+                        {{> remarks }}
+                    {{/if}}
+                    {{#if logger_mode_contest}}
+                        {{> freq_mode_pwr }}
+                        {{> callsign }}
+                        {{> remarks }}
+                        {{> rst }}
+                        {{> timeon }}
+                        {{> timeoff }}
+                        {{> station_callsign }}
+                    {{/if}}
+                    {{#if logger_mode_skcc}}
+                        {{> station_callsign }}
+                        {{> freq_mode_pwr }}
+                        {{> timeon }}
+                        {{> timeoff }}
+                        {{> callsign_skcc }}
+                        {{> rst }}
+                        {{> spc_name }}
+                        {{> remarks }}
+                    {{/if}}
 
                     {{> submit }}
                 </form>

@@ -173,6 +173,9 @@ $(function () {
         document.location = '/qsos/' + encodeURIComponent(qso_id);
     });
 
+    $('[name="logger_mode"]').on('change', function () {
+        this.form.submit();
+    });
 });
 
 

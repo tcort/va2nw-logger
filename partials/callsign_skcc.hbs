@@ -1,11 +1,21 @@
 <div class="field is-horizontal">
     <div class="field-label is-normal">
-        <label class="label">Callsign</label>
+        <label class="label">Callsign / SKCC</label>
     </div>
     <div class="field-body">
         <div class="field">
             <p class="control is-expanded">
                 <input class="input callsign callsign_entry" id="callsign" type="text" name="callsign" autofocus required autocomplete="off" value="{{qso.callsign}}" />
+            </p>
+        </div>
+        <div class="field">
+            <p class="control is-expanded">
+                <input type="text" class="input" id="skcc" name="skcc" placeholder="SKCC Member Number" value="{{qso.skcc}}" />
+            </p>
+        </div>
+        <div class="field">
+            <p class="control is-expanded">
+                <button type="button" class="button is-light skcc-roster-lookup" id="skcc-roster-lookup" data-src="#callsign">Autofill</button>
             </p>
         </div>
     </div>
