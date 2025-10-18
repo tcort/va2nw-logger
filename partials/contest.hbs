@@ -1,0 +1,28 @@
+<div class="field is-horizontal">
+    <div class="field-label is-normal">
+        <label class="label">Exchange (RX/TX) / Contest </label>
+    </div>
+    <div class="field-body">
+        <div class="field">
+            <p class="control is-expanded">
+                <input type="text" class="input" id="srx" name="srx" placeholder="Received Exchange" value="{{qso.srx}}" />
+            </p>
+        </div>
+        <div class="field">
+            <p class="control is-expanded">
+                <input type="text" class="input" id="stx" name="stx" placeholder="Sent Exchange" value="{{qso.stx}}" />
+            </p>
+        </div>
+        <div class="field">
+            <p class="control is-expanded">
+                <span class="select">
+                    <select name="contest" data-autoselect="{{qso.contest}}" required>
+                        {{#each enums.ContestID}}
+                            <option value="{{@key}}">{{this}}</option>
+                        {{/each}}
+                    </select>
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
