@@ -16,7 +16,7 @@
         <div class="field">
             <p class="control is-expanded">
                 <span class="select">
-                    <select name="contest" data-autoselect="{{qso.contest}}" required>
+                    <select name="contest" data-autoselect="{{qso.contest}}">
                         {{#each enums.ContestID}}
                             <option value="{{@key}}">{{this}}</option>
                         {{/each}}
