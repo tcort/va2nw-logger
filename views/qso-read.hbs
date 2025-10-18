@@ -31,10 +31,12 @@
                             <th class="nowrap">Callsign</th>
                             <td><a href="/qsos?callsign={{qso.callsign}}&remarks=&station_callsign=%25&since=1900-01-01T00%3A00%3A00Z"><span class="callsign">{{qso.callsign}}</span></a></td>
                         </tr>
+                        {{#if qso.contacted_op}}
                         <tr>
                             <th class="nowrap">Contacted Operator</th>
                             <td><a href="/qsos?callsign={{qso.contacted_op}}&remarks=&station_callsign=%25&since=1900-01-01T00%3A00%3A00Z"><span class="callsign">{{qso.contacted_op}}</span></a></td>
                         </tr>
+                        {{/if}}
                         <tr>
                             <th class="nowrap">Time On</th>
                             <td>{{qso.dateon}} {{qso.timeon}} UTC</td>
@@ -51,46 +53,54 @@
                             <th class="nowrap">Mode</th>
                             <td>{{qso.mode}}</td>
                         </tr>
+                        {{#if qso.power}}
                         <tr>
                             <th class="nowrap">Power</th>
                             <td>{{qso.power}} Watts</td>
                         </tr>
+                        {{/if}}
+                        {{#if qso.contest}}
+                        <tr>
+                            <th class="nowrap">Contest / Sent / Rcvd</th>
+                            <td>{{qso.contest}} / {{qso.stx}} / {{qso.srx}}</td>
+                        </tr>
+                        {{/if}}
                         <tr>
                             <th class="nowrap">RST (Sent / Rcvd)</th>
                             <td>{{qso.rst_sent}} / {{qso.rst_rcvd}}</td>
                         </tr>
+                        {{#if qso.skcc}}
                         <tr>
                             <th class="nowrap">SKCC</th>
                             <td>{{qso.skcc}}</td>
                         </tr>
+                        {{/if}}
+                        {{#if qso.spc}}
                         <tr>
                             <th class="nowrap">QTH</th>
                             <td>{{qso.spc}}</td>
                         </tr>
+                        {{/if}}
                         <tr>
-                            <th class="nowrap">POTA</th>
-                            <td>{{qso.pota}}</td>
+                            <th class="nowrap">POTA / My POTA</th>
+                            <td>{{qso.pota}} / {{qso.my_pota}}</td>
                         </tr>
                         <tr>
-                            <th class="nowrap">My POTA</th>
-                            <td>{{qso.my_pota}}</td>
+                            <th class="nowrap">SOTA / My SOTA</th>
+                            <td>{{qso.sota}} / {{qso.my_sota}}</td>
                         </tr>
-                        <tr>
-                            <th class="nowrap">SOTA</th>
-                            <td>{{qso.sota}}</td>
-                        </tr>
-                        <tr>
-                            <th class="nowrap">My SOTA</th>
-                            <td>{{qso.my_sota}}</td>
-                        </tr>
+                        {{#if qso.name}}
                         <tr>
                             <th class="nowrap">Name</th>
                             <td>{{qso.name}}</td>
                         </tr>
+                        {{/if}}
+                        {{#if qso.remarks}}
                         <tr>
                             <th class="nowrap">Remarks</th>
                             <td>{{qso.remarks}}</td>
                         </tr>
+                        {{/if}}
                     </tbody>
                 </table>
                 <div class="flex">
