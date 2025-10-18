@@ -30,6 +30,7 @@ const storedFields = [
     'date_off', 'time_off',
     'now', 'station_callsign',
     'contest', 'stx',
+    'my_sota', 'my_pota',
 ];
 
 function defaultLocalStorage() {

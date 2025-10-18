@@ -24,13 +24,15 @@
                 <form method="post" action="/qsos/{{qso.qso_id}}?_method=PUT">
 
                     {{> station_callsign }}
+                    {{> my_sota_my_pota }}
                     {{> freq_mode_pwr }}
                     {{> timeon }}
                     {{> timeoff }}
                     {{> callsign_skcc }}
                     {{> contacted_op }}
                     {{> rst }}
-                    {{> spc_name }}
+                    {{> spc_name }}    
+                    {{> sota_pota }}
                     {{> contest }}
                     {{> remarks }}
 

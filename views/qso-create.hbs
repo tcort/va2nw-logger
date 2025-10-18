@@ -28,6 +28,7 @@
                             <option value="contest" {{#if logger_mode_contest}}selected{{/if}}>Contest</option>
                             <option value="sst"     {{#if logger_mode_sst}}selected{{/if}}>K1USN Slow Speed Test</option>
                             <option value="skcc"    {{#if logger_mode_skcc}}selected{{/if}}>SKCC</option>
+                            <option value="ota"     {{#if logger_mode_ota}}selected{{/if}}>OTA</option>
                         </select>
                     </form>
                 </p>
@@ -41,6 +42,19 @@
                         {{> callsign }}
                         {{> rst }}
                         {{> spc_name }}
+                        {{> sota_pota }}
+                        {{> remarks }}
+                        {{> station_callsign }}
+                    {{/if}}
+                    {{#if logger_mode_ota}}
+                        {{> freq_mode_pwr }}
+                        {{> my_sota_my_pota }}
+                        {{> timeon }}
+                        {{> timeoff }}
+                        {{> callsign }}
+                        {{> rst }}
+                        {{> spc_name }}
+                        {{> sota_pota }}
                         {{> remarks }}
                         {{> station_callsign }}
                     {{/if}}
