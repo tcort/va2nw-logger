@@ -35,7 +35,6 @@
                 <form method="post" action="/qsos?logger_mode={{logger_mode}}" class="autosave">
 
                     {{#if logger_mode_default}}
-                        {{> station_callsign }}
                         {{> freq_mode_pwr }}
                         {{> timeon }}
                         {{> timeoff }}
@@ -43,6 +42,7 @@
                         {{> rst }}
                         {{> spc_name }}
                         {{> remarks }}
+                        {{> station_callsign }}
                     {{/if}}
                     {{#if logger_mode_sst}}
                         {{> freq_mode_pwr }}
@@ -63,7 +63,6 @@
                         {{> station_callsign }}
                     {{/if}}
                     {{#if logger_mode_skcc}}
-                        {{> station_callsign }}
                         {{> freq_mode_pwr }}
                         {{> timeon }}
                         {{> timeoff }}
@@ -71,6 +70,7 @@
                         {{> rst }}
                         {{> spc_name }}
                         {{> remarks }}
+                        {{> station_callsign }}
                     {{/if}}
 
                     {{> submit }}
