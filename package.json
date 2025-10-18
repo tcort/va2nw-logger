@@ -1,6 +1,6 @@
 {
   "name": "va2nw-logger",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "amateur radio logbook",
   "main": "index.js",
   "scripts": {
