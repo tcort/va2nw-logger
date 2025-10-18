@@ -112,7 +112,7 @@
                     <tbody>
                         {{#each qsos}}
                         <tr data-qso_id="{{qso_id}}">
-                            <td class="nowrap">{{dateon}} {{timeon}}</td>
+                            <td class="nowrap"><a href="/qsos/{{qso_id}}">{{dateon}} {{timeon}}</a></td>
                             <td class="nowrap">{{frequency}}</td>
                             <td class="nowrap center">{{mode}}</td>
                             <td class="nowrap center">{{power}}</td>
