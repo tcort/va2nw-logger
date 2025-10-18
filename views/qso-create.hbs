@@ -26,6 +26,7 @@
                         <select name="logger_mode">
                             <option value="default" {{#if logger_mode_default}}selected{{/if}}>Default</option>
                             <option value="contest" {{#if logger_mode_contest}}selected{{/if}}>Contest</option>
+                            <option value="sst"     {{#if logger_mode_sst}}selected{{/if}}>K1USN Slow Speed Test</option>
                             <option value="skcc"    {{#if logger_mode_skcc}}selected{{/if}}>SKCC</option>
                         </select>
                     </form>
@@ -42,6 +43,15 @@
                         {{> rst }}
                         {{> spc_name }}
                         {{> remarks }}
+                    {{/if}}
+                    {{#if logger_mode_sst}}
+                        {{> freq_mode_pwr }}
+                        {{> callsign }}
+                        {{> name_spc }}
+                        {{> timeon }}
+                        {{> timeoff }}
+                        {{> station_callsign }}
+                        <input type="hidden" name="remarks" value="K1USN Slow Speed Test" />
                     {{/if}}
                     {{#if logger_mode_contest}}
                         {{> freq_mode_pwr }}
