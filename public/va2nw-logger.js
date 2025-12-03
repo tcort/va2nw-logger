@@ -169,6 +169,8 @@ $(function () {
     $('[name="logger_mode"]').on('change', function () {
         this.form.submit();
     });
+
+    tctypeahead('.callsign_entry', '#callsign_entry_suggestions', completer('/callsigns?partial=', true));
 });
 
 
@@ -179,3 +181,5 @@ $(document).ready(function() {
         $(".navbar-menu").toggleClass("is-active");
     });
 });
+
+
