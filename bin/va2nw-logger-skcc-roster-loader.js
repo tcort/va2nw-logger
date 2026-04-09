@@ -10,6 +10,7 @@ const [ node, prog, filename ] = process.argv;
 if (!filename) {
     console.error('wget https://www.skccgroup.com/search/skcclist.txt');
 	console.error('%s %s skcclist.txt', node, prog);
+	console.error('rm skcclist.txt');
 	process.exit(1);
 }
 

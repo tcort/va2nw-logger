@@ -10,6 +10,7 @@ const [ node, prog, filename ] = process.argv;
 if (!filename) {
     console.error('wget https://www.supercheckpartial.com/MASTER.SCP');
 	console.error('%s %s MASTER.SCP', node, prog);
+	console.error('rm MASTER.SCP');
 	process.exit(1);
 }
 
